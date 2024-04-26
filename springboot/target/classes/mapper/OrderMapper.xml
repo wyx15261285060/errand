@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.OrderMapper">
+
+    <sql id="Base_Column_List">
+        id,order_no,name,descr,img,type,weight,price,user_id,accept_id,time,accept_time,status,address_id,target_id,comment
+    </sql>
+
+    <select id="selectAll" resultType="com.example.entity.Order">
+        select
+            o.*,u1.username as userName,u2.username as acceptName
+        from wyx_order o
+        left join wyx_user u2 on o.accept_id = u2.id
+        left join wyx_user u1 on o.user_id = u1.id
+        <where>
+            <if test="orderNo != null"> and o.order_no like concat('%', #{orderNo}, '%')</if>
+            <if test="name != null"> and o.name like concat('%', #{name}, '%')</if>
+        </where>
+        order by o.id desc
+    </select>
+
+    <select id="selectById" resultType="com.example.entity.Order">
+        select
+        <include refid="Base_Column_List" />
+        from wyx_order
+        where id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from wyx_order
+        where  id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.entity.Order" useGeneratedKeys="true">
+        insert into wyx_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="orderNo != null">order_no,</if>
+            <if test="name != null">name,</if>
+            <if test="descr != null">descr,</if>
+            <if test="img != null">img,</if>
+            <if test="type != null">type,</if>
+            <if test="weight != null">weight,</if>
+            <if test="price != null">price,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="acceptId != null">accept_id,</if>
+            <if test="time != null">time,</if>
+            <if test="acceptTime != null">accept_time,</if>
+            <if test="status != null">status,</if>
+            <if test="addressId != null">address_id,</if>
+            <if test="targetId != null">target_id,</if>
+            <if test="comment != null">comment,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="orderNo != null">#{orderNo},</if>
+            <if test="name != null">#{name},</if>
+            <if test="descr != null">#{descr},</if>
+            <if test="img != null">#{img},</if>
+            <if test="type != null">#{type},</if>
+            <if test="weight != null">#{weight},</if>
+            <if test="price != null">#{price},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="acceptId != null">#{acceptId},</if>
+            <if test="time != null">#{time},</if>
+            <if test="acceptTime != null">#{acceptTime},</if>
+            <if test="status != null">#{status},</if>
+            <if test="addressId != null">#{addressId},</if>
+            <if test="targetId != null">#{targetId},</if>
+            <if test="comment != null">#{comment},</if>
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.Order">
+        update wyx_order
+        <set>
+            <if test="orderNo != null">
+                order_no = #{orderNo},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="descr != null">
+                descr = #{descr},
+            </if>
+            <if test="img != null">
+                img = #{img},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="weight != null">
+                weight = #{weight},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="acceptId != null">
+                accept_id = #{acceptId},
+            </if>
+            <if test="time != null">
+                time = #{time},
+            </if>
+            <if test="acceptTime != null">
+                accept_time = #{acceptTime},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="addressId != null">
+                address_id = #{addressId},
+            </if>
+            <if test="targetId != null">
+                target_id = #{targetId},
+            </if>
+            <if test="comment != null">
+                comment = #{comment},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>
