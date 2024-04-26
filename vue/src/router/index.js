@@ -26,6 +26,7 @@ const routes = [
       { path: 'order', name: 'Order', meta: { name: '订单信息' }, component: () => import('../views/manager/Order') },
       { path: 'address', name: 'Address', meta: { name: '地址信息' }, component: () => import('../views/manager/Address') },
       { path: 'certification', name: 'Certification', meta: { name: '骑手认证' }, component: () => import('../views/manager/Certification') },
+      { path: 'record', name: 'Records', meta: { name: '收支明细' }, component: () => import('../views/manager/Record') },
     ]
   },
   {
