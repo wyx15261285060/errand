@@ -47,6 +47,7 @@
             <el-menu-item index="/address">地址信息</el-menu-item>
             <el-menu-item index="/certification">骑手认证</el-menu-item>
             <el-menu-item index="/record">收支明细</el-menu-item>
+            <el-menu-item index="/comment">用户评价</el-menu-item>
           </el-submenu>
 
           <el-submenu index="user">
