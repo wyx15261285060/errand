@@ -6,3 +6,22 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+/target/
+.idea
+*.iml
+.tags
+.tags_sorted_by_file
+.pyc
+__pycache__
+.cache
+.settings
+.classpath
+.project
+.DS_Store
+*.pid
+*Help
+target
+log.*
+.DS_Store
+log.home_IS_UNDEFINED
+doc/api_doc
