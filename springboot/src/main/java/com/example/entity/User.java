@@ -33,6 +33,7 @@ public class User extends Account implements Serializable {
     /** 余额 */
     private BigDecimal account;
 
+
     @Override
     public Integer getId() {
         return id;
@@ -81,6 +82,14 @@ public class User extends Account implements Serializable {
         this.phone = phone;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String getAvatar() {
         return avatar;
@@ -115,13 +124,5 @@ public class User extends Account implements Serializable {
 
     public void setAccount(BigDecimal account) {
         this.account = account;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 }
