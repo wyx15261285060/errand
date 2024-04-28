@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/orders/orders",
+    "pages/personal/personal"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "校园跑腿",
+    "navigationBarBackgroundColor": "#006eff",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "backgroundColor": "#fff",
+    "selectedColor": "#006eff",
+    "color": "#666",
+    "list": [
+      {
+        "iconPath": "/static/icons/home.png",
+        "selectedIconPath": "static/icons/home-active.png",
+        "text": "首页",
+        "pagePath": "pages/index/index"
+      },
+      {
+        "iconPath": "/static/icons/orders.png",
+        "selectedIconPath": "static/icons/orders-active.png",
+        "text": "订单",
+        "pagePath": "pages/orders/orders"
+      },
+      {
+        "iconPath": "/static/icons/personal.png",
+        "selectedIconPath": "static/icons/personal-active.png",
+        "text": "个人信息",
+        "pagePath": "pages/personal/personal"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
