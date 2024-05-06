@@ -44,6 +44,8 @@ public class WebController {
             account = adminService.login(account);
         } else if(RoleEnum.USER.name().equals(account.getRole())){
             account = userService.login(account);
+        }else {
+            return Result.error(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
         return Result.success(account);
     }
@@ -61,8 +63,10 @@ public class WebController {
             adminService.register(account);
         } else if (RoleEnum.USER.name().equals(account.getRole())) {
             userService.register(account);
+        } else {
+            return Result.error(ResultCodeEnum.ROLE_ERROR);
         }
-        adminService.register(account);
+//        adminService.register(account);
         return Result.success();
     }
 
