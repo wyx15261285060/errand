@@ -24,7 +24,7 @@
       </el-table-column>
       <el-table-column prop="userName" label="用户"></el-table-column>
       <el-table-column prop="acceptName" label="骑手"></el-table-column>
-      <el-table-column prop="orderId" label="订单ID"></el-table-column>
+      <el-table-column prop="orderNo" label="订单编号"></el-table-column>
       <el-table-column prop="time" label="时间"></el-table-column>
       <el-table-column label="操作" align="center" width="180">
         <template v-slot="scope">
