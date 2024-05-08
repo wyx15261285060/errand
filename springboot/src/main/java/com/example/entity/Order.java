@@ -41,6 +41,16 @@ public class Order {
     private String userName;
     /** 接单人姓名 */
     private String acceptName;
+    /*已下单时间*/
+    private Integer minutes;
+
+    public Integer getMinutes() {
+        return minutes;
+    }
+
+    public void setMinutes(Integer minutes) {
+        this.minutes = minutes;
+    }
 
     public String getUserName() {
         return userName;

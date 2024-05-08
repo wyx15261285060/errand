@@ -35,6 +35,6 @@ public interface OrderMapper {
     /**
      * 查询所有
      */
-    List<Order> selectAll(Order Order);
+    List<Order> selectAll(Order order);
 
 }

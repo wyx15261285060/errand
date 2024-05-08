@@ -20,14 +20,14 @@ import java.util.List;
 public class OrderController {
 
     @Resource
-    private OrderService OrderService;
+    private OrderService orderService;
 
     /**
      * 新增
      */
     @PostMapping("/add")
     public Result add(@RequestBody Order order) {
-        OrderService.add(order);
+        orderService.add(order);
         return Result.success();
     }
 
@@ -36,7 +36,7 @@ public class OrderController {
      */
     @DeleteMapping("/delete/{id}")
     public Result deleteById(@PathVariable Integer id) {
-        OrderService.deleteById(id);
+        orderService.deleteById(id);
         return Result.success();
     }
 
@@ -45,7 +45,7 @@ public class OrderController {
      */
     @DeleteMapping("/delete/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
-        OrderService.deleteBatch(ids);
+        orderService.deleteBatch(ids);
         return Result.success();
     }
 
@@ -54,7 +54,7 @@ public class OrderController {
      */
     @PutMapping("/update")
     public Result updateById(@RequestBody Order Order) {
-        OrderService.updateById(Order);
+        orderService.updateById(Order);
         return Result.success();
     }
 
@@ -63,7 +63,7 @@ public class OrderController {
      */
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id) {
-        Order Order = OrderService.selectById(id);
+        Order Order = orderService.selectById(id);
         return Result.success(Order);
     }
 
@@ -72,7 +72,7 @@ public class OrderController {
      */
     @GetMapping("/selectAll")
     public Result selectAll(Order Order) {
-        List<Order> list = OrderService.selectAll(Order);
+        List<Order> list = orderService.selectAll(Order);
         return Result.success(list);
     }
 
@@ -80,10 +80,10 @@ public class OrderController {
      * 分页查询
      */
     @GetMapping("/selectPage")
-    public Result selectPage(Order Order,
+    public Result selectPage(Order order,
                              @RequestParam(defaultValue = "1") Integer pageNum,
                              @RequestParam(defaultValue = "10") Integer pageSize) {
-        PageInfo<Order> page = OrderService.selectPage(Order, pageNum, pageSize);
+        PageInfo<Order> page = orderService.selectPage(order, pageNum, pageSize);
         return Result.success(page);
     }
 

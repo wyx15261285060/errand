@@ -4,8 +4,6 @@ package com.example.common.enums;/*
  *@version 1.0
  *@email：3060491854@qq.com
  */
-
-
 public enum OrderStatus {
 
     CANCEL("已取消"),

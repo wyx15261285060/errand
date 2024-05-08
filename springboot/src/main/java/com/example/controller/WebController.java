@@ -8,6 +8,7 @@ import com.example.common.enums.RoleEnum;
 import com.example.entity.Account;
 import com.example.service.AdminService;
 import com.example.service.UserService;
+import org.omg.CORBA.Object;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -55,18 +56,18 @@ public class WebController {
      */
     @PostMapping("/register")
     public Result register(@RequestBody Account account) {
-        if (StrUtil.isBlank(account.getUsername()) || StrUtil.isBlank(account.getPassword())
-                || ObjectUtil.isEmpty(account.getRole())) {
+         if (StrUtil.isBlank(account.getUsername()) || StrUtil.isBlank(account.getPassword())
+                || ObjectUtil.isEmpty(account.getRole()) || StrUtil.isBlank(account.getNewPassword())) {
             return Result.error(ResultCodeEnum.PARAM_LOST_ERROR);
         }
-        if (RoleEnum.ADMIN.name().equals(account.getRole())) {
-            adminService.register(account);
-        } else if (RoleEnum.USER.name().equals(account.getRole())) {
+        if(!(account.getNewPassword().equals(account.getPassword()))){
+            return Result.error(ResultCodeEnum.DIFFERENT_PASSWORD);
+        }
+        if (RoleEnum.USER.name().equals(account.getRole())) {
             userService.register(account);
         } else {
             return Result.error(ResultCodeEnum.ROLE_ERROR);
         }
-//        adminService.register(account);
         return Result.success();
     }
 

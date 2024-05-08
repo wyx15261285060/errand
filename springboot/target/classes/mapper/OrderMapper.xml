@@ -5,20 +5,26 @@
 <mapper namespace="com.example.mapper.OrderMapper">
 
     <sql id="Base_Column_List">
-        id,order_no,name,descr,img,type,weight,price,user_id,accept_id,time,accept_time,status,address_id,target_id,comment
+        id,order_no,name,descr,img,type,weight,price,user_id,accept_id,time,accept_time,status,address_id,target_id,comment,minutes
     </sql>
 
     <select id="selectAll" resultType="com.example.entity.Order">
-        select
-            o.*,u1.username as userName,u2.username as acceptName
-        from wyx_order o
-        left join wyx_user u2 on o.accept_id = u2.id
-        left join wyx_user u1 on o.user_id = u1.id
+        SELECT * FROM (
+        SELECT
+        o.*,
+        u1.username AS userName,
+        u2.username AS acceptName
+        FROM wyx_order o
+        LEFT JOIN wyx_user u2 ON o.accept_id = u2.id
+        LEFT JOIN wyx_user u1 ON o.user_id = u1.id
         <where>
-            <if test="orderNo != null"> and o.order_no like concat('%', #{orderNo}, '%')</if>
-            <if test="name != null"> and o.name like concat('%', #{name}, '%')</if>
+            <if test="orderNo != null"> AND o.order_no LIKE CONCAT('%', #{orderNo}, '%')</if>
+            <if test="name != null"> AND o.name LIKE CONCAT('%', #{name}, '%')</if>
+            <!-- 根据订单状态去筛选 -->
+            <if test="status != null"> AND o.status = #{status}</if>
         </where>
-        order by o.id desc
+        ) AS join_table
+        ORDER BY id ASC
     </select>
 
     <select id="selectById" resultType="com.example.entity.Order">

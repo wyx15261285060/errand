@@ -2,7 +2,6 @@ package com.example.common.enums;
 
 public enum ResultCodeEnum {
     SUCCESS("200", "成功"),
-
     PARAM_ERROR("400", "参数异常"),
     TOKEN_INVALID_ERROR("401", "无效的token"),
     TOKEN_CHECK_ERROR("401", "token验证失败，请重新登录"),
@@ -14,6 +13,7 @@ public enum ResultCodeEnum {
     USER_NOT_EXIST_ERROR("5004", "用户不存在"),
     PARAM_PASSWORD_ERROR("5005", "原密码输入错误"),
     ROLE_ERROR("5006", "角色错误"),
+    DIFFERENT_PASSWORD("5007","两次密码不一致"),
     ;
 
     public String code;
