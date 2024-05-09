@@ -206,6 +206,27 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -260,16 +281,51 @@ var _default = {
       }, {
         value: '代购鲜花',
         text: "代送鲜花"
-      }]
+      }],
+      pickAddress: {},
+      recieveAddress: {}
     };
   },
   onShow: function onShow() {
-    var orderTypeStore = uni.getStorageSync('orderStore');
-    this.form.type = orderTypeStore === null || orderTypeStore === void 0 ? void 0 : orderTypeStore.type;
+    var orderStore = uni.getStorageSync('orderStore');
+    this.form.type = orderStore === null || orderStore === void 0 ? void 0 : orderStore.type;
+    this.pickAddress = (orderStore === null || orderStore === void 0 ? void 0 : orderStore.pickAddress) || {};
+    this.recieveAddress = (orderStore === null || orderStore === void 0 ? void 0 : orderStore.recieveAddress) || {};
   },
   methods: {
+    // 将地址类型参数获取 并拼接到url上
+    selectAddress: function selectAddress(addressType) {
+      uni.navigateTo({
+        url: '/pages/address/address?addressType=' + addressType
+      });
+    },
     addOrder: function addOrder() {
       var _this2 = this;
+      if (!this.pickAddress.id) {
+        uni.showToast({
+          icon: 'none',
+          title: '请设置取货地址'
+        });
+        return;
+      }
+      if (!this.recieveAddress.id) {
+        uni.showToast({
+          icon: 'none',
+          title: '请设置收货地址'
+        });
+        return;
+      }
+      if (this.pickAddress.id === this.recieveAddress.id) {
+        uni.showToast({
+          icon: 'none',
+          title: '取货地址和收货地址不可一致'
+        });
+        return;
+      }
+
+      // 设置订单中的取货收获地址id
+      this.form.addressId = this.pickAddress.id;
+      this.form.targetId = this.recieveAddress.id;
       this.$refs.formRef.validate().then(function (res) {
         _this2.$request.post('/order/addOrder', _this2.form).then(function (res) {
           if (res.code === '200') {
@@ -277,6 +333,8 @@ var _default = {
               icon: 'success',
               title: '下单成功'
             });
+            // 下单后清理缓存
+            uni.removeStorageSync('orderStore');
             setTimeout(function () {
               uni.switchTab({
                 url: '/pages/index/index'

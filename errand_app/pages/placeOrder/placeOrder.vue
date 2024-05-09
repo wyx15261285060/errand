@@ -1,17 +1,38 @@
 <template>
 	<view style="padding: 20rpx;">
-		<view class="box "style="margin-bottom: 10rpx;">
+		<view class="box " style="margin-bottom: 10rpx;" @click="selectAddress('取货')">
 			<uni-section title="取货地址" type="line"></uni-section>
-			<view style="color=#888;">请选择取货地址</view>
+			<!-- 如果收货地址的id不为空的话，那么则显示下面的值 -->
+			<view v-if="pickAddress.id">
+				<view style="font-weight: bold; font-size: 32rpx; margin-bottom: 10rpx;">
+					<!-- 详细地址 -->
+					{{ pickAddress.address + pickAddress.doorNo }}
+				</view>
+				<view style="color: #888; margin-bottom: 10rpx;">
+					<text style="margin-right: 20rpx;">{{ pickAddress.userName }}</text>
+					<text>{{ pickAddress.phone }}</text>
+				</view>
+			</view>
+			<view style="color=#888;" v-else>请选择取货地址</view>
 		</view>
-		<view class="box "style="margin-bottom: 10rpx;">
+		<view class="box " style="margin-bottom: 10rpx;" @click="selectAddress('收货')">
 			<uni-section title="收货地址" type="line"></uni-section>
-			<view style="color=#888;">请选择收货地址</view>
+			<view v-if="recieveAddress.id">
+				<view style="font-weight: bold; font-size: 32rpx; margin-bottom: 10rpx;">
+					<!-- 详细地址 -->
+					{{ recieveAddress.address + recieveAddress.doorNo }}
+				</view>
+				<view style="color: #888; margin-bottom: 10rpx;">
+					<text style="margin-right: 20rpx;">{{ recieveAddress.userName }}</text>
+					<text>{{ recieveAddress.phone }}</text>
+				</view>
+			</view>
+			<view style="color=#888;" v-else>请选择收货地址</view>
 		</view>
 		<view class="box">
 			<uni-forms :modelValue="form" :rules="rules" ref="formRef" label-width="180rpx" label-align="left"
 				validateTrigger="blur">
-				<uni-forms-item label="物品名称"  name="name"  required>
+				<uni-forms-item label="物品名称" name="name" required>
 					<uni-easyinput type="text" v-model="form.name" placeholder="请输入物品名称" />
 				</uni-forms-item>
 				<uni-forms-item label="描述信息" name="descr">
@@ -50,24 +71,27 @@
 		data() {
 			return {
 				// 表单对象
-				form:{price:1,type:''},
+				form: {
+					price: 1,
+					type: ''
+				},
 				rules: {
-					name:{
-						rules:[{
-							required:true,
-							errorMessage:'请填写名称',
+					name: {
+						rules: [{
+							required: true,
+							errorMessage: '请填写名称',
 						}]
 					},
-					price:{
-						rules:[{
-							required:true,
-							errorMessage:'请给出跑腿费用',
+					price: {
+						rules: [{
+							required: true,
+							errorMessage: '请给出跑腿费用',
 						}]
 					},
-					type:{
-						rules:[{
-							required:true,
-							errorMessage:'请选择类型',
+					type: {
+						rules: [{
+							required: true,
+							errorMessage: '请选择类型',
 						}]
 					}
 				},
@@ -96,35 +120,73 @@
 						value: '代购鲜花',
 						text: "代送鲜花"
 					},
-				]
+				],
+				pickAddress: {},
+				recieveAddress: {}
 			}
+
 
 
 		},
 		onShow() {
-			let orderTypeStore = uni.getStorageSync('orderStore')
-			this.form.type = orderTypeStore?.type
+			let orderStore = uni.getStorageSync('orderStore')
+			this.form.type = orderStore?.type
+			this.pickAddress = orderStore?.pickAddress || {}
+			this.recieveAddress = orderStore?.recieveAddress || {}
 		},
 		methods: {
-			
+			// 将地址类型参数获取 并拼接到url上
+			selectAddress(addressType) {
+				uni.navigateTo({
+					url: '/pages/address/address?addressType=' + addressType
+				})
+			},
+
 			addOrder() {
+				if(!this.pickAddress.id){
+					uni.showToast({
+						icon: 'none',
+						title: '请设置取货地址'
+					})
+					return
+				}
+				if(!this.recieveAddress.id){
+					uni.showToast({
+						icon: 'none',
+						title: '请设置收货地址'
+					})
+					return
+				}
+				if(this.pickAddress.id === this.recieveAddress.id){
+					uni.showToast({
+						icon: 'none',
+						title: '取货地址和收货地址不可一致'
+					})
+					return
+				}
+				
+				// 设置订单中的取货收获地址id
+				this.form.addressId  = this.pickAddress.id
+				this.form.targetId = this.recieveAddress.id
 				this.$refs.formRef.validate().then(res => {
-					this.$request.post('/order/addOrder',this.form).then(res => {
-						if(res.code==='200'){
+					this.$request.post('/order/addOrder', this.form).then(res => {
+						if (res.code === '200') {
 							uni.showToast({
-								icon:'success',
-								title:'下单成功'
+								icon: 'success',
+								title: '下单成功'
 							})
-				 			setTimeout(()=>{
+							// 下单后清理缓存
+							uni.removeStorageSync('orderStore')
+							setTimeout(() => {
 								uni.switchTab({
-								url:'/pages/index/index'
-							})
-							},500)
-							
-						}else{
+									url: '/pages/index/index'
+								})
+							}, 500)
+
+						} else {
 							uni.showToast({
-								icon:'none',
-								title:res.msg,
+								icon: 'none',
+								title: res.msg,
 							})
 						}
 					})
@@ -140,10 +202,10 @@
 				const filePath = e.tempFilePaths[0]
 				uni.uploadFile({
 					// 后端接口（默认发送post请求） 注意 _this.$baseUrl需要在全局变量定义
-					url: _this.$baseUrl + '/files/upload', 
+					url: _this.$baseUrl + '/files/upload',
 					filePath: filePath,
 					//后端文件形参的名字
-					name: "file", 
+					name: "file",
 					success(res) {
 						let url = JSON.parse(res.data || '{}').data // 获取返回的图像链接
 						_this.form.img = url // 给表单图像属性赋值

@@ -19827,7 +19827,7 @@ var _default = {
   }, {
     "path": "pages/address/address",
     "style": {
-      "navigationBarTitleText": "地 址",
+      "navigationBarTitleText": "收货地址",
       "enablePullDownRefresh": false
     }
   }],

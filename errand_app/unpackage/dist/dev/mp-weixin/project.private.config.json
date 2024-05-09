@@ -8,6 +8,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "地址表单",
+          "pathName": "pages/address/address",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "下单",
           "pathName": "pages/placeOrder/placeOrder",
           "query": "",
