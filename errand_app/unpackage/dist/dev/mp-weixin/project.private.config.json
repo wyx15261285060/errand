@@ -8,6 +8,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "我的",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "订单列表",
           "pathName": "pages/orders/orders",
           "query": "",
