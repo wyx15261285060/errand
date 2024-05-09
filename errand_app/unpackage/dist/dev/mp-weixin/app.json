@@ -6,7 +6,8 @@
     "pages/login/login",
     "pages/register/register",
     "pages/placeOrder/placeOrder",
-    "pages/address/address"
+    "pages/address/address",
+    "pages/orderDetail/orderDetail"
   ],
   "subPackages": [],
   "window": {

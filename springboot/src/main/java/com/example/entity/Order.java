@@ -41,8 +41,28 @@ public class Order {
     private String userName;
     /** 接单人姓名 */
     private String acceptName;
-    /*已下单时间*/
+    /**已下单时间*/
     private Integer minutes;
+    /**取货地址*/
+    private Address address;
+    /**收货地址*/
+    private Address targetAddress;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Address getTargetAddress() {
+        return targetAddress;
+    }
+
+    public void setTargetAddress(Address targetAddress) {
+        this.targetAddress = targetAddress;
+    }
 
     public Integer getMinutes() {
         return minutes;

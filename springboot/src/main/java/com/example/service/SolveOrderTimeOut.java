@@ -42,7 +42,7 @@ public class SolveOrderTimeOut {
             DateTime dateTime = DateUtil.parseDateTime(time);
             // 计算下单时间和当前时间间隔秒数
             long betweenTime = DateUtil.between(dateTime, new Date(), DateUnit.SECOND);
-            if (betweenTime >= 300){
+            if (betweenTime >= 3000){
                 // 超时之后即取消订单
                 order.setStatus(OrderStatus.CANCEL.getValue());
                 orderService.updateById(order);

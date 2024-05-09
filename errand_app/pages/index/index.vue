@@ -37,7 +37,7 @@
 			跑腿订单
 		</view>
 		<view>
-			<view v-for="item in orderList" :key="item.id" class="box" style="margin-bottom: 10rpx;">
+			<view v-for="item in orderList" :key="item.id" class="box" style="margin-bottom: 10rpx;" @click="goOrderDetail(item.id)">
 				<view style="display: flex;align-items: center; margin-bottom: 20rpx;">
 					<view style="flex:1">
 						<uni-tag text="餐品" size="small" type="success" v-if="item.type === '代购餐品'"></uni-tag>
@@ -113,7 +113,6 @@ import placeOrderVue from '../placeOrder/placeOrder.vue';
 							if (i === this.noticeList.length) {
 								i = 0;
 							}
-
 							this.content = this.noticeList[i].content;
 						}, 2000)
 					}
@@ -130,6 +129,11 @@ import placeOrderVue from '../placeOrder/placeOrder.vue';
 					url:'/pages/placeOrder/placeOrder'
 				})
 			},
+			goOrderDetail(orderId){
+				uni.navigateTo({
+					url:'/pages/orderDetail/orderDetail?orderId='+orderId
+				})
+			}
 			
 
 		}

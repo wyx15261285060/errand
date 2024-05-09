@@ -5,7 +5,7 @@
 <mapper namespace="com.example.mapper.OrderMapper">
 
     <sql id="Base_Column_List">
-        id,order_no,name,descr,img,type,weight,price,user_id,accept_id,time,accept_time,status,address_id,target_id,comment,minutes
+        id,order_no,name,descr,img,type,weight,price,user_id,accept_id,time,accept_time,status,address_id,target_id,comment
     </sql>
 
     <select id="selectAll" resultType="com.example.entity.Order">
@@ -22,6 +22,7 @@
             <if test="name != null">AND o.name LIKE CONCAT('%', #{name}, '%')</if>
             <!-- 根据订单状态去筛选 -->
             <if test="status != null">AND o.status = #{status}</if>
+            <if test="userId != null">AND o.user_id = #{userId  }</if>
         </where>
         ) AS join_table
         ORDER BY id ASC
