@@ -7,13 +7,21 @@ package com.example.service;/*
 
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.IdUtil;
+import com.example.common.enums.OrderStatus;
+import com.example.common.enums.ResultCodeEnum;
+import com.example.entity.Account;
 import com.example.entity.Order;
+import com.example.entity.User;
+import com.example.exception.CustomException;
 import com.example.mapper.OrderMapper;
+import com.example.utils.TokenUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +33,8 @@ public class OrderService {
 
     @Resource
     private OrderMapper orderMapper;
+    @Resource
+    private UserService userService;
 
 
     /**
@@ -87,4 +97,25 @@ public class OrderService {
         return PageInfo.of(list);
     }
 
+    /**
+     *小程序下单
+     */
+    public void addOrder(Order order) {
+        Account account = TokenUtils.getCurrentUser();
+        BigDecimal personalAccount = account.getAccount();
+        Double orderPrice = order.getPrice();
+        // 余额不足
+        if (orderPrice > personalAccount.doubleValue()){
+            throw new CustomException(ResultCodeEnum.PERSONAL_ACCOUNT_LIMIT_ERROR);
+        }
+        // 将账户余额更新
+        account.setAccount(personalAccount.subtract(BigDecimal.valueOf(orderPrice)));
+        userService.updateById((User) account);
+        // 设置该条订单的用户id和订单编号
+        order.setUserId(account.getId());
+        order.setOrderNo(IdUtil.getSnowflakeNextIdStr());//自动生成唯一的订单编号
+        order.setStatus(OrderStatus.NO_ACCEPT.getValue());
+        order.setTime(DateUtil.now());
+        orderMapper.insert(order);
+    }
 }

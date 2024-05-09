@@ -37,6 +37,22 @@
 				"navigationBarTitleText" : "注 册",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/placeOrder/placeOrder",
+			"style" : 
+			{
+				"navigationBarTitleText" : "下 单",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/address/address",
+			"style" : 
+			{
+				"navigationBarTitleText" : "地 址",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {

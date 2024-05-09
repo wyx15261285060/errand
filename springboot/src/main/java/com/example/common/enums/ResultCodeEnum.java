@@ -14,6 +14,7 @@ public enum ResultCodeEnum {
     PARAM_PASSWORD_ERROR("5005", "原密码输入错误"),
     ROLE_ERROR("5006", "角色错误"),
     DIFFERENT_PASSWORD("5007","两次密码不一致"),
+    PERSONAL_ACCOUNT_LIMIT_ERROR("5008","账户余额不足，请充值"),
     ;
 
     public String code;

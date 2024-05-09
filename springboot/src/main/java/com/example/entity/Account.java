@@ -1,5 +1,7 @@
 package com.example.entity;
 
+import java.math.BigDecimal;
+
 /**
  * 角色用户父类
  */
@@ -19,6 +21,16 @@ public class Account {
     private String avatar;
 
     private String token;
+    /** 账户余额*/
+    private BigDecimal account;
+
+    public BigDecimal getAccount() {
+        return account;
+    }
+
+    public void setAccount(BigDecimal account) {
+        this.account = account;
+    }
 
     public Integer getId() {
         return id;

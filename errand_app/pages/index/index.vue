@@ -15,19 +15,19 @@
 		</view>
 		<!-- 跑腿分类 -->
 		<view style="display: flex; margin-bottom: 10rpx;" class="box">
-			<view class="category-item">
+			<view class="category-item" @click="goPlaceOrder('代取快递')">
 				<image src="../../static/imgs/快递.png" style="width: 50%;" mode="widthFix"></image>
 				<view style="flex: 1;">代取快递</view>
 			</view>
-			<view class="category-item">
+			<view class="category-item"  @click="goPlaceOrder('代购鲜花')">
 				<image src="../../static/imgs/花.png" style="width: 50%;" mode="widthFix"></image>
 				<view style="flex: 1;">代购鲜花</view>
 			</view>
-			<view class="category-item">
+			<view class="category-item" @click="goPlaceOrder('代购零食')">
 				<image src="../../static/imgs/零食.png" style="width: 50%;" mode="widthFix"></image>
 				<view style="flex: 1;">代购零食</view>
 			</view>
-			<view class="category-item">
+			<view class="category-item" @click="goPlaceOrder('代购餐品')">
 				<image src="../../static/imgs/取餐.png" style="width:50%;" mode="widthFix"></image>
 				<view style="flex: 1;">代购餐品</view>
 			</view>
@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import placeOrderVue from '../placeOrder/placeOrder.vue';
 	export default {
 		data() {
 			return {
@@ -115,11 +116,21 @@
 
 							this.content = this.noticeList[i].content;
 						}, 2000)
-
 					}
-
 				})
-			}
+			},
+			
+			goPlaceOrder(type){
+				// 先获取缓存内容，再设置值
+				let orderStore = uni.getStorageSync('orderStore') || {}
+				orderStore.type = type 
+				// 设置缓存
+				uni.setStorageSync('orderStore',orderStore)
+				uni.navigateTo({
+					url:'/pages/placeOrder/placeOrder'
+				})
+			},
+			
 
 		}
 	}

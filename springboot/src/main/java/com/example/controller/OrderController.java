@@ -23,6 +23,14 @@ public class OrderController {
     private OrderService orderService;
 
     /**
+     * 小程序下单对应的接口
+     */
+    @PostMapping("/addOrder")
+    public Result addOrder(@RequestBody Order order) {
+        orderService.addOrder(order);
+        return Result.success();
+    }
+    /**
      * 新增
      */
     @PostMapping("/add")

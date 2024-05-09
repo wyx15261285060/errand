@@ -1,3 +1,5 @@
+import apiConfig from '@/config.js'
+Vue.prototype.$baseUrl = process.env.NODE_ENV === "development" ? apiConfig.dev.baseUrl : apiConfig.prod.baseUrl
 import App from './App'
 import request from '@/utils/request.js'
 Vue.prototype.$request = request
