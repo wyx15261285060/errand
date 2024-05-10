@@ -34,6 +34,12 @@
         from wyx_certification
         where id = #{id}
     </select>
+    <select id="selectByUserId" resultType="com.example.entity.Certification">
+        select
+        <include refid="Base_Column_List" />
+        from wyx_certification
+        where user_id = #{userId}
+    </select>
 
     <delete id="deleteById">
         delete from wyx_certification

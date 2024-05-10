@@ -101,10 +101,10 @@ var components
 try {
   components = {
     uniNoticeBar: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar */ "uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar.vue */ 94))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar */ "uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar.vue */ 128))
     },
     uniTag: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-tag/components/uni-tag/uni-tag */ "uni_modules/uni-tag/components/uni-tag/uni-tag").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-tag/components/uni-tag/uni-tag.vue */ 101))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-tag/components/uni-tag/uni-tag */ "uni_modules/uni-tag/components/uni-tag/uni-tag").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-tag/components/uni-tag/uni-tag.vue */ 135))
     },
   }
 } catch (e) {
@@ -245,7 +245,8 @@ var _default = {
       content: '',
       noticeList: [],
       interval: null,
-      orderList: []
+      orderList: [],
+      user: uni.getStorageSync('xm-user')
     };
   },
   onShow: function onShow() {
@@ -268,20 +269,6 @@ var _default = {
       }).then(function (res) {
         _this.orderList = res.data || [];
       });
-      this.$request.get("/notice/selectAll").then(function (res) {
-        _this.noticeList = res.data || [];
-        var i = 0;
-        _this.content = _this.noticeList.length ? _this.noticeList[i].content : "";
-        if (_this.noticeList.length > 0) {
-          _this.interval = setInterval(function () {
-            i++;
-            if (i === _this.noticeList.length) {
-              i = 0;
-            }
-            _this.content = _this.noticeList[i].content;
-          }, 2000);
-        }
-      });
     },
     goPlaceOrder: function goPlaceOrder(type) {
       // 先获取缓存内容，再设置值
@@ -296,6 +283,49 @@ var _default = {
     goOrderDetail: function goOrderDetail(orderId) {
       uni.navigateTo({
         url: '/pages/orderDetail/orderDetail?orderId=' + orderId
+      });
+    },
+    // 骑手接单
+    accept: function accept(order) {
+      var _this2 = this;
+      if (!this.user.rider) {
+        // 必须是骑手方可接单
+        uni.showToast({
+          icon: 'none',
+          title: '只有骑手才可以接单，请先认证'
+        });
+        return;
+      }
+      this.$request.put('/order/accept', order).then(function (res) {
+        if (res.code === '200') {
+          uni.showToast({
+            icon: 'success',
+            title: '操作成功'
+          });
+          _this2.load();
+        } else {
+          uni.showToast({
+            icon: 'none',
+            title: res.msg
+          });
+        }
+      });
+    },
+    loadNotice: function loadNotice() {
+      var _this3 = this;
+      this.$request.get("/notice/selectAll").then(function (res) {
+        _this3.noticeList = res.data || [];
+        var i = 0;
+        _this3.content = _this3.noticeList.length ? _this3.noticeList[i].content : "";
+        if (_this3.noticeList.length > 0) {
+          _this3.interval = setInterval(function () {
+            i++;
+            if (i === _this3.noticeList.length) {
+              i = 0;
+            }
+            _this3.content = _this3.noticeList[i].content;
+          }, 2000);
+        }
       });
     }
   }
@@ -383,25 +413,25 @@ var components
 try {
   components = {
     uniSection: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 108))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 142))
     },
     uniForms: function () {
-      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 115))
+      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 149))
     },
     uniFormsItem: function () {
-      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 131))
+      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 165))
     },
     uniEasyinput: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 138))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 172))
     },
     uniNumberBox: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-number-box/components/uni-number-box/uni-number-box */ "uni_modules/uni-number-box/components/uni-number-box/uni-number-box").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.vue */ 145))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-number-box/components/uni-number-box/uni-number-box */ "uni_modules/uni-number-box/components/uni-number-box/uni-number-box").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.vue */ 179))
     },
     uniDataSelect: function () {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 152))
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 186))
     },
     uniFilePicker: function () {
-      return Promise.all(/*! import() | uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker.vue */ 164))
+      return Promise.all(/*! import() | uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker.vue */ 198))
     },
   }
 } catch (e) {

@@ -22,7 +22,7 @@
             <if test="name != null">AND o.name LIKE CONCAT('%', #{name}, '%')</if>
             <!-- 根据订单状态去筛选 -->
             <if test="status != null">AND o.status = #{status}</if>
-            <if test="userId != null">AND o.user_id = #{userId}</if>
+            <if test="userId != null">AND o.user_id = #{userId  }</if>
         </where>
         ) AS join_table
         ORDER BY id ASC

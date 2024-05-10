@@ -61,6 +61,46 @@
 				"navigationBarTitleText" : "订单详情",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/introduce/introduce",
+			"style" : 
+			{
+				"navigationBarTitleText" : "平台介绍",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/userProtocol/userProtocol",
+			"style" : 
+			{
+				"navigationBarTitleText" : "用户协议",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/personInfo/personInfo",
+			"style" : 
+			{
+				"navigationBarTitleText" : "个人信息",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/certification/certification",
+			"style" : 
+			{
+				"navigationBarTitleText" : "骑手认证",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/acceptOrder/acceptOrder",
+			"style" : 
+			{
+				"navigationBarTitleText" : "骑手订单",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {

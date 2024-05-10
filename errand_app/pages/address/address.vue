@@ -21,7 +21,7 @@
 			</uni-forms>
 		</view>
 
-		<view class="box">
+		<view class="box" v-if="addressList.length">
 			<view v-for="item in addressList" :key="item.id">
 				<view style="padding: 10rpx 0; border-bottom: 1px solid #eee;" @click="selectAddress(item)">
 					<view style="font-weight: bold; font-size: 32rpx; margin-bottom: 10rpx;">
@@ -78,8 +78,8 @@
 					}
 				},
 				addressList: [],
-				type:'新增',
-				addressType:'',
+				type: '新增',
+				addressType: '',
 
 			}
 		},
@@ -89,21 +89,21 @@
 		},
 		methods: {
 			// 点击地址列表后 查看详细地址信息
-			selectAddress(address){
+			selectAddress(address) {
 				// 先获取缓存数据
 				let orderStore = uni.getStorageSync('orderStore') || {}
-				if(this.addressType==='取货'){
+				if (this.addressType === '取货') {
 					orderStore.pickAddress = address
-				}else{// 收货地址
+				} else { // 收货地址
 					orderStore.recieveAddress = address
 				}
 				// 将地址信息放到订单信息缓存中
-				uni.setStorageSync('orderStore',orderStore)	
+				uni.setStorageSync('orderStore', orderStore)
 				uni.redirectTo({
-					url:'/pages/placeOrder/placeOrder'
+					url: '/pages/placeOrder/placeOrder'
 				})
 			},
-			
+
 			del(id) {
 				this.$request.del('/address/delete/' + id).then(res => {
 					if (res.code === '200') {
@@ -120,25 +120,29 @@
 					}
 				})
 			},
-			
+
 			handleEdit(address) {
 				// 拷贝当前选中的地址信息 到表单中
 				this.form = JSON.parse(JSON.stringify(address))
 				this.type = '修改'
 			},
-			
+
 			save(type) {
-				if(type === '新增'){
+				if (type === '新增') {
 					this.$refs.formRef.validate().then(res => {
+						this.form.userId = this.user.id
 						this.$request.post('/address/add', this.form).then(res => {
 							if (res.code === '200') {
 								uni.showToast({
 									icon: 'success',
 									title: '操作成功'
 								})
-								// 设置地址信息到缓存中
-								this.selectAddress(res.data)
-								this.form = {}
+								// 当地址类型存在时，即从订单页面跳转过来
+								if (this.addressType) {
+									// 设置地址信息到缓存中
+									this.selectAddress(res.data)
+								}
+ 								this.form = {}
 								this.load()
 								// setTimeout(()=>{
 								// 	uni.switchTab({
@@ -155,8 +159,8 @@
 					}).catch(error => {
 						console.error(error)
 					})
-					
-				}else if(type === '修改'){
+
+				} else if (type === '修改') {
 					// 拷贝当前选中的地址信息 到表单中
 					this.$request.put('/address/update', this.form).then(res => {
 						if (res.code === '200') {
@@ -182,7 +186,7 @@
 			},
 			load() {
 				this.$request.get('/address/selectAll', {
-					user: this.user.id
+					userId: this.user.id
 				}).then(res => {
 					this.addressList = res.data || [];
 				})

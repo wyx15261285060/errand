@@ -127,4 +127,14 @@ public class OrderService {
         order.setTime(DateUtil.now());
         orderMapper.insert(order);
     }
+
+    public void acceptOrder(Order order) {
+        Account currentUser = TokenUtils.getCurrentUser();
+        order.setAcceptId(currentUser.getId());
+//        order.setAcceptName(currentUser.getName());
+        order.setAcceptTime(DateUtil.now());
+        order.setStatus(OrderStatus.NO_ARRIVE.getValue());
+        // 更新订单
+        this.updateById(order);
+    }
 }

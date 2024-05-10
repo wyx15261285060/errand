@@ -23,3 +23,9 @@ page {
 	background-color: #006eff !important; 
 	font-size: 30rpx;
 }
+.button-del{
+	height: 70rpx;
+	line-height: 70rpx; 
+	background-color: red !important; 
+	font-size: 30rpx;
+}

@@ -8,6 +8,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "骑手认证",
+          "pathName": "pages/certification/certification",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "我的",
           "pathName": "pages/personal/personal",
           "query": "",

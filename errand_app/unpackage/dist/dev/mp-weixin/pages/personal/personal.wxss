@@ -14,8 +14,12 @@
 	font-size: 36rpx;
 	margin-bottom: 30rpx;
 }
-.info-item{
+.info-item {
 	padding: 15rpx;
 	border-bottom: 2px solid #eee;
+}
+.info-item .uni-icons {
+	position: relative;
+	top: 2rpx;
 }
 

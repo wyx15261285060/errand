@@ -86,5 +86,13 @@ public class CertificationController {
         PageInfo<Certification> page = certificationService.selectPage(certification, pageNum, pageSize);
         return Result.success(page);
     }
+    /**
+     * 查询当前用户的认证信息
+     */
+    @GetMapping("/selectUserCert")
+    public Result selectUserCert(){
+        Certification certification = certificationService.selectUserCert();
+        return Result.success(certification);
+    }
 
 }

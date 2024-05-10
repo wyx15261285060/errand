@@ -1,0 +1,9 @@
+
+.text-info{
+	line-height:40rpx;
+	color:#888;
+	font-size: 35rpx;
+	text-align: justify;
+}
+
+

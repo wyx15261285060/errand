@@ -7,6 +7,7 @@ import com.example.common.enums.ResultCodeEnum;
 import com.example.common.enums.RoleEnum;
 import com.example.entity.Account;
 import com.example.service.AdminService;
+import com.example.service.CertificationService;
 import com.example.service.UserService;
 import org.omg.CORBA.Object;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,9 @@ public class WebController {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private CertificationService certificationService;
 
     @GetMapping("/")
     public Result hello() {

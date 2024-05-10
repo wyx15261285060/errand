@@ -11,6 +11,7 @@ import com.example.common.enums.ResultCodeEnum;
 import com.example.common.enums.RoleEnum;
 import com.example.entity.Account;
 import com.example.entity.Admin;
+import com.example.entity.Certification;
 import com.example.entity.User;
 import com.example.exception.CustomException;
 import com.example.mapper.UserMapper;
@@ -32,6 +33,9 @@ import java.util.List;
 public class UserService {
     @Resource
     private UserMapper userMapper;
+
+    @Resource
+    private CertificationService certificationService;
     /**
      * 新增用户
      */
@@ -108,10 +112,15 @@ public class UserService {
         if (!account.getPassword().equals(dbUser.getPassword())) {
             throw new CustomException(ResultCodeEnum.USER_ACCOUNT_ERROR);
         }
+
+
         // 生成token
         String tokenData = dbUser.getId() + "-" + RoleEnum.USER.name();
         String token = TokenUtils.createToken(tokenData, dbUser.getPassword());
         dbUser.setToken(token);
+        // 查询到当前用户的身份信息
+        Certification certification = certificationService.selectByUserId(dbUser.getId());
+        dbUser.setRider(ObjectUtil.isNotNull(certification) && certification.getStatus().equals("通过"));
         return dbUser;
     }
 

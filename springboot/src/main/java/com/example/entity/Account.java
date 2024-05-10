@@ -23,6 +23,16 @@ public class Account {
     private String token;
     /** 账户余额*/
     private BigDecimal account;
+    /** 是否为骑手*/
+    private Boolean isRider;
+
+    public Boolean getRider() {
+        return isRider;
+    }
+
+    public void setRider(Boolean rider) {
+        isRider = rider;
+    }
 
     public BigDecimal getAccount() {
         return account;

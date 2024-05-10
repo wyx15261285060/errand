@@ -7,7 +7,12 @@
     "pages/register/register",
     "pages/placeOrder/placeOrder",
     "pages/address/address",
-    "pages/orderDetail/orderDetail"
+    "pages/orderDetail/orderDetail",
+    "pages/introduce/introduce",
+    "pages/userProtocol/userProtocol",
+    "pages/personInfo/personInfo",
+    "pages/certification/certification",
+    "pages/acceptOrder/acceptOrder"
   ],
   "subPackages": [],
   "window": {

@@ -31,6 +31,14 @@ public class OrderController {
         return Result.success();
     }
     /**
+     * 骑手接单对应的接口
+     */
+    @PutMapping("/accept")
+    public Result acceptOrder(@RequestBody Order order){
+        orderService.acceptOrder(order);
+        return Result.success();
+    }
+    /**
      * 新增
      */
     @PostMapping("/add")

@@ -17,19 +17,19 @@
 		<view style="display: flex; margin-bottom: 10rpx;" class="box">
 			<view class="category-item" @click="goPlaceOrder('代取快递')">
 				<image src="../../static/imgs/快递.png" style="width: 50%;" mode="widthFix"></image>
-				<view style="flex: 1;">代取快递</view>
+				<view style="flex: 1;font-weight: bold;">代取快递</view>
 			</view>
 			<view class="category-item"  @click="goPlaceOrder('代购鲜花')">
 				<image src="../../static/imgs/花.png" style="width: 50%;" mode="widthFix"></image>
-				<view style="flex: 1;">代购鲜花</view>
+				<view style="flex: 1;font-weight: bold;">代购鲜花</view>
 			</view>
 			<view class="category-item" @click="goPlaceOrder('代购零食')">
 				<image src="../../static/imgs/零食.png" style="width: 50%;" mode="widthFix"></image>
-				<view style="flex: 1;">代购零食</view>
+				<view style="flex: 1;font-weight: bold;">代购零食</view>
 			</view>
 			<view class="category-item" @click="goPlaceOrder('代购餐品')">
 				<image src="../../static/imgs/取餐.png" style="width:50%;" mode="widthFix"></image>
-				<view style="flex: 1;">代购餐品</view>
+				<view style="flex: 1;font-weight: bold;">代购餐品</view>
 			</view>
 		</view>
 		<!-- 跑腿订单列表 -->
@@ -58,7 +58,7 @@
 						<text style="color: aqua;">待接单</text>
 					</view>
 					<view style="flex: 1; text-align: right;">
-						<uni-tag text="接单" type="primary" size="mini"></uni-tag>
+						<uni-tag text="接单" type="primary" size="mini" @click.native.stop="accept(item)"></uni-tag>
 					</view>
 					
 				</view>
@@ -83,6 +83,7 @@ import placeOrderVue from '../placeOrder/placeOrder.vue';
 				noticeList: [],
 				interval: null,
 				orderList: [],
+				user:uni.getStorageSync('xm-user'),
 			}
 		},
 		onShow() {
@@ -103,20 +104,7 @@ import placeOrderVue from '../placeOrder/placeOrder.vue';
 				}).then(res => {
 					this.orderList = res.data || [];
 				})
-				this.$request.get("/notice/selectAll").then(res => {
-					this.noticeList = res.data || [];
-					let i = 0;
-					this.content = this.noticeList.length ? this.noticeList[i].content : "";
-					if (this.noticeList.length > 0) {
-						this.interval = setInterval(() => {
-							i++;
-							if (i === this.noticeList.length) {
-								i = 0;
-							}
-							this.content = this.noticeList[i].content;
-						}, 2000)
-					}
-				})
+				
 			},
 			
 			goPlaceOrder(type){
@@ -133,8 +121,47 @@ import placeOrderVue from '../placeOrder/placeOrder.vue';
 				uni.navigateTo({
 					url:'/pages/orderDetail/orderDetail?orderId='+orderId
 				})
-			}
-			
+			},
+			// 骑手接单
+			accept(order){
+				if(!this.user.rider){// 必须是骑手方可接单
+					uni.showToast({
+						icon:'none',
+						title:'只有骑手才可以接单，请先认证'
+					})
+					return
+				}
+				this.$request.put('/order/accept',order).then(res=>{
+					if (res.code === '200') {
+						uni.showToast({
+							icon: 'success',
+							title: '操作成功'
+						})
+						this.load()
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: res.msg,
+						})
+					}
+				})
+			},
+			loadNotice(){
+				this.$request.get("/notice/selectAll").then(res => {
+					this.noticeList = res.data || [];
+					let i = 0;
+					this.content = this.noticeList.length ? this.noticeList[i].content : "";
+					if (this.noticeList.length > 0) {
+						this.interval = setInterval(() => {
+							i++;
+							if (i === this.noticeList.length) {
+								i = 0;
+							}
+							this.content = this.noticeList[i].content;
+						}, 2000)
+					}
+				})
+			}			
 
 		}
 	}

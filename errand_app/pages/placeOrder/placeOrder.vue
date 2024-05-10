@@ -30,7 +30,7 @@
 			<view style="color=#888;" v-else>请选择收货地址</view>
 		</view>
 		<view class="box">
-			<uni-forms :modelValue="form" :rules="rules" ref="formRef" label-width="180rpx" label-align="left"
+			<uni-forms :modelValue="form" :rules="rules" ref="formRef" label-width="180rpx" label-align="right"
 				validateTrigger="blur">
 				<uni-forms-item label="物品名称" name="name" required>
 					<uni-easyinput type="text" v-model="form.name" placeholder="请输入物品名称" />
