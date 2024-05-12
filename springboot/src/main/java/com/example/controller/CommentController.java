@@ -21,6 +21,14 @@ public class CommentController {
     private CommentService commentService;
 
     /**
+     * 查询用户或者骑手的评论信息
+     */
+    @GetMapping("/selectComment/{userId}")
+    public Result selectComment(@PathVariable Integer userId){
+        List<Comment> list = commentService.selectComment(userId);
+        return Result.success(list);
+    }
+    /**
      * 新增
      */
     @PostMapping("/add")

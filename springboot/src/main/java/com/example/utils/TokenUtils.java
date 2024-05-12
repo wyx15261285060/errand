@@ -46,6 +46,7 @@ public class TokenUtils {
         staticAdminService = adminService;
         staticUserService = userService;
     }
+
     /**
      * 生成token
      */
@@ -60,16 +61,20 @@ public class TokenUtils {
      */
     public static Account getCurrentUser() {
         try {
-            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-            String token = request.getHeader(Constants.TOKEN);
-            if (ObjectUtil.isNotEmpty(token)) {
-                String userRole = JWT.decode(token).getAudience().get(0);
-                String userId = userRole.split("-")[0];  // 获取用户id
-                String role = userRole.split("-")[1];    // 获取角色
-                if (RoleEnum.ADMIN.name().equals(role)) {
-                    return staticAdminService.selectById(Integer.valueOf(userId));
-                } else if(RoleEnum.USER.name().equals(role)){
-                    return staticUserService.selectById(Integer.valueOf(userId));
+            // 从当前请求中获取HttpServletRequest对象，RequestContextHolder是Spring提供的用于获取当前请求上下文的工具类
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();            // 从请求头中获取名为TOKEN的值，这个值应该是用户的身份验证令牌
+            if (request != null) {
+                String token = request.getHeader(Constants.TOKEN);
+                if (ObjectUtil.isNotEmpty(token)) {
+                    // 解析令牌，获取用户角色信息
+                    String userRole = JWT.decode(token).getAudience().get(0);
+                    String userId = userRole.split("-")[0];  // 获取用户id
+                    String role = userRole.split("-")[1];    // 获取角色
+                    if (RoleEnum.ADMIN.name().equals(role)) {
+                        return staticAdminService.selectById(Integer.valueOf(userId));
+                    } else if (RoleEnum.USER.name().equals(role)) {
+                        return staticUserService.selectById(Integer.valueOf(userId));
+                    }
                 }
             }
         } catch (Exception e) {
@@ -78,4 +83,5 @@ public class TokenUtils {
         return new Account();  // 返回空的账号对象
     }
 }
+
 

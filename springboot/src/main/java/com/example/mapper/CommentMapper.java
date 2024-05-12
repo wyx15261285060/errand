@@ -6,6 +6,7 @@ package com.example.mapper;/*
  */
 
 import com.example.entity.Comment;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -35,4 +36,13 @@ public interface CommentMapper {
      * 查询所有
      */
     List<Comment> selectAll(Comment comment);
+
+
+    // userid 表示当前登录的userid
+    List<Comment> selectComment(Integer userId);
+
+    List<Comment> selectByUserId(Integer userId);
+
+    @Select("select * from wyx_comment where accept_id = #{acceptId}")
+    List<Comment> selectByAcceptId(Integer acceptId);
 }

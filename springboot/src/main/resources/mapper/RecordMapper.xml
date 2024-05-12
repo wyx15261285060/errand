@@ -16,6 +16,7 @@
         on R.user_id = U.id
         <where>
             <if test="userName != null"> and U.name like concat('%', #{userName}, '%')</if>
+            <if test="userId != null"> and R.user_id = #{userId}</if>
         </where>
         order by id desc
     </select>

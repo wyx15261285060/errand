@@ -8,6 +8,27 @@
     "miniprogram": {
       "list": [
         {
+          "name": "充值",
+          "pathName": "pages/charge/charge",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "我的钱包",
+          "pathName": "pages/myWallet/myWallet",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "收支明细",
+          "pathName": "pages/record/record",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "骑手认证",
           "pathName": "pages/certification/certification",
           "query": "",

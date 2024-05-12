@@ -99,19 +99,19 @@ var components
 try {
   components = {
     uniSegmentedControl: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control */ "uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.vue */ 207))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control */ "uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.vue */ 219))
     },
     uniTag: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-tag/components/uni-tag/uni-tag */ "uni_modules/uni-tag/components/uni-tag/uni-tag").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-tag/components/uni-tag/uni-tag.vue */ 135))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-tag/components/uni-tag/uni-tag */ "uni_modules/uni-tag/components/uni-tag/uni-tag").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-tag/components/uni-tag/uni-tag.vue */ 147))
     },
     uniIcons: function () {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 214))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 226))
     },
     uniPopup: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 222))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 234))
     },
     uniPopupDialog: function () {
-      return Promise.all(/*! import() | uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue */ 229))
+      return Promise.all(/*! import() | uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue */ 241))
     },
   }
 } catch (e) {
@@ -234,6 +234,11 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -248,6 +253,12 @@ var _default = {
     this.load();
   },
   methods: {
+    // 跳转至评价页面
+    goComment: function goComment(orderId) {
+      uni.navigateTo({
+        url: '/pages/comment/comment?orderId=' + orderId
+      });
+    },
     goOrderDetail: function goOrderDetail(orderId) {
       uni.navigateTo({
         url: '/pages/orderDetail/orderDetail?orderId=' + orderId
@@ -258,8 +269,27 @@ var _default = {
       this.current = this.items[e.currentIndex];
       this.load();
     },
-    load: function load() {
+    // 确认送达，将状态修改为待评价 
+    changeStatus: function changeStatus(order, status) {
       var _this = this;
+      order.status = status;
+      this.$request.put('/order/update', order).then(function (res) {
+        if (res.code === '200') {
+          uni.showToast({
+            icon: 'success',
+            title: '操作成功'
+          });
+          _this.load();
+        } else {
+          uni.showToast({
+            icon: 'none',
+            title: res.msg
+          });
+        }
+      });
+    },
+    load: function load() {
+      var _this2 = this;
       //如果不是‘全部订单’就不把status参数拼接到paramsJSON对象中
       var params = {
         userId: this.user.id
@@ -269,7 +299,7 @@ var _default = {
         params.status = this.current;
       }
       this.$request.get('/order/selectAll', params).then(function (res) {
-        _this.orderList = res.data || [];
+        _this2.orderList = res.data || [];
       });
     },
     // 假删除，打开弹窗
@@ -280,14 +310,14 @@ var _default = {
     },
     // 确定时间
     del: function del() {
-      var _this2 = this;
+      var _this3 = this;
       this.$request.del('/order/delete/' + this.orderId).then(function (res) {
         if (res.code === '200') {
           uni.showToast({
             icon: 'success',
             title: '操作成功'
           });
-          _this2.load();
+          _this3.load();
         } else {
           uni.showToast({
             icon: 'none',

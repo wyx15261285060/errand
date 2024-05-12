@@ -16,15 +16,15 @@
 					<image src="../../static/imgs/地址.png" style="width: 50%;" mode="widthFix"></image>
 					<view style="flex: 1;font-weight: bold;">我的地址</view>
 				</view>
-				<view class="category-item" @click="goPage('代购鲜花')">
+				<view class="category-item" @click="goPage('/pages/record/record')">
 					<image src="../../static/imgs/收支.png" style="width: 50%;" mode="widthFix"></image>
 					<view style="flex: 1;font-weight: bold;">收支明细</view>
 				</view>
-				<view class="category-item" @click="goPage('代购零食')">
+				<view class="category-item" @click="goPage('/pages/myComment/myComment')">
 					<image src="../../static/imgs/评价.png" style="width: 50%;" mode="widthFix"></image>
 					<view style="flex: 1;font-weight: bold;">评价中心</view>
 				</view>
-				<view class="category-item" @click="goPage('代购餐品')">
+				<view class="category-item" @click="goPage('/pages/myWallet/myWallet')">
 					<image src="../../static/imgs/钱包.png" style="width:50%;" mode="widthFix"></image>
 					<view style="flex: 1;font-weight: bold;">我的钱包</view>
 				</view>

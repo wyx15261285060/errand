@@ -7,6 +7,7 @@ package com.example.service;/*
 
 import cn.hutool.core.util.ObjectUtil;
 import com.example.common.Constants;
+import com.example.common.enums.RecordEnum;
 import com.example.common.enums.ResultCodeEnum;
 import com.example.common.enums.RoleEnum;
 import com.example.entity.Account;
@@ -23,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -148,4 +150,11 @@ public class UserService {
         userMapper.updateById(dbUser);
     }
 
+    public void charge(Double money) {
+        Account currentUser = TokenUtils.getCurrentUser();
+        currentUser.setAccount(currentUser.getAccount().add(BigDecimal.valueOf(money)));
+        this.updateById((User) currentUser);
+        // 充值明细记录
+        RecordService.addRecord("充值" ,BigDecimal.valueOf(money), RecordEnum.CHARGE.getValue());
+    }
 }

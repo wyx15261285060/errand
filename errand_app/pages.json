@@ -101,6 +101,46 @@
 				"navigationBarTitleText" : "骑手订单",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/record/record",
+			"style" : 
+			{
+				"navigationBarTitleText" : "收支明细",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/myWallet/myWallet",
+			"style" : 
+			{
+				"navigationBarTitleText" : "钱 包",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/charge/charge",
+			"style" : 
+			{
+				"navigationBarTitleText" : "充 值",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/comment/comment",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/myComment/myComment",
+			"style" : 
+			{
+				"navigationBarTitleText" : "评价中心",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {

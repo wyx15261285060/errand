@@ -60,6 +60,14 @@ public class UserController {
         userService.updateById(user);
         return Result.success();
     }
+    /**
+     * 充值
+     */
+    @PutMapping("/charge/{money}")
+    public Result charge(@PathVariable Double money) {
+        userService.charge(money);
+        return Result.success();
+    }
 
     /**
      * 根据ID查询

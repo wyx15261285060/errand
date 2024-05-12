@@ -12,7 +12,12 @@
     "pages/userProtocol/userProtocol",
     "pages/personInfo/personInfo",
     "pages/certification/certification",
-    "pages/acceptOrder/acceptOrder"
+    "pages/acceptOrder/acceptOrder",
+    "pages/record/record",
+    "pages/myWallet/myWallet",
+    "pages/charge/charge",
+    "pages/comment/comment",
+    "pages/myComment/myComment"
   ],
   "subPackages": [],
   "window": {

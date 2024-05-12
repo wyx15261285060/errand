@@ -9,6 +9,7 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import com.example.common.enums.OrderStatus;
+import com.example.common.enums.RecordEnum;
 import com.example.entity.Order;
 import com.example.entity.User;
 import org.slf4j.Logger;
@@ -50,7 +51,7 @@ public class SolveOrderTimeOut {
                 User user = userService.selectById(order.getUserId());
                 user.setAccount(user.getAccount().add(BigDecimal.valueOf(order.getPrice())));
                 userService.updateById(user);
-
+                RecordService.addRecord("取消订单" + order.getName(),BigDecimal.valueOf(order.getPrice()), RecordEnum.CANCEL.getValue());
             }
         }
 

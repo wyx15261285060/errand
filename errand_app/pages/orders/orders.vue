@@ -42,7 +42,12 @@
 							<text style="color: #888;" @click.native.stop="handleDel(item.id)">删除</text>
 						</view>
 
-						<uni-tag text="确认收货" type="primary" size="mini" v-if="item.status==='待收货'"></uni-tag>
+						<uni-tag text="确认收货" type="primary" size="mini" v-if="item.status==='待收货'"
+							@click.native.stop="changeStatus(item,'待评价')"></uni-tag>
+							<uni-tag text="取消订单" type="default" size="small" v-if="item.status === '待接单'"
+							@click.native.stop="changeStatus(item, '已取消')"></uni-tag>
+							<uni-tag text="待评价" type="success" size="small" v-if="item.status === '待评价'"
+							@click.native.stop="goComment(item.id)"></uni-tag>
 					</view>
 
 				</view>
@@ -74,6 +79,12 @@
 			this.load()
 		},
 		methods: {
+			// 跳转至评价页面
+			goComment(orderId){
+				uni.navigateTo({
+					url:'/pages/comment/comment?orderId='+orderId
+				})
+			},
 			goOrderDetail(orderId) {
 				uni.navigateTo({
 					url: '/pages/orderDetail/orderDetail?orderId=' + orderId
@@ -83,6 +94,25 @@
 			onClickItem(e) {
 				this.current = this.items[e.currentIndex]
 				this.load()
+			},
+			// 确认送达，将状态修改为待评价 
+			changeStatus(order, status) {
+				order.status = status
+				this.$request.put('/order/update', order).then(res => {
+					if (res.code === '200') {
+						uni.showToast({
+							icon: 'success',
+							title: '操作成功'
+						})
+						this.load()
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: res.msg,
+						})
+					}
+
+				})
 			},
 			load() {
 				//如果不是‘全部订单’就不把status参数拼接到paramsJSON对象中
@@ -105,7 +135,7 @@
 			},
 			// 确定时间
 			del() {
-				this.$request.del('/order/delete/'+ this.orderId).then(res => {
+				this.$request.del('/order/delete/' + this.orderId).then(res => {
 					if (res.code === '200') {
 						uni.showToast({
 							icon: 'success',

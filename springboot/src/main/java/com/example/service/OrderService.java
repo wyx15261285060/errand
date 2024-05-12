@@ -9,17 +9,16 @@ import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import com.example.common.enums.OrderStatus;
+import com.example.common.enums.RecordEnum;
 import com.example.common.enums.ResultCodeEnum;
-import com.example.entity.Account;
-import com.example.entity.Address;
-import com.example.entity.Order;
-import com.example.entity.User;
+import com.example.entity.*;
 import com.example.exception.CustomException;
 import com.example.mapper.OrderMapper;
 import com.example.utils.TokenUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -38,6 +37,10 @@ public class OrderService {
     private UserService userService;
     @Resource
     private AddressService addressService;
+    @Resource
+    private CertificationService certificationService;
+    @Resource
+    private RecordService recordService;
 
 
     /**
@@ -66,8 +69,20 @@ public class OrderService {
     /**
      * 修改
      */
-    public void updateById(Order Order) {
-        orderMapper.updateById(Order);
+    @Transactional
+    public void updateById(Order order) {
+        if (OrderStatus.NO_RECEIVE.getValue().equals(order.getStatus())){
+            // 骑手送达订单情况
+            Integer acceptId = order.getAcceptId();
+            User user = userService.selectById(acceptId);
+            user.setAccount(user.getAccount().add(BigDecimal.valueOf(order.getPrice())));
+            userService.updateById(user);
+            // 接单收支明细
+            RecordService.addRecord("接单" + order.getName(),BigDecimal.valueOf(order.getPrice()), RecordEnum.INCOME.getValue());
+        } else if (OrderStatus.CANCEL.getValue().equals(order.getStatus())) {
+            RecordService.addRecord("取消" + order.getName(),BigDecimal.valueOf(order.getPrice()), RecordEnum.CANCEL.getValue());
+        }
+        orderMapper.updateById(order);
     }
 
     /**
@@ -79,8 +94,9 @@ public class OrderService {
         order.setAddress(address);  // 取货地址
         Address targetAddress = addressService.selectById(order.getTargetId());
         order.setTargetAddress(targetAddress);  // 收货地址
+        Certification certification = certificationService.selectByUserId(order.getAcceptId());
+        order.setCertification(certification);
         return order;
-//        return orderMapper.selectById(id);
     }
 
     /**
@@ -126,6 +142,9 @@ public class OrderService {
         order.setStatus(OrderStatus.NO_ACCEPT.getValue());
         order.setTime(DateUtil.now());
         orderMapper.insert(order);
+
+        // 下单明细记录
+        RecordService.addRecord("下单" + order.getName(),BigDecimal.valueOf(order.getPrice()), RecordEnum.OUT.getValue());
     }
 
     public void acceptOrder(Order order) {
@@ -136,5 +155,7 @@ public class OrderService {
         order.setStatus(OrderStatus.NO_ARRIVE.getValue());
         // 更新订单
         this.updateById(order);
+        // 接单明细记录
+
     }
 }

@@ -33,6 +33,18 @@
         from wyx_comment
         where id = #{id}
     </select>
+    <select id="selectComment" resultType="com.example.entity.Comment">
+        select
+        <include refid="Base_Column_List" />
+        from  wyx_comment
+        where user_id = #{userId} OR accept_id = #{userId};
+    </select>
+    <select id="selectByUserId" resultType="com.example.entity.Comment">
+        select
+        <include refid="Base_Column_List" />
+        from  wyx_comment
+        where user_id = #{userId};
+    </select>
 
     <delete id="deleteById">
         delete from wyx_comment
