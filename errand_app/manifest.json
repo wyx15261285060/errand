@@ -68,5 +68,15 @@
     "uniStatistics" : {
         "enable" : false
     },
-    "vueVersion" : "2"
+    "vueVersion" : "2",
+    "h5" : {
+        "title" : "Errand",
+        "router" : {
+            "mode" : "hash",
+            "base" : "./"
+        },
+        "devServer" : {
+            "https" : false
+        }
+    }
 }

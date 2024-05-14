@@ -3,18 +3,18 @@
 		<view class="box" v-for="item in recordList" :key="item.id" style="margin-bottom: 10rpx;">
 			<view style="display: flex; margin-bottom: 10rpx;">
 				<view>
-					<uni-tag type="success" text="充值" size="mini" v-if="item.type==='充值'"></uni-tag>
-					<uni-tag type="primary" text="收入" size="mini" v-if="item.type==='收入'"></uni-tag>
-					<uni-tag type="error" text="支出" size="mini" v-if="item.type==='支出'"></uni-tag>
-					<uni-tag type="warning" text="取消" size="mini" v-if="item.type==='取消'"></uni-tag>
-					<text style="margin-bottom: 10rpx;"> {{ item.content }}</text>
+					<uni-tag type="success" style="margin-right: 20rpx;" text="充值" size="mini" v-if="item.type==='充值'"></uni-tag>
+					<uni-tag type="primary" style="margin-right: 20rpx;" text="收入" size="mini" v-if="item.type==='收入'"></uni-tag>
+					<uni-tag type="error"  style="margin-right: 20rpx;" text="支出" size="mini" v-if="item.type==='支出'"></uni-tag>
+					<uni-tag type="warning" style="margin-right: 20rpx;" text="取消" size="mini" v-if="item.type==='取消'"></uni-tag>
+					<text style="margin-bottom: 10rpx; font-size: 30rpx; font-weight: bold;"> {{ item.content }}</text>
 				</view>
 
 				<view style="flex: 1;text-align: right;font-weight: bold;">
-					<text style="color: red;" v-if="item.type==='充值'">+{{ item.money }}</text>
-					<text style="color: dodgerblue;" v-if="item.type==='收入'">+{{ item.money }}</text>
-					<text style="color: #888;" v-if="item.type==='支出'">-{{ item.money }}</text>
-					<text style="color: orange" v-if="item.type==='取消'">+{{ item.money }}</text>
+					<text style="color: red;font-size: 40rpx;" v-if="item.type==='充值'">+{{ item.money }}</text>
+					<text style="color: dodgerblue;font-size: 40rpx;" v-if="item.type==='收入'">+{{ item.money }}</text>
+					<text style="color: #888;font-size: 40rpx;" v-if="item.type==='支出'">-{{ item.money }}</text>
+					<text style="color: orange;font-size: 40rpx;" v-if="item.type==='取消'">+{{ item.money }}</text>
 				</view>
 			</view>
 			<view style="text-align: right;color: #888;font-size: 24rpx;">{{ item.time }}</view>

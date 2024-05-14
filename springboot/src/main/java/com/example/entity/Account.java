@@ -25,6 +25,36 @@ public class Account {
     private BigDecimal account;
     /** 是否为骑手*/
     private Boolean isRider;
+    /** 手机号*/
+    private String phone;
+    /** 验证码*/
+    private String code;
+    /** uuid*/
+    private String uuid;
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public Boolean getRider() {
         return isRider;

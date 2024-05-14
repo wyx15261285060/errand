@@ -99,13 +99,13 @@ var components
 try {
   components = {
     uniForms: function () {
-      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 161))
+      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 181))
     },
     uniFormsItem: function () {
-      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 177))
+      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 197))
     },
     uniEasyinput: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 184))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 204))
     },
   }
 } catch (e) {
@@ -200,6 +200,11 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -207,6 +212,16 @@ var _default = {
         role: 'USER'
       },
       rules: {
+        // 对手机号字段进行必填验证
+        phone: {
+          // username 字段的校验规则
+          rules: [
+          // 校验 username 不能为空
+          {
+            required: true,
+            errorMessage: '请填写手机号'
+          }]
+        },
         // 对username字段进行必填验证
         username: {
           // username 字段的校验规则
@@ -238,29 +253,40 @@ var _default = {
   methods: {
     register: function register() {
       var _this = this;
-      this.$refs.formRef.validate().then(function (res) {
-        _this.$request.post("/register", _this.formData).then(function (res) {
-          if (res.code === '200') {
-            uni.showToast({
-              icon: ' success',
-              title: "注册成功"
-            });
-            setTimeout(function () {
-              uni.navigateTo({
-                // navigateTo 页面跳转 ，switchTag 菜单切换
-                url: "/pages/login/login"
-              });
-            }, 500);
-          } else {
-            uni.showToast({
-              icon: 'none',
-              title: res.msg
-            });
-          }
+      var flag = true;
+      var reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
+      if (!reg.test(this.formData.phone)) {
+        //判断手机号格式是否正确
+        uni.showToast({
+          title: '请输入正确的手机号',
+          icon: 'none'
         });
-      }).catch(function (err) {
-        console.log('err', err);
-      });
+      } else {
+        // 判断手机号是否唯一
+        this.$refs.formRef.validate().then(function (res) {
+          _this.$request.post("/register", _this.formData).then(function (res) {
+            if (res.code === '200') {
+              uni.showToast({
+                icon: ' success',
+                title: "注册成功"
+              });
+              setTimeout(function () {
+                uni.navigateTo({
+                  // navigateTo 页面跳转 ，switchTag 菜单切换
+                  url: "/pages/login/login"
+                });
+              }, 500);
+            } else {
+              uni.showToast({
+                icon: 'none',
+                title: res.msg
+              });
+            }
+          });
+        }).catch(function (err) {
+          console.log('err', err);
+        });
+      }
     }
   }
 };

@@ -20,6 +20,7 @@ public class WebConfig implements  WebMvcConfigurer {
                 .excludePathPatterns("/")
                 .excludePathPatterns("/login")
                 .excludePathPatterns("/register")
+                .excludePathPatterns("/auth/captcha")//获取验证码
                 .excludePathPatterns("/files/**");
     }
 }

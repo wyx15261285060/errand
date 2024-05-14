@@ -60,6 +60,7 @@ public class UserController {
         userService.updateById(user);
         return Result.success();
     }
+
     /**
      * 充值
      */
@@ -96,5 +97,14 @@ public class UserController {
                              @RequestParam(defaultValue = "10") Integer pageSize) {
         PageInfo<User> page = userService.selectPage(user, pageNum, pageSize);
         return Result.success(page);
+    }
+
+    /**
+     * 注册时判断手机号是否唯一
+     */
+    @GetMapping("/selectByPhone/{phone}")
+    public Boolean selectByPhone(@PathVariable String phone) {
+        Boolean isPhone = userService.selectByPhone(phone);
+        return isPhone;
     }
 }

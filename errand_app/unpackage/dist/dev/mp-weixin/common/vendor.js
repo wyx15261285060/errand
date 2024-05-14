@@ -189,7 +189,47 @@ module.exports = _setPrototypeOf, module.exports.__esModule = true, module.expor
 
 /***/ }),
 
-/***/ 166:
+/***/ 17:
+/*!*************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+  try {
+    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+module.exports = _isNativeReflectConstruct, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 18:
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles.js */ 19);
+var iterableToArray = __webpack_require__(/*! ./iterableToArray.js */ 20);
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 8);
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread.js */ 21);
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 186:
 /*!************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
   \************************************************************************************************/
@@ -198,12 +238,12 @@ module.exports = _setPrototypeOf, module.exports.__esModule = true, module.expor
 
 // TODO(Babel 8): Remove this file.
 
-var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 167)();
+var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 187)();
 module.exports = runtime;
 
 /***/ }),
 
-/***/ 167:
+/***/ 187:
 /*!*******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
   \*******************************************************************/
@@ -525,7 +565,7 @@ module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.e
 
 /***/ }),
 
-/***/ 168:
+/***/ 188:
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
   \*****************************************************************/
@@ -566,7 +606,7 @@ module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exp
 
 /***/ }),
 
-/***/ 169:
+/***/ 189:
 /*!***********************************************************************************************!*\
   !*** D:/GradProject/errand/errand_app/uni_modules/uni-forms/components/uni-forms/validate.js ***!
   \***********************************************************************************************/
@@ -581,11 +621,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 166));
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 170));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 171));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 173));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 168));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 186));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 190));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 191));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 193));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 188));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
@@ -1258,29 +1298,22 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 17:
-/*!*************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js ***!
-  \*************************************************************************/
+/***/ 19:
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
+  \******************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-  try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray.js */ 9);
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
 }
-module.exports = _isNativeReflectConstruct, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
-/***/ 170:
+/***/ 190:
 /*!*********************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
   \*********************************************************/
@@ -1308,7 +1341,7 @@ module.exports = _inherits, module.exports.__esModule = true, module.exports["de
 
 /***/ }),
 
-/***/ 171:
+/***/ 191:
 /*!**************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
   \**************************************************************************/
@@ -1316,7 +1349,7 @@ module.exports = _inherits, module.exports.__esModule = true, module.exports["de
 /***/ (function(module, exports, __webpack_require__) {
 
 var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
-var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 172);
+var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 192);
 function _possibleConstructorReturn(self, call) {
   if (call && (_typeof(call) === "object" || typeof call === "function")) {
     return call;
@@ -1329,7 +1362,7 @@ module.exports = _possibleConstructorReturn, module.exports.__esModule = true, m
 
 /***/ }),
 
-/***/ 172:
+/***/ 192:
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
   \**********************************************************************/
@@ -1346,7 +1379,7 @@ module.exports = _assertThisInitialized, module.exports.__esModule = true, modul
 
 /***/ }),
 
-/***/ 173:
+/***/ 193:
 /*!***************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
   \***************************************************************/
@@ -1363,7 +1396,7 @@ module.exports = _getPrototypeOf, module.exports.__esModule = true, module.expor
 
 /***/ }),
 
-/***/ 174:
+/***/ 194:
 /*!********************************************************************************************!*\
   !*** D:/GradProject/errand/errand_app/uni_modules/uni-forms/components/uni-forms/utils.js ***!
   \********************************************************************************************/
@@ -1696,39 +1729,6 @@ var isEqual = function isEqual(a, b) {
   }
 };
 exports.isEqual = isEqual;
-
-/***/ }),
-
-/***/ 18:
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles.js */ 19);
-var iterableToArray = __webpack_require__(/*! ./iterableToArray.js */ 20);
-var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 8);
-var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread.js */ 21);
-function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
-}
-module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 19:
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray.js */ 9);
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return arrayLikeToArray(arr);
-}
-module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
@@ -4154,7 +4154,558 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 /***/ }),
 
-/***/ 203:
+/***/ 21:
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 22:
+/*!*************************************************************!*\
+  !*** ./node_modules/@dcloudio/uni-i18n/dist/uni-i18n.es.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni, global) {
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.LOCALE_ZH_HANT = exports.LOCALE_ZH_HANS = exports.LOCALE_FR = exports.LOCALE_ES = exports.LOCALE_EN = exports.I18n = exports.Formatter = void 0;
+exports.compileI18nJsonStr = compileI18nJsonStr;
+exports.hasI18nJson = hasI18nJson;
+exports.initVueI18n = initVueI18n;
+exports.isI18nStr = isI18nStr;
+exports.isString = void 0;
+exports.normalizeLocale = normalizeLocale;
+exports.parseI18nJson = parseI18nJson;
+exports.resolveLocale = resolveLocale;
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+var isObject = function isObject(val) {
+  return val !== null && (0, _typeof2.default)(val) === 'object';
+};
+var defaultDelimiters = ['{', '}'];
+var BaseFormatter = /*#__PURE__*/function () {
+  function BaseFormatter() {
+    (0, _classCallCheck2.default)(this, BaseFormatter);
+    this._caches = Object.create(null);
+  }
+  (0, _createClass2.default)(BaseFormatter, [{
+    key: "interpolate",
+    value: function interpolate(message, values) {
+      var delimiters = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : defaultDelimiters;
+      if (!values) {
+        return [message];
+      }
+      var tokens = this._caches[message];
+      if (!tokens) {
+        tokens = parse(message, delimiters);
+        this._caches[message] = tokens;
+      }
+      return compile(tokens, values);
+    }
+  }]);
+  return BaseFormatter;
+}();
+exports.Formatter = BaseFormatter;
+var RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
+var RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
+function parse(format, _ref) {
+  var _ref2 = (0, _slicedToArray2.default)(_ref, 2),
+    startDelimiter = _ref2[0],
+    endDelimiter = _ref2[1];
+  var tokens = [];
+  var position = 0;
+  var text = '';
+  while (position < format.length) {
+    var char = format[position++];
+    if (char === startDelimiter) {
+      if (text) {
+        tokens.push({
+          type: 'text',
+          value: text
+        });
+      }
+      text = '';
+      var sub = '';
+      char = format[position++];
+      while (char !== undefined && char !== endDelimiter) {
+        sub += char;
+        char = format[position++];
+      }
+      var isClosed = char === endDelimiter;
+      var type = RE_TOKEN_LIST_VALUE.test(sub) ? 'list' : isClosed && RE_TOKEN_NAMED_VALUE.test(sub) ? 'named' : 'unknown';
+      tokens.push({
+        value: sub,
+        type: type
+      });
+    }
+    //  else if (char === '%') {
+    //   // when found rails i18n syntax, skip text capture
+    //   if (format[position] !== '{') {
+    //     text += char
+    //   }
+    // }
+    else {
+      text += char;
+    }
+  }
+  text && tokens.push({
+    type: 'text',
+    value: text
+  });
+  return tokens;
+}
+function compile(tokens, values) {
+  var compiled = [];
+  var index = 0;
+  var mode = Array.isArray(values) ? 'list' : isObject(values) ? 'named' : 'unknown';
+  if (mode === 'unknown') {
+    return compiled;
+  }
+  while (index < tokens.length) {
+    var token = tokens[index];
+    switch (token.type) {
+      case 'text':
+        compiled.push(token.value);
+        break;
+      case 'list':
+        compiled.push(values[parseInt(token.value, 10)]);
+        break;
+      case 'named':
+        if (mode === 'named') {
+          compiled.push(values[token.value]);
+        } else {
+          if (true) {
+            console.warn("Type of token '".concat(token.type, "' and format of value '").concat(mode, "' don't match!"));
+          }
+        }
+        break;
+      case 'unknown':
+        if (true) {
+          console.warn("Detect 'unknown' type of token!");
+        }
+        break;
+    }
+    index++;
+  }
+  return compiled;
+}
+var LOCALE_ZH_HANS = 'zh-Hans';
+exports.LOCALE_ZH_HANS = LOCALE_ZH_HANS;
+var LOCALE_ZH_HANT = 'zh-Hant';
+exports.LOCALE_ZH_HANT = LOCALE_ZH_HANT;
+var LOCALE_EN = 'en';
+exports.LOCALE_EN = LOCALE_EN;
+var LOCALE_FR = 'fr';
+exports.LOCALE_FR = LOCALE_FR;
+var LOCALE_ES = 'es';
+exports.LOCALE_ES = LOCALE_ES;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var hasOwn = function hasOwn(val, key) {
+  return hasOwnProperty.call(val, key);
+};
+var defaultFormatter = new BaseFormatter();
+function include(str, parts) {
+  return !!parts.find(function (part) {
+    return str.indexOf(part) !== -1;
+  });
+}
+function startsWith(str, parts) {
+  return parts.find(function (part) {
+    return str.indexOf(part) === 0;
+  });
+}
+function normalizeLocale(locale, messages) {
+  if (!locale) {
+    return;
+  }
+  locale = locale.trim().replace(/_/g, '-');
+  if (messages && messages[locale]) {
+    return locale;
+  }
+  locale = locale.toLowerCase();
+  if (locale === 'chinese') {
+    // 支付宝
+    return LOCALE_ZH_HANS;
+  }
+  if (locale.indexOf('zh') === 0) {
+    if (locale.indexOf('-hans') > -1) {
+      return LOCALE_ZH_HANS;
+    }
+    if (locale.indexOf('-hant') > -1) {
+      return LOCALE_ZH_HANT;
+    }
+    if (include(locale, ['-tw', '-hk', '-mo', '-cht'])) {
+      return LOCALE_ZH_HANT;
+    }
+    return LOCALE_ZH_HANS;
+  }
+  var locales = [LOCALE_EN, LOCALE_FR, LOCALE_ES];
+  if (messages && Object.keys(messages).length > 0) {
+    locales = Object.keys(messages);
+  }
+  var lang = startsWith(locale, locales);
+  if (lang) {
+    return lang;
+  }
+}
+var I18n = /*#__PURE__*/function () {
+  function I18n(_ref3) {
+    var locale = _ref3.locale,
+      fallbackLocale = _ref3.fallbackLocale,
+      messages = _ref3.messages,
+      watcher = _ref3.watcher,
+      formater = _ref3.formater;
+    (0, _classCallCheck2.default)(this, I18n);
+    this.locale = LOCALE_EN;
+    this.fallbackLocale = LOCALE_EN;
+    this.message = {};
+    this.messages = {};
+    this.watchers = [];
+    if (fallbackLocale) {
+      this.fallbackLocale = fallbackLocale;
+    }
+    this.formater = formater || defaultFormatter;
+    this.messages = messages || {};
+    this.setLocale(locale || LOCALE_EN);
+    if (watcher) {
+      this.watchLocale(watcher);
+    }
+  }
+  (0, _createClass2.default)(I18n, [{
+    key: "setLocale",
+    value: function setLocale(locale) {
+      var _this = this;
+      var oldLocale = this.locale;
+      this.locale = normalizeLocale(locale, this.messages) || this.fallbackLocale;
+      if (!this.messages[this.locale]) {
+        // 可能初始化时不存在
+        this.messages[this.locale] = {};
+      }
+      this.message = this.messages[this.locale];
+      // 仅发生变化时，通知
+      if (oldLocale !== this.locale) {
+        this.watchers.forEach(function (watcher) {
+          watcher(_this.locale, oldLocale);
+        });
+      }
+    }
+  }, {
+    key: "getLocale",
+    value: function getLocale() {
+      return this.locale;
+    }
+  }, {
+    key: "watchLocale",
+    value: function watchLocale(fn) {
+      var _this2 = this;
+      var index = this.watchers.push(fn) - 1;
+      return function () {
+        _this2.watchers.splice(index, 1);
+      };
+    }
+  }, {
+    key: "add",
+    value: function add(locale, message) {
+      var override = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+      var curMessages = this.messages[locale];
+      if (curMessages) {
+        if (override) {
+          Object.assign(curMessages, message);
+        } else {
+          Object.keys(message).forEach(function (key) {
+            if (!hasOwn(curMessages, key)) {
+              curMessages[key] = message[key];
+            }
+          });
+        }
+      } else {
+        this.messages[locale] = message;
+      }
+    }
+  }, {
+    key: "f",
+    value: function f(message, values, delimiters) {
+      return this.formater.interpolate(message, values, delimiters).join('');
+    }
+  }, {
+    key: "t",
+    value: function t(key, locale, values) {
+      var message = this.message;
+      if (typeof locale === 'string') {
+        locale = normalizeLocale(locale, this.messages);
+        locale && (message = this.messages[locale]);
+      } else {
+        values = locale;
+      }
+      if (!hasOwn(message, key)) {
+        console.warn("Cannot translate the value of keypath ".concat(key, ". Use the value of keypath as default."));
+        return key;
+      }
+      return this.formater.interpolate(message[key], values).join('');
+    }
+  }]);
+  return I18n;
+}();
+exports.I18n = I18n;
+function watchAppLocale(appVm, i18n) {
+  // 需要保证 watch 的触发在组件渲染之前
+  if (appVm.$watchLocale) {
+    // vue2
+    appVm.$watchLocale(function (newLocale) {
+      i18n.setLocale(newLocale);
+    });
+  } else {
+    appVm.$watch(function () {
+      return appVm.$locale;
+    }, function (newLocale) {
+      i18n.setLocale(newLocale);
+    });
+  }
+}
+function getDefaultLocale() {
+  if (typeof uni !== 'undefined' && uni.getLocale) {
+    return uni.getLocale();
+  }
+  // 小程序平台，uni 和 uni-i18n 互相引用，导致访问不到 uni，故在 global 上挂了 getLocale
+  if (typeof global !== 'undefined' && global.getLocale) {
+    return global.getLocale();
+  }
+  return LOCALE_EN;
+}
+function initVueI18n(locale) {
+  var messages = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var fallbackLocale = arguments.length > 2 ? arguments[2] : undefined;
+  var watcher = arguments.length > 3 ? arguments[3] : undefined;
+  // 兼容旧版本入参
+  if (typeof locale !== 'string') {
+    var _ref4 = [messages, locale];
+    locale = _ref4[0];
+    messages = _ref4[1];
+  }
+  if (typeof locale !== 'string') {
+    // 因为小程序平台，uni-i18n 和 uni 互相引用，导致此时访问 uni 时，为 undefined
+    locale = getDefaultLocale();
+  }
+  if (typeof fallbackLocale !== 'string') {
+    fallbackLocale = typeof __uniConfig !== 'undefined' && __uniConfig.fallbackLocale || LOCALE_EN;
+  }
+  var i18n = new I18n({
+    locale: locale,
+    fallbackLocale: fallbackLocale,
+    messages: messages,
+    watcher: watcher
+  });
+  var _t = function t(key, values) {
+    if (typeof getApp !== 'function') {
+      // app view
+      /* eslint-disable no-func-assign */
+      _t = function t(key, values) {
+        return i18n.t(key, values);
+      };
+    } else {
+      var isWatchedAppLocale = false;
+      _t = function t(key, values) {
+        var appVm = getApp().$vm;
+        // 可能$vm还不存在，比如在支付宝小程序中，组件定义较早，在props的default里使用了t()函数（如uni-goods-nav），此时app还未初始化
+        // options: {
+        // 	type: Array,
+        // 	default () {
+        // 		return [{
+        // 			icon: 'shop',
+        // 			text: t("uni-goods-nav.options.shop"),
+        // 		}, {
+        // 			icon: 'cart',
+        // 			text: t("uni-goods-nav.options.cart")
+        // 		}]
+        // 	}
+        // },
+        if (appVm) {
+          // 触发响应式
+          appVm.$locale;
+          if (!isWatchedAppLocale) {
+            isWatchedAppLocale = true;
+            watchAppLocale(appVm, i18n);
+          }
+        }
+        return i18n.t(key, values);
+      };
+    }
+    return _t(key, values);
+  };
+  return {
+    i18n: i18n,
+    f: function f(message, values, delimiters) {
+      return i18n.f(message, values, delimiters);
+    },
+    t: function t(key, values) {
+      return _t(key, values);
+    },
+    add: function add(locale, message) {
+      var override = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+      return i18n.add(locale, message, override);
+    },
+    watch: function watch(fn) {
+      return i18n.watchLocale(fn);
+    },
+    getLocale: function getLocale() {
+      return i18n.getLocale();
+    },
+    setLocale: function setLocale(newLocale) {
+      return i18n.setLocale(newLocale);
+    }
+  };
+}
+var isString = function isString(val) {
+  return typeof val === 'string';
+};
+exports.isString = isString;
+var formater;
+function hasI18nJson(jsonObj, delimiters) {
+  if (!formater) {
+    formater = new BaseFormatter();
+  }
+  return walkJsonObj(jsonObj, function (jsonObj, key) {
+    var value = jsonObj[key];
+    if (isString(value)) {
+      if (isI18nStr(value, delimiters)) {
+        return true;
+      }
+    } else {
+      return hasI18nJson(value, delimiters);
+    }
+  });
+}
+function parseI18nJson(jsonObj, values, delimiters) {
+  if (!formater) {
+    formater = new BaseFormatter();
+  }
+  walkJsonObj(jsonObj, function (jsonObj, key) {
+    var value = jsonObj[key];
+    if (isString(value)) {
+      if (isI18nStr(value, delimiters)) {
+        jsonObj[key] = compileStr(value, values, delimiters);
+      }
+    } else {
+      parseI18nJson(value, values, delimiters);
+    }
+  });
+  return jsonObj;
+}
+function compileI18nJsonStr(jsonStr, _ref5) {
+  var locale = _ref5.locale,
+    locales = _ref5.locales,
+    delimiters = _ref5.delimiters;
+  if (!isI18nStr(jsonStr, delimiters)) {
+    return jsonStr;
+  }
+  if (!formater) {
+    formater = new BaseFormatter();
+  }
+  var localeValues = [];
+  Object.keys(locales).forEach(function (name) {
+    if (name !== locale) {
+      localeValues.push({
+        locale: name,
+        values: locales[name]
+      });
+    }
+  });
+  localeValues.unshift({
+    locale: locale,
+    values: locales[locale]
+  });
+  try {
+    return JSON.stringify(compileJsonObj(JSON.parse(jsonStr), localeValues, delimiters), null, 2);
+  } catch (e) {}
+  return jsonStr;
+}
+function isI18nStr(value, delimiters) {
+  return value.indexOf(delimiters[0]) > -1;
+}
+function compileStr(value, values, delimiters) {
+  return formater.interpolate(value, values, delimiters).join('');
+}
+function compileValue(jsonObj, key, localeValues, delimiters) {
+  var value = jsonObj[key];
+  if (isString(value)) {
+    // 存在国际化
+    if (isI18nStr(value, delimiters)) {
+      jsonObj[key] = compileStr(value, localeValues[0].values, delimiters);
+      if (localeValues.length > 1) {
+        // 格式化国际化语言
+        var valueLocales = jsonObj[key + 'Locales'] = {};
+        localeValues.forEach(function (localValue) {
+          valueLocales[localValue.locale] = compileStr(value, localValue.values, delimiters);
+        });
+      }
+    }
+  } else {
+    compileJsonObj(value, localeValues, delimiters);
+  }
+}
+function compileJsonObj(jsonObj, localeValues, delimiters) {
+  walkJsonObj(jsonObj, function (jsonObj, key) {
+    compileValue(jsonObj, key, localeValues, delimiters);
+  });
+  return jsonObj;
+}
+function walkJsonObj(jsonObj, walk) {
+  if (Array.isArray(jsonObj)) {
+    for (var i = 0; i < jsonObj.length; i++) {
+      if (walk(jsonObj, i)) {
+        return true;
+      }
+    }
+  } else if (isObject(jsonObj)) {
+    for (var key in jsonObj) {
+      if (walk(jsonObj, key)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+function resolveLocale(locales) {
+  return function (locale) {
+    if (!locale) {
+      return locale;
+    }
+    locale = normalizeLocale(locale) || locale;
+    return resolveLocaleChain(locale).find(function (locale) {
+      return locales.indexOf(locale) > -1;
+    });
+  };
+}
+function resolveLocaleChain(locale) {
+  var chain = [];
+  var tokens = locale.split('-');
+  while (tokens.length) {
+    chain.push(tokens.join('-'));
+    tokens.pop();
+  }
+  return chain;
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 3)))
+
+/***/ }),
+
+/***/ 223:
 /*!************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js ***!
   \************************************************************************************/
@@ -4169,20 +4720,20 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 166));
-var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ 172));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 186));
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ 192));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
 var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ 18));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 168));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 188));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 170));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 171));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 173));
-var _wrapNativeSuper2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/wrapNativeSuper */ 204));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 190));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 191));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 193));
+var _wrapNativeSuper2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/wrapNativeSuper */ 224));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _pages = _interopRequireDefault(__webpack_require__(/*! @/pages.json */ 206));
+var _pages = _interopRequireDefault(__webpack_require__(/*! @/pages.json */ 226));
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e34) { throw _e34; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e35) { didErr = true; err = _e35; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
@@ -4635,7 +5186,7 @@ var S = "development" === "development",
   x = true;
 var O = "";
 try {
-  O = (__webpack_require__(/*! uni-stat-config */ 207).default || __webpack_require__(/*! uni-stat-config */ 207)).appid;
+  O = (__webpack_require__(/*! uni-stat-config */ 227).default || __webpack_require__(/*! uni-stat-config */ 227)).appid;
 } catch (e) {}
 var E = {};
 function L(e) {
@@ -11970,16 +12521,16 @@ exports.default = Bs;
 
 /***/ }),
 
-/***/ 204:
+/***/ 224:
 /*!****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/wrapNativeSuper.js ***!
   \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getPrototypeOf = __webpack_require__(/*! ./getPrototypeOf.js */ 173);
+var getPrototypeOf = __webpack_require__(/*! ./getPrototypeOf.js */ 193);
 var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf.js */ 16);
-var isNativeFunction = __webpack_require__(/*! ./isNativeFunction.js */ 205);
+var isNativeFunction = __webpack_require__(/*! ./isNativeFunction.js */ 225);
 var construct = __webpack_require__(/*! ./construct.js */ 15);
 function _wrapNativeSuper(Class) {
   var _cache = typeof Map === "function" ? new Map() : undefined;
@@ -12011,7 +12562,7 @@ module.exports = _wrapNativeSuper, module.exports.__esModule = true, module.expo
 
 /***/ }),
 
-/***/ 205:
+/***/ 225:
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/isNativeFunction.js ***!
   \*****************************************************************/
@@ -12025,7 +12576,7 @@ module.exports = _isNativeFunction, module.exports.__esModule = true, module.exp
 
 /***/ }),
 
-/***/ 206:
+/***/ 226:
 /*!********************************************************************************!*\
   !*** D:/GradProject/errand/errand_app/pages.json?{"type":"origin-pages-json"} ***!
   \********************************************************************************/
@@ -12181,7 +12732,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 207:
+/***/ 227:
 /*!*******************************************************************!*\
   !*** D:/GradProject/errand/errand_app/pages.json?{"type":"stat"} ***!
   \*******************************************************************/
@@ -12202,21 +12753,23 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 21:
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
-  \******************************************************************/
+/***/ 23:
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
 }
-module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
-/***/ 215:
+/***/ 235:
 /*!*************************************************************************************************************************!*\
   !*** D:/GradProject/errand/errand_app/uni_modules/uni-file-picker/components/uni-file-picker/choose-and-upload-file.js ***!
   \*************************************************************************************************************************/
@@ -12436,11 +12989,11 @@ function chooseAndUploadFile() {
   }
   return uploadFiles(chooseAll(opts), opts);
 }
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 203)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 223)["default"]))
 
 /***/ }),
 
-/***/ 216:
+/***/ 236:
 /*!********************************************************************************************************!*\
   !*** D:/GradProject/errand/errand_app/uni_modules/uni-file-picker/components/uni-file-picker/utils.js ***!
   \********************************************************************************************************/
@@ -12455,8 +13008,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.get_files_and_is_max = exports.get_file_info = exports.get_file_ext = exports.get_file_data = exports.get_extname = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 166));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 168));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 186));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 188));
 /**
  * 获取文件名和后缀
  * @param {String} name
@@ -12605,1063 +13158,6 @@ exports.get_file_data = get_file_data;
 
 /***/ }),
 
-/***/ 22:
-/*!*************************************************************!*\
-  !*** ./node_modules/@dcloudio/uni-i18n/dist/uni-i18n.es.js ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni, global) {
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.LOCALE_ZH_HANT = exports.LOCALE_ZH_HANS = exports.LOCALE_FR = exports.LOCALE_ES = exports.LOCALE_EN = exports.I18n = exports.Formatter = void 0;
-exports.compileI18nJsonStr = compileI18nJsonStr;
-exports.hasI18nJson = hasI18nJson;
-exports.initVueI18n = initVueI18n;
-exports.isI18nStr = isI18nStr;
-exports.isString = void 0;
-exports.normalizeLocale = normalizeLocale;
-exports.parseI18nJson = parseI18nJson;
-exports.resolveLocale = resolveLocale;
-var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-var isObject = function isObject(val) {
-  return val !== null && (0, _typeof2.default)(val) === 'object';
-};
-var defaultDelimiters = ['{', '}'];
-var BaseFormatter = /*#__PURE__*/function () {
-  function BaseFormatter() {
-    (0, _classCallCheck2.default)(this, BaseFormatter);
-    this._caches = Object.create(null);
-  }
-  (0, _createClass2.default)(BaseFormatter, [{
-    key: "interpolate",
-    value: function interpolate(message, values) {
-      var delimiters = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : defaultDelimiters;
-      if (!values) {
-        return [message];
-      }
-      var tokens = this._caches[message];
-      if (!tokens) {
-        tokens = parse(message, delimiters);
-        this._caches[message] = tokens;
-      }
-      return compile(tokens, values);
-    }
-  }]);
-  return BaseFormatter;
-}();
-exports.Formatter = BaseFormatter;
-var RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
-var RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
-function parse(format, _ref) {
-  var _ref2 = (0, _slicedToArray2.default)(_ref, 2),
-    startDelimiter = _ref2[0],
-    endDelimiter = _ref2[1];
-  var tokens = [];
-  var position = 0;
-  var text = '';
-  while (position < format.length) {
-    var char = format[position++];
-    if (char === startDelimiter) {
-      if (text) {
-        tokens.push({
-          type: 'text',
-          value: text
-        });
-      }
-      text = '';
-      var sub = '';
-      char = format[position++];
-      while (char !== undefined && char !== endDelimiter) {
-        sub += char;
-        char = format[position++];
-      }
-      var isClosed = char === endDelimiter;
-      var type = RE_TOKEN_LIST_VALUE.test(sub) ? 'list' : isClosed && RE_TOKEN_NAMED_VALUE.test(sub) ? 'named' : 'unknown';
-      tokens.push({
-        value: sub,
-        type: type
-      });
-    }
-    //  else if (char === '%') {
-    //   // when found rails i18n syntax, skip text capture
-    //   if (format[position] !== '{') {
-    //     text += char
-    //   }
-    // }
-    else {
-      text += char;
-    }
-  }
-  text && tokens.push({
-    type: 'text',
-    value: text
-  });
-  return tokens;
-}
-function compile(tokens, values) {
-  var compiled = [];
-  var index = 0;
-  var mode = Array.isArray(values) ? 'list' : isObject(values) ? 'named' : 'unknown';
-  if (mode === 'unknown') {
-    return compiled;
-  }
-  while (index < tokens.length) {
-    var token = tokens[index];
-    switch (token.type) {
-      case 'text':
-        compiled.push(token.value);
-        break;
-      case 'list':
-        compiled.push(values[parseInt(token.value, 10)]);
-        break;
-      case 'named':
-        if (mode === 'named') {
-          compiled.push(values[token.value]);
-        } else {
-          if (true) {
-            console.warn("Type of token '".concat(token.type, "' and format of value '").concat(mode, "' don't match!"));
-          }
-        }
-        break;
-      case 'unknown':
-        if (true) {
-          console.warn("Detect 'unknown' type of token!");
-        }
-        break;
-    }
-    index++;
-  }
-  return compiled;
-}
-var LOCALE_ZH_HANS = 'zh-Hans';
-exports.LOCALE_ZH_HANS = LOCALE_ZH_HANS;
-var LOCALE_ZH_HANT = 'zh-Hant';
-exports.LOCALE_ZH_HANT = LOCALE_ZH_HANT;
-var LOCALE_EN = 'en';
-exports.LOCALE_EN = LOCALE_EN;
-var LOCALE_FR = 'fr';
-exports.LOCALE_FR = LOCALE_FR;
-var LOCALE_ES = 'es';
-exports.LOCALE_ES = LOCALE_ES;
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-var hasOwn = function hasOwn(val, key) {
-  return hasOwnProperty.call(val, key);
-};
-var defaultFormatter = new BaseFormatter();
-function include(str, parts) {
-  return !!parts.find(function (part) {
-    return str.indexOf(part) !== -1;
-  });
-}
-function startsWith(str, parts) {
-  return parts.find(function (part) {
-    return str.indexOf(part) === 0;
-  });
-}
-function normalizeLocale(locale, messages) {
-  if (!locale) {
-    return;
-  }
-  locale = locale.trim().replace(/_/g, '-');
-  if (messages && messages[locale]) {
-    return locale;
-  }
-  locale = locale.toLowerCase();
-  if (locale === 'chinese') {
-    // 支付宝
-    return LOCALE_ZH_HANS;
-  }
-  if (locale.indexOf('zh') === 0) {
-    if (locale.indexOf('-hans') > -1) {
-      return LOCALE_ZH_HANS;
-    }
-    if (locale.indexOf('-hant') > -1) {
-      return LOCALE_ZH_HANT;
-    }
-    if (include(locale, ['-tw', '-hk', '-mo', '-cht'])) {
-      return LOCALE_ZH_HANT;
-    }
-    return LOCALE_ZH_HANS;
-  }
-  var locales = [LOCALE_EN, LOCALE_FR, LOCALE_ES];
-  if (messages && Object.keys(messages).length > 0) {
-    locales = Object.keys(messages);
-  }
-  var lang = startsWith(locale, locales);
-  if (lang) {
-    return lang;
-  }
-}
-var I18n = /*#__PURE__*/function () {
-  function I18n(_ref3) {
-    var locale = _ref3.locale,
-      fallbackLocale = _ref3.fallbackLocale,
-      messages = _ref3.messages,
-      watcher = _ref3.watcher,
-      formater = _ref3.formater;
-    (0, _classCallCheck2.default)(this, I18n);
-    this.locale = LOCALE_EN;
-    this.fallbackLocale = LOCALE_EN;
-    this.message = {};
-    this.messages = {};
-    this.watchers = [];
-    if (fallbackLocale) {
-      this.fallbackLocale = fallbackLocale;
-    }
-    this.formater = formater || defaultFormatter;
-    this.messages = messages || {};
-    this.setLocale(locale || LOCALE_EN);
-    if (watcher) {
-      this.watchLocale(watcher);
-    }
-  }
-  (0, _createClass2.default)(I18n, [{
-    key: "setLocale",
-    value: function setLocale(locale) {
-      var _this = this;
-      var oldLocale = this.locale;
-      this.locale = normalizeLocale(locale, this.messages) || this.fallbackLocale;
-      if (!this.messages[this.locale]) {
-        // 可能初始化时不存在
-        this.messages[this.locale] = {};
-      }
-      this.message = this.messages[this.locale];
-      // 仅发生变化时，通知
-      if (oldLocale !== this.locale) {
-        this.watchers.forEach(function (watcher) {
-          watcher(_this.locale, oldLocale);
-        });
-      }
-    }
-  }, {
-    key: "getLocale",
-    value: function getLocale() {
-      return this.locale;
-    }
-  }, {
-    key: "watchLocale",
-    value: function watchLocale(fn) {
-      var _this2 = this;
-      var index = this.watchers.push(fn) - 1;
-      return function () {
-        _this2.watchers.splice(index, 1);
-      };
-    }
-  }, {
-    key: "add",
-    value: function add(locale, message) {
-      var override = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-      var curMessages = this.messages[locale];
-      if (curMessages) {
-        if (override) {
-          Object.assign(curMessages, message);
-        } else {
-          Object.keys(message).forEach(function (key) {
-            if (!hasOwn(curMessages, key)) {
-              curMessages[key] = message[key];
-            }
-          });
-        }
-      } else {
-        this.messages[locale] = message;
-      }
-    }
-  }, {
-    key: "f",
-    value: function f(message, values, delimiters) {
-      return this.formater.interpolate(message, values, delimiters).join('');
-    }
-  }, {
-    key: "t",
-    value: function t(key, locale, values) {
-      var message = this.message;
-      if (typeof locale === 'string') {
-        locale = normalizeLocale(locale, this.messages);
-        locale && (message = this.messages[locale]);
-      } else {
-        values = locale;
-      }
-      if (!hasOwn(message, key)) {
-        console.warn("Cannot translate the value of keypath ".concat(key, ". Use the value of keypath as default."));
-        return key;
-      }
-      return this.formater.interpolate(message[key], values).join('');
-    }
-  }]);
-  return I18n;
-}();
-exports.I18n = I18n;
-function watchAppLocale(appVm, i18n) {
-  // 需要保证 watch 的触发在组件渲染之前
-  if (appVm.$watchLocale) {
-    // vue2
-    appVm.$watchLocale(function (newLocale) {
-      i18n.setLocale(newLocale);
-    });
-  } else {
-    appVm.$watch(function () {
-      return appVm.$locale;
-    }, function (newLocale) {
-      i18n.setLocale(newLocale);
-    });
-  }
-}
-function getDefaultLocale() {
-  if (typeof uni !== 'undefined' && uni.getLocale) {
-    return uni.getLocale();
-  }
-  // 小程序平台，uni 和 uni-i18n 互相引用，导致访问不到 uni，故在 global 上挂了 getLocale
-  if (typeof global !== 'undefined' && global.getLocale) {
-    return global.getLocale();
-  }
-  return LOCALE_EN;
-}
-function initVueI18n(locale) {
-  var messages = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var fallbackLocale = arguments.length > 2 ? arguments[2] : undefined;
-  var watcher = arguments.length > 3 ? arguments[3] : undefined;
-  // 兼容旧版本入参
-  if (typeof locale !== 'string') {
-    var _ref4 = [messages, locale];
-    locale = _ref4[0];
-    messages = _ref4[1];
-  }
-  if (typeof locale !== 'string') {
-    // 因为小程序平台，uni-i18n 和 uni 互相引用，导致此时访问 uni 时，为 undefined
-    locale = getDefaultLocale();
-  }
-  if (typeof fallbackLocale !== 'string') {
-    fallbackLocale = typeof __uniConfig !== 'undefined' && __uniConfig.fallbackLocale || LOCALE_EN;
-  }
-  var i18n = new I18n({
-    locale: locale,
-    fallbackLocale: fallbackLocale,
-    messages: messages,
-    watcher: watcher
-  });
-  var _t = function t(key, values) {
-    if (typeof getApp !== 'function') {
-      // app view
-      /* eslint-disable no-func-assign */
-      _t = function t(key, values) {
-        return i18n.t(key, values);
-      };
-    } else {
-      var isWatchedAppLocale = false;
-      _t = function t(key, values) {
-        var appVm = getApp().$vm;
-        // 可能$vm还不存在，比如在支付宝小程序中，组件定义较早，在props的default里使用了t()函数（如uni-goods-nav），此时app还未初始化
-        // options: {
-        // 	type: Array,
-        // 	default () {
-        // 		return [{
-        // 			icon: 'shop',
-        // 			text: t("uni-goods-nav.options.shop"),
-        // 		}, {
-        // 			icon: 'cart',
-        // 			text: t("uni-goods-nav.options.cart")
-        // 		}]
-        // 	}
-        // },
-        if (appVm) {
-          // 触发响应式
-          appVm.$locale;
-          if (!isWatchedAppLocale) {
-            isWatchedAppLocale = true;
-            watchAppLocale(appVm, i18n);
-          }
-        }
-        return i18n.t(key, values);
-      };
-    }
-    return _t(key, values);
-  };
-  return {
-    i18n: i18n,
-    f: function f(message, values, delimiters) {
-      return i18n.f(message, values, delimiters);
-    },
-    t: function t(key, values) {
-      return _t(key, values);
-    },
-    add: function add(locale, message) {
-      var override = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-      return i18n.add(locale, message, override);
-    },
-    watch: function watch(fn) {
-      return i18n.watchLocale(fn);
-    },
-    getLocale: function getLocale() {
-      return i18n.getLocale();
-    },
-    setLocale: function setLocale(newLocale) {
-      return i18n.setLocale(newLocale);
-    }
-  };
-}
-var isString = function isString(val) {
-  return typeof val === 'string';
-};
-exports.isString = isString;
-var formater;
-function hasI18nJson(jsonObj, delimiters) {
-  if (!formater) {
-    formater = new BaseFormatter();
-  }
-  return walkJsonObj(jsonObj, function (jsonObj, key) {
-    var value = jsonObj[key];
-    if (isString(value)) {
-      if (isI18nStr(value, delimiters)) {
-        return true;
-      }
-    } else {
-      return hasI18nJson(value, delimiters);
-    }
-  });
-}
-function parseI18nJson(jsonObj, values, delimiters) {
-  if (!formater) {
-    formater = new BaseFormatter();
-  }
-  walkJsonObj(jsonObj, function (jsonObj, key) {
-    var value = jsonObj[key];
-    if (isString(value)) {
-      if (isI18nStr(value, delimiters)) {
-        jsonObj[key] = compileStr(value, values, delimiters);
-      }
-    } else {
-      parseI18nJson(value, values, delimiters);
-    }
-  });
-  return jsonObj;
-}
-function compileI18nJsonStr(jsonStr, _ref5) {
-  var locale = _ref5.locale,
-    locales = _ref5.locales,
-    delimiters = _ref5.delimiters;
-  if (!isI18nStr(jsonStr, delimiters)) {
-    return jsonStr;
-  }
-  if (!formater) {
-    formater = new BaseFormatter();
-  }
-  var localeValues = [];
-  Object.keys(locales).forEach(function (name) {
-    if (name !== locale) {
-      localeValues.push({
-        locale: name,
-        values: locales[name]
-      });
-    }
-  });
-  localeValues.unshift({
-    locale: locale,
-    values: locales[locale]
-  });
-  try {
-    return JSON.stringify(compileJsonObj(JSON.parse(jsonStr), localeValues, delimiters), null, 2);
-  } catch (e) {}
-  return jsonStr;
-}
-function isI18nStr(value, delimiters) {
-  return value.indexOf(delimiters[0]) > -1;
-}
-function compileStr(value, values, delimiters) {
-  return formater.interpolate(value, values, delimiters).join('');
-}
-function compileValue(jsonObj, key, localeValues, delimiters) {
-  var value = jsonObj[key];
-  if (isString(value)) {
-    // 存在国际化
-    if (isI18nStr(value, delimiters)) {
-      jsonObj[key] = compileStr(value, localeValues[0].values, delimiters);
-      if (localeValues.length > 1) {
-        // 格式化国际化语言
-        var valueLocales = jsonObj[key + 'Locales'] = {};
-        localeValues.forEach(function (localValue) {
-          valueLocales[localValue.locale] = compileStr(value, localValue.values, delimiters);
-        });
-      }
-    }
-  } else {
-    compileJsonObj(value, localeValues, delimiters);
-  }
-}
-function compileJsonObj(jsonObj, localeValues, delimiters) {
-  walkJsonObj(jsonObj, function (jsonObj, key) {
-    compileValue(jsonObj, key, localeValues, delimiters);
-  });
-  return jsonObj;
-}
-function walkJsonObj(jsonObj, walk) {
-  if (Array.isArray(jsonObj)) {
-    for (var i = 0; i < jsonObj.length; i++) {
-      if (walk(jsonObj, i)) {
-        return true;
-      }
-    }
-  } else if (isObject(jsonObj)) {
-    for (var key in jsonObj) {
-      if (walk(jsonObj, key)) {
-        return true;
-      }
-    }
-  }
-  return false;
-}
-function resolveLocale(locales) {
-  return function (locale) {
-    if (!locale) {
-      return locale;
-    }
-    locale = normalizeLocale(locale) || locale;
-    return resolveLocaleChain(locale).find(function (locale) {
-      return locales.indexOf(locale) > -1;
-    });
-  };
-}
-function resolveLocaleChain(locale) {
-  var chain = [];
-  var tokens = locale.split('-');
-  while (tokens.length) {
-    chain.push(tokens.join('-'));
-    tokens.pop();
-  }
-  return chain;
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 3)))
-
-/***/ }),
-
-/***/ 23:
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 231:
-/*!********************************************************************************************************!*\
-  !*** D:/GradProject/errand/errand_app/uni_modules/uni-icons/components/uni-icons/uniicons_file_vue.js ***!
-  \********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.fontData = void 0;
-var fontData = [{
-  "font_class": "arrow-down",
-  "unicode": "\uE6BE"
-}, {
-  "font_class": "arrow-left",
-  "unicode": "\uE6BC"
-}, {
-  "font_class": "arrow-right",
-  "unicode": "\uE6BB"
-}, {
-  "font_class": "arrow-up",
-  "unicode": "\uE6BD"
-}, {
-  "font_class": "auth",
-  "unicode": "\uE6AB"
-}, {
-  "font_class": "auth-filled",
-  "unicode": "\uE6CC"
-}, {
-  "font_class": "back",
-  "unicode": "\uE6B9"
-}, {
-  "font_class": "bars",
-  "unicode": "\uE627"
-}, {
-  "font_class": "calendar",
-  "unicode": "\uE6A0"
-}, {
-  "font_class": "calendar-filled",
-  "unicode": "\uE6C0"
-}, {
-  "font_class": "camera",
-  "unicode": "\uE65A"
-}, {
-  "font_class": "camera-filled",
-  "unicode": "\uE658"
-}, {
-  "font_class": "cart",
-  "unicode": "\uE631"
-}, {
-  "font_class": "cart-filled",
-  "unicode": "\uE6D0"
-}, {
-  "font_class": "chat",
-  "unicode": "\uE65D"
-}, {
-  "font_class": "chat-filled",
-  "unicode": "\uE659"
-}, {
-  "font_class": "chatboxes",
-  "unicode": "\uE696"
-}, {
-  "font_class": "chatboxes-filled",
-  "unicode": "\uE692"
-}, {
-  "font_class": "chatbubble",
-  "unicode": "\uE697"
-}, {
-  "font_class": "chatbubble-filled",
-  "unicode": "\uE694"
-}, {
-  "font_class": "checkbox",
-  "unicode": "\uE62B"
-}, {
-  "font_class": "checkbox-filled",
-  "unicode": "\uE62C"
-}, {
-  "font_class": "checkmarkempty",
-  "unicode": "\uE65C"
-}, {
-  "font_class": "circle",
-  "unicode": "\uE65B"
-}, {
-  "font_class": "circle-filled",
-  "unicode": "\uE65E"
-}, {
-  "font_class": "clear",
-  "unicode": "\uE66D"
-}, {
-  "font_class": "close",
-  "unicode": "\uE673"
-}, {
-  "font_class": "closeempty",
-  "unicode": "\uE66C"
-}, {
-  "font_class": "cloud-download",
-  "unicode": "\uE647"
-}, {
-  "font_class": "cloud-download-filled",
-  "unicode": "\uE646"
-}, {
-  "font_class": "cloud-upload",
-  "unicode": "\uE645"
-}, {
-  "font_class": "cloud-upload-filled",
-  "unicode": "\uE648"
-}, {
-  "font_class": "color",
-  "unicode": "\uE6CF"
-}, {
-  "font_class": "color-filled",
-  "unicode": "\uE6C9"
-}, {
-  "font_class": "compose",
-  "unicode": "\uE67F"
-}, {
-  "font_class": "contact",
-  "unicode": "\uE693"
-}, {
-  "font_class": "contact-filled",
-  "unicode": "\uE695"
-}, {
-  "font_class": "down",
-  "unicode": "\uE6B8"
-}, {
-  "font_class": "bottom",
-  "unicode": "\uE6B8"
-}, {
-  "font_class": "download",
-  "unicode": "\uE68D"
-}, {
-  "font_class": "download-filled",
-  "unicode": "\uE681"
-}, {
-  "font_class": "email",
-  "unicode": "\uE69E"
-}, {
-  "font_class": "email-filled",
-  "unicode": "\uE69A"
-}, {
-  "font_class": "eye",
-  "unicode": "\uE651"
-}, {
-  "font_class": "eye-filled",
-  "unicode": "\uE66A"
-}, {
-  "font_class": "eye-slash",
-  "unicode": "\uE6B3"
-}, {
-  "font_class": "eye-slash-filled",
-  "unicode": "\uE6B4"
-}, {
-  "font_class": "fire",
-  "unicode": "\uE6A1"
-}, {
-  "font_class": "fire-filled",
-  "unicode": "\uE6C5"
-}, {
-  "font_class": "flag",
-  "unicode": "\uE65F"
-}, {
-  "font_class": "flag-filled",
-  "unicode": "\uE660"
-}, {
-  "font_class": "folder-add",
-  "unicode": "\uE6A9"
-}, {
-  "font_class": "folder-add-filled",
-  "unicode": "\uE6C8"
-}, {
-  "font_class": "font",
-  "unicode": "\uE6A3"
-}, {
-  "font_class": "forward",
-  "unicode": "\uE6BA"
-}, {
-  "font_class": "gear",
-  "unicode": "\uE664"
-}, {
-  "font_class": "gear-filled",
-  "unicode": "\uE661"
-}, {
-  "font_class": "gift",
-  "unicode": "\uE6A4"
-}, {
-  "font_class": "gift-filled",
-  "unicode": "\uE6C4"
-}, {
-  "font_class": "hand-down",
-  "unicode": "\uE63D"
-}, {
-  "font_class": "hand-down-filled",
-  "unicode": "\uE63C"
-}, {
-  "font_class": "hand-up",
-  "unicode": "\uE63F"
-}, {
-  "font_class": "hand-up-filled",
-  "unicode": "\uE63E"
-}, {
-  "font_class": "headphones",
-  "unicode": "\uE630"
-}, {
-  "font_class": "heart",
-  "unicode": "\uE639"
-}, {
-  "font_class": "heart-filled",
-  "unicode": "\uE641"
-}, {
-  "font_class": "help",
-  "unicode": "\uE679"
-}, {
-  "font_class": "help-filled",
-  "unicode": "\uE674"
-}, {
-  "font_class": "home",
-  "unicode": "\uE662"
-}, {
-  "font_class": "home-filled",
-  "unicode": "\uE663"
-}, {
-  "font_class": "image",
-  "unicode": "\uE670"
-}, {
-  "font_class": "image-filled",
-  "unicode": "\uE678"
-}, {
-  "font_class": "images",
-  "unicode": "\uE650"
-}, {
-  "font_class": "images-filled",
-  "unicode": "\uE64B"
-}, {
-  "font_class": "info",
-  "unicode": "\uE669"
-}, {
-  "font_class": "info-filled",
-  "unicode": "\uE649"
-}, {
-  "font_class": "left",
-  "unicode": "\uE6B7"
-}, {
-  "font_class": "link",
-  "unicode": "\uE6A5"
-}, {
-  "font_class": "list",
-  "unicode": "\uE644"
-}, {
-  "font_class": "location",
-  "unicode": "\uE6AE"
-}, {
-  "font_class": "location-filled",
-  "unicode": "\uE6AF"
-}, {
-  "font_class": "locked",
-  "unicode": "\uE66B"
-}, {
-  "font_class": "locked-filled",
-  "unicode": "\uE668"
-}, {
-  "font_class": "loop",
-  "unicode": "\uE633"
-}, {
-  "font_class": "mail-open",
-  "unicode": "\uE643"
-}, {
-  "font_class": "mail-open-filled",
-  "unicode": "\uE63A"
-}, {
-  "font_class": "map",
-  "unicode": "\uE667"
-}, {
-  "font_class": "map-filled",
-  "unicode": "\uE666"
-}, {
-  "font_class": "map-pin",
-  "unicode": "\uE6AD"
-}, {
-  "font_class": "map-pin-ellipse",
-  "unicode": "\uE6AC"
-}, {
-  "font_class": "medal",
-  "unicode": "\uE6A2"
-}, {
-  "font_class": "medal-filled",
-  "unicode": "\uE6C3"
-}, {
-  "font_class": "mic",
-  "unicode": "\uE671"
-}, {
-  "font_class": "mic-filled",
-  "unicode": "\uE677"
-}, {
-  "font_class": "micoff",
-  "unicode": "\uE67E"
-}, {
-  "font_class": "micoff-filled",
-  "unicode": "\uE6B0"
-}, {
-  "font_class": "minus",
-  "unicode": "\uE66F"
-}, {
-  "font_class": "minus-filled",
-  "unicode": "\uE67D"
-}, {
-  "font_class": "more",
-  "unicode": "\uE64D"
-}, {
-  "font_class": "more-filled",
-  "unicode": "\uE64E"
-}, {
-  "font_class": "navigate",
-  "unicode": "\uE66E"
-}, {
-  "font_class": "navigate-filled",
-  "unicode": "\uE67A"
-}, {
-  "font_class": "notification",
-  "unicode": "\uE6A6"
-}, {
-  "font_class": "notification-filled",
-  "unicode": "\uE6C1"
-}, {
-  "font_class": "paperclip",
-  "unicode": "\uE652"
-}, {
-  "font_class": "paperplane",
-  "unicode": "\uE672"
-}, {
-  "font_class": "paperplane-filled",
-  "unicode": "\uE675"
-}, {
-  "font_class": "person",
-  "unicode": "\uE699"
-}, {
-  "font_class": "person-filled",
-  "unicode": "\uE69D"
-}, {
-  "font_class": "personadd",
-  "unicode": "\uE69F"
-}, {
-  "font_class": "personadd-filled",
-  "unicode": "\uE698"
-}, {
-  "font_class": "personadd-filled-copy",
-  "unicode": "\uE6D1"
-}, {
-  "font_class": "phone",
-  "unicode": "\uE69C"
-}, {
-  "font_class": "phone-filled",
-  "unicode": "\uE69B"
-}, {
-  "font_class": "plus",
-  "unicode": "\uE676"
-}, {
-  "font_class": "plus-filled",
-  "unicode": "\uE6C7"
-}, {
-  "font_class": "plusempty",
-  "unicode": "\uE67B"
-}, {
-  "font_class": "pulldown",
-  "unicode": "\uE632"
-}, {
-  "font_class": "pyq",
-  "unicode": "\uE682"
-}, {
-  "font_class": "qq",
-  "unicode": "\uE680"
-}, {
-  "font_class": "redo",
-  "unicode": "\uE64A"
-}, {
-  "font_class": "redo-filled",
-  "unicode": "\uE655"
-}, {
-  "font_class": "refresh",
-  "unicode": "\uE657"
-}, {
-  "font_class": "refresh-filled",
-  "unicode": "\uE656"
-}, {
-  "font_class": "refreshempty",
-  "unicode": "\uE6BF"
-}, {
-  "font_class": "reload",
-  "unicode": "\uE6B2"
-}, {
-  "font_class": "right",
-  "unicode": "\uE6B5"
-}, {
-  "font_class": "scan",
-  "unicode": "\uE62A"
-}, {
-  "font_class": "search",
-  "unicode": "\uE654"
-}, {
-  "font_class": "settings",
-  "unicode": "\uE653"
-}, {
-  "font_class": "settings-filled",
-  "unicode": "\uE6CE"
-}, {
-  "font_class": "shop",
-  "unicode": "\uE62F"
-}, {
-  "font_class": "shop-filled",
-  "unicode": "\uE6CD"
-}, {
-  "font_class": "smallcircle",
-  "unicode": "\uE67C"
-}, {
-  "font_class": "smallcircle-filled",
-  "unicode": "\uE665"
-}, {
-  "font_class": "sound",
-  "unicode": "\uE684"
-}, {
-  "font_class": "sound-filled",
-  "unicode": "\uE686"
-}, {
-  "font_class": "spinner-cycle",
-  "unicode": "\uE68A"
-}, {
-  "font_class": "staff",
-  "unicode": "\uE6A7"
-}, {
-  "font_class": "staff-filled",
-  "unicode": "\uE6CB"
-}, {
-  "font_class": "star",
-  "unicode": "\uE688"
-}, {
-  "font_class": "star-filled",
-  "unicode": "\uE68F"
-}, {
-  "font_class": "starhalf",
-  "unicode": "\uE683"
-}, {
-  "font_class": "trash",
-  "unicode": "\uE687"
-}, {
-  "font_class": "trash-filled",
-  "unicode": "\uE685"
-}, {
-  "font_class": "tune",
-  "unicode": "\uE6AA"
-}, {
-  "font_class": "tune-filled",
-  "unicode": "\uE6CA"
-}, {
-  "font_class": "undo",
-  "unicode": "\uE64F"
-}, {
-  "font_class": "undo-filled",
-  "unicode": "\uE64C"
-}, {
-  "font_class": "up",
-  "unicode": "\uE6B6"
-}, {
-  "font_class": "top",
-  "unicode": "\uE6B6"
-}, {
-  "font_class": "upload",
-  "unicode": "\uE690"
-}, {
-  "font_class": "upload-filled",
-  "unicode": "\uE68E"
-}, {
-  "font_class": "videocam",
-  "unicode": "\uE68C"
-}, {
-  "font_class": "videocam-filled",
-  "unicode": "\uE689"
-}, {
-  "font_class": "vip",
-  "unicode": "\uE6A8"
-}, {
-  "font_class": "vip-filled",
-  "unicode": "\uE6C6"
-}, {
-  "font_class": "wallet",
-  "unicode": "\uE6B1"
-}, {
-  "font_class": "wallet-filled",
-  "unicode": "\uE6C2"
-}, {
-  "font_class": "weibo",
-  "unicode": "\uE68B"
-}, {
-  "font_class": "weixin",
-  "unicode": "\uE691"
-}];
-
-// export const fontData = JSON.parse<IconsDataItem>(fontDataJson)
-exports.fontData = fontData;
-
-/***/ }),
-
 /***/ 24:
 /*!************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/createClass.js ***!
@@ -13688,97 +13184,6 @@ function _createClass(Constructor, protoProps, staticProps) {
   return Constructor;
 }
 module.exports = _createClass, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 246:
-/*!********************************************************************************************!*\
-  !*** D:/GradProject/errand/errand_app/uni_modules/uni-popup/components/uni-popup/popup.js ***!
-  \********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  data: function data() {
-    return {};
-  },
-  created: function created() {
-    this.popup = this.getParent();
-  },
-  methods: {
-    /**
-     * 获取父元素实例
-     */
-    getParent: function getParent() {
-      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'uniPopup';
-      var parent = this.$parent;
-      var parentName = parent.$options.name;
-      while (parentName !== name) {
-        parent = parent.$parent;
-        if (!parent) return false;
-        parentName = parent.$options.name;
-      }
-      return parent;
-    }
-  }
-};
-exports.default = _default;
-
-/***/ }),
-
-/***/ 247:
-/*!*************************************************************************************************!*\
-  !*** D:/GradProject/errand/errand_app/uni_modules/uni-popup/components/uni-popup/i18n/index.js ***!
-  \*************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 248));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 249));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 250));
-var _default = {
-  en: _en.default,
-  'zh-Hans': _zhHans.default,
-  'zh-Hant': _zhHant.default
-};
-exports.default = _default;
-
-/***/ }),
-
-/***/ 248:
-/*!************************************************************************************************!*\
-  !*** D:/GradProject/errand/errand_app/uni_modules/uni-popup/components/uni-popup/i18n/en.json ***!
-  \************************************************************************************************/
-/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-popup.cancel\":\"cancel\",\"uni-popup.ok\":\"ok\",\"uni-popup.placeholder\":\"pleace enter\",\"uni-popup.title\":\"Hint\",\"uni-popup.shareTitle\":\"Share to\"}");
-
-/***/ }),
-
-/***/ 249:
-/*!*****************************************************************************************************!*\
-  !*** D:/GradProject/errand/errand_app/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hans.json ***!
-  \*****************************************************************************************************/
-/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"确定\",\"uni-popup.placeholder\":\"请输入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
 
 /***/ }),
 
@@ -19864,14 +19269,507 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 250:
-/*!*****************************************************************************************************!*\
-  !*** D:/GradProject/errand/errand_app/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hant.json ***!
-  \*****************************************************************************************************/
-/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
-/***/ (function(module) {
+/***/ 251:
+/*!********************************************************************************************************!*\
+  !*** D:/GradProject/errand/errand_app/uni_modules/uni-icons/components/uni-icons/uniicons_file_vue.js ***!
+  \********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"確定\",\"uni-popup.placeholder\":\"請輸入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fontData = void 0;
+var fontData = [{
+  "font_class": "arrow-down",
+  "unicode": "\uE6BE"
+}, {
+  "font_class": "arrow-left",
+  "unicode": "\uE6BC"
+}, {
+  "font_class": "arrow-right",
+  "unicode": "\uE6BB"
+}, {
+  "font_class": "arrow-up",
+  "unicode": "\uE6BD"
+}, {
+  "font_class": "auth",
+  "unicode": "\uE6AB"
+}, {
+  "font_class": "auth-filled",
+  "unicode": "\uE6CC"
+}, {
+  "font_class": "back",
+  "unicode": "\uE6B9"
+}, {
+  "font_class": "bars",
+  "unicode": "\uE627"
+}, {
+  "font_class": "calendar",
+  "unicode": "\uE6A0"
+}, {
+  "font_class": "calendar-filled",
+  "unicode": "\uE6C0"
+}, {
+  "font_class": "camera",
+  "unicode": "\uE65A"
+}, {
+  "font_class": "camera-filled",
+  "unicode": "\uE658"
+}, {
+  "font_class": "cart",
+  "unicode": "\uE631"
+}, {
+  "font_class": "cart-filled",
+  "unicode": "\uE6D0"
+}, {
+  "font_class": "chat",
+  "unicode": "\uE65D"
+}, {
+  "font_class": "chat-filled",
+  "unicode": "\uE659"
+}, {
+  "font_class": "chatboxes",
+  "unicode": "\uE696"
+}, {
+  "font_class": "chatboxes-filled",
+  "unicode": "\uE692"
+}, {
+  "font_class": "chatbubble",
+  "unicode": "\uE697"
+}, {
+  "font_class": "chatbubble-filled",
+  "unicode": "\uE694"
+}, {
+  "font_class": "checkbox",
+  "unicode": "\uE62B"
+}, {
+  "font_class": "checkbox-filled",
+  "unicode": "\uE62C"
+}, {
+  "font_class": "checkmarkempty",
+  "unicode": "\uE65C"
+}, {
+  "font_class": "circle",
+  "unicode": "\uE65B"
+}, {
+  "font_class": "circle-filled",
+  "unicode": "\uE65E"
+}, {
+  "font_class": "clear",
+  "unicode": "\uE66D"
+}, {
+  "font_class": "close",
+  "unicode": "\uE673"
+}, {
+  "font_class": "closeempty",
+  "unicode": "\uE66C"
+}, {
+  "font_class": "cloud-download",
+  "unicode": "\uE647"
+}, {
+  "font_class": "cloud-download-filled",
+  "unicode": "\uE646"
+}, {
+  "font_class": "cloud-upload",
+  "unicode": "\uE645"
+}, {
+  "font_class": "cloud-upload-filled",
+  "unicode": "\uE648"
+}, {
+  "font_class": "color",
+  "unicode": "\uE6CF"
+}, {
+  "font_class": "color-filled",
+  "unicode": "\uE6C9"
+}, {
+  "font_class": "compose",
+  "unicode": "\uE67F"
+}, {
+  "font_class": "contact",
+  "unicode": "\uE693"
+}, {
+  "font_class": "contact-filled",
+  "unicode": "\uE695"
+}, {
+  "font_class": "down",
+  "unicode": "\uE6B8"
+}, {
+  "font_class": "bottom",
+  "unicode": "\uE6B8"
+}, {
+  "font_class": "download",
+  "unicode": "\uE68D"
+}, {
+  "font_class": "download-filled",
+  "unicode": "\uE681"
+}, {
+  "font_class": "email",
+  "unicode": "\uE69E"
+}, {
+  "font_class": "email-filled",
+  "unicode": "\uE69A"
+}, {
+  "font_class": "eye",
+  "unicode": "\uE651"
+}, {
+  "font_class": "eye-filled",
+  "unicode": "\uE66A"
+}, {
+  "font_class": "eye-slash",
+  "unicode": "\uE6B3"
+}, {
+  "font_class": "eye-slash-filled",
+  "unicode": "\uE6B4"
+}, {
+  "font_class": "fire",
+  "unicode": "\uE6A1"
+}, {
+  "font_class": "fire-filled",
+  "unicode": "\uE6C5"
+}, {
+  "font_class": "flag",
+  "unicode": "\uE65F"
+}, {
+  "font_class": "flag-filled",
+  "unicode": "\uE660"
+}, {
+  "font_class": "folder-add",
+  "unicode": "\uE6A9"
+}, {
+  "font_class": "folder-add-filled",
+  "unicode": "\uE6C8"
+}, {
+  "font_class": "font",
+  "unicode": "\uE6A3"
+}, {
+  "font_class": "forward",
+  "unicode": "\uE6BA"
+}, {
+  "font_class": "gear",
+  "unicode": "\uE664"
+}, {
+  "font_class": "gear-filled",
+  "unicode": "\uE661"
+}, {
+  "font_class": "gift",
+  "unicode": "\uE6A4"
+}, {
+  "font_class": "gift-filled",
+  "unicode": "\uE6C4"
+}, {
+  "font_class": "hand-down",
+  "unicode": "\uE63D"
+}, {
+  "font_class": "hand-down-filled",
+  "unicode": "\uE63C"
+}, {
+  "font_class": "hand-up",
+  "unicode": "\uE63F"
+}, {
+  "font_class": "hand-up-filled",
+  "unicode": "\uE63E"
+}, {
+  "font_class": "headphones",
+  "unicode": "\uE630"
+}, {
+  "font_class": "heart",
+  "unicode": "\uE639"
+}, {
+  "font_class": "heart-filled",
+  "unicode": "\uE641"
+}, {
+  "font_class": "help",
+  "unicode": "\uE679"
+}, {
+  "font_class": "help-filled",
+  "unicode": "\uE674"
+}, {
+  "font_class": "home",
+  "unicode": "\uE662"
+}, {
+  "font_class": "home-filled",
+  "unicode": "\uE663"
+}, {
+  "font_class": "image",
+  "unicode": "\uE670"
+}, {
+  "font_class": "image-filled",
+  "unicode": "\uE678"
+}, {
+  "font_class": "images",
+  "unicode": "\uE650"
+}, {
+  "font_class": "images-filled",
+  "unicode": "\uE64B"
+}, {
+  "font_class": "info",
+  "unicode": "\uE669"
+}, {
+  "font_class": "info-filled",
+  "unicode": "\uE649"
+}, {
+  "font_class": "left",
+  "unicode": "\uE6B7"
+}, {
+  "font_class": "link",
+  "unicode": "\uE6A5"
+}, {
+  "font_class": "list",
+  "unicode": "\uE644"
+}, {
+  "font_class": "location",
+  "unicode": "\uE6AE"
+}, {
+  "font_class": "location-filled",
+  "unicode": "\uE6AF"
+}, {
+  "font_class": "locked",
+  "unicode": "\uE66B"
+}, {
+  "font_class": "locked-filled",
+  "unicode": "\uE668"
+}, {
+  "font_class": "loop",
+  "unicode": "\uE633"
+}, {
+  "font_class": "mail-open",
+  "unicode": "\uE643"
+}, {
+  "font_class": "mail-open-filled",
+  "unicode": "\uE63A"
+}, {
+  "font_class": "map",
+  "unicode": "\uE667"
+}, {
+  "font_class": "map-filled",
+  "unicode": "\uE666"
+}, {
+  "font_class": "map-pin",
+  "unicode": "\uE6AD"
+}, {
+  "font_class": "map-pin-ellipse",
+  "unicode": "\uE6AC"
+}, {
+  "font_class": "medal",
+  "unicode": "\uE6A2"
+}, {
+  "font_class": "medal-filled",
+  "unicode": "\uE6C3"
+}, {
+  "font_class": "mic",
+  "unicode": "\uE671"
+}, {
+  "font_class": "mic-filled",
+  "unicode": "\uE677"
+}, {
+  "font_class": "micoff",
+  "unicode": "\uE67E"
+}, {
+  "font_class": "micoff-filled",
+  "unicode": "\uE6B0"
+}, {
+  "font_class": "minus",
+  "unicode": "\uE66F"
+}, {
+  "font_class": "minus-filled",
+  "unicode": "\uE67D"
+}, {
+  "font_class": "more",
+  "unicode": "\uE64D"
+}, {
+  "font_class": "more-filled",
+  "unicode": "\uE64E"
+}, {
+  "font_class": "navigate",
+  "unicode": "\uE66E"
+}, {
+  "font_class": "navigate-filled",
+  "unicode": "\uE67A"
+}, {
+  "font_class": "notification",
+  "unicode": "\uE6A6"
+}, {
+  "font_class": "notification-filled",
+  "unicode": "\uE6C1"
+}, {
+  "font_class": "paperclip",
+  "unicode": "\uE652"
+}, {
+  "font_class": "paperplane",
+  "unicode": "\uE672"
+}, {
+  "font_class": "paperplane-filled",
+  "unicode": "\uE675"
+}, {
+  "font_class": "person",
+  "unicode": "\uE699"
+}, {
+  "font_class": "person-filled",
+  "unicode": "\uE69D"
+}, {
+  "font_class": "personadd",
+  "unicode": "\uE69F"
+}, {
+  "font_class": "personadd-filled",
+  "unicode": "\uE698"
+}, {
+  "font_class": "personadd-filled-copy",
+  "unicode": "\uE6D1"
+}, {
+  "font_class": "phone",
+  "unicode": "\uE69C"
+}, {
+  "font_class": "phone-filled",
+  "unicode": "\uE69B"
+}, {
+  "font_class": "plus",
+  "unicode": "\uE676"
+}, {
+  "font_class": "plus-filled",
+  "unicode": "\uE6C7"
+}, {
+  "font_class": "plusempty",
+  "unicode": "\uE67B"
+}, {
+  "font_class": "pulldown",
+  "unicode": "\uE632"
+}, {
+  "font_class": "pyq",
+  "unicode": "\uE682"
+}, {
+  "font_class": "qq",
+  "unicode": "\uE680"
+}, {
+  "font_class": "redo",
+  "unicode": "\uE64A"
+}, {
+  "font_class": "redo-filled",
+  "unicode": "\uE655"
+}, {
+  "font_class": "refresh",
+  "unicode": "\uE657"
+}, {
+  "font_class": "refresh-filled",
+  "unicode": "\uE656"
+}, {
+  "font_class": "refreshempty",
+  "unicode": "\uE6BF"
+}, {
+  "font_class": "reload",
+  "unicode": "\uE6B2"
+}, {
+  "font_class": "right",
+  "unicode": "\uE6B5"
+}, {
+  "font_class": "scan",
+  "unicode": "\uE62A"
+}, {
+  "font_class": "search",
+  "unicode": "\uE654"
+}, {
+  "font_class": "settings",
+  "unicode": "\uE653"
+}, {
+  "font_class": "settings-filled",
+  "unicode": "\uE6CE"
+}, {
+  "font_class": "shop",
+  "unicode": "\uE62F"
+}, {
+  "font_class": "shop-filled",
+  "unicode": "\uE6CD"
+}, {
+  "font_class": "smallcircle",
+  "unicode": "\uE67C"
+}, {
+  "font_class": "smallcircle-filled",
+  "unicode": "\uE665"
+}, {
+  "font_class": "sound",
+  "unicode": "\uE684"
+}, {
+  "font_class": "sound-filled",
+  "unicode": "\uE686"
+}, {
+  "font_class": "spinner-cycle",
+  "unicode": "\uE68A"
+}, {
+  "font_class": "staff",
+  "unicode": "\uE6A7"
+}, {
+  "font_class": "staff-filled",
+  "unicode": "\uE6CB"
+}, {
+  "font_class": "star",
+  "unicode": "\uE688"
+}, {
+  "font_class": "star-filled",
+  "unicode": "\uE68F"
+}, {
+  "font_class": "starhalf",
+  "unicode": "\uE683"
+}, {
+  "font_class": "trash",
+  "unicode": "\uE687"
+}, {
+  "font_class": "trash-filled",
+  "unicode": "\uE685"
+}, {
+  "font_class": "tune",
+  "unicode": "\uE6AA"
+}, {
+  "font_class": "tune-filled",
+  "unicode": "\uE6CA"
+}, {
+  "font_class": "undo",
+  "unicode": "\uE64F"
+}, {
+  "font_class": "undo-filled",
+  "unicode": "\uE64C"
+}, {
+  "font_class": "up",
+  "unicode": "\uE6B6"
+}, {
+  "font_class": "top",
+  "unicode": "\uE6B6"
+}, {
+  "font_class": "upload",
+  "unicode": "\uE690"
+}, {
+  "font_class": "upload-filled",
+  "unicode": "\uE68E"
+}, {
+  "font_class": "videocam",
+  "unicode": "\uE68C"
+}, {
+  "font_class": "videocam-filled",
+  "unicode": "\uE689"
+}, {
+  "font_class": "vip",
+  "unicode": "\uE6A8"
+}, {
+  "font_class": "vip-filled",
+  "unicode": "\uE6C6"
+}, {
+  "font_class": "wallet",
+  "unicode": "\uE6B1"
+}, {
+  "font_class": "wallet-filled",
+  "unicode": "\uE6C2"
+}, {
+  "font_class": "weibo",
+  "unicode": "\uE68B"
+}, {
+  "font_class": "weixin",
+  "unicode": "\uE691"
+}];
+
+// export const fontData = JSON.parse<IconsDataItem>(fontDataJson)
+exports.fontData = fontData;
 
 /***/ }),
 
@@ -19883,6 +19781,97 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\
 /***/ (function(module, exports) {
 
 
+
+/***/ }),
+
+/***/ 266:
+/*!********************************************************************************************!*\
+  !*** D:/GradProject/errand/errand_app/uni_modules/uni-popup/components/uni-popup/popup.js ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  data: function data() {
+    return {};
+  },
+  created: function created() {
+    this.popup = this.getParent();
+  },
+  methods: {
+    /**
+     * 获取父元素实例
+     */
+    getParent: function getParent() {
+      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'uniPopup';
+      var parent = this.$parent;
+      var parentName = parent.$options.name;
+      while (parentName !== name) {
+        parent = parent.$parent;
+        if (!parent) return false;
+        parentName = parent.$options.name;
+      }
+      return parent;
+    }
+  }
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 267:
+/*!*************************************************************************************************!*\
+  !*** D:/GradProject/errand/errand_app/uni_modules/uni-popup/components/uni-popup/i18n/index.js ***!
+  \*************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 268));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 269));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 270));
+var _default = {
+  en: _en.default,
+  'zh-Hans': _zhHans.default,
+  'zh-Hant': _zhHant.default
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 268:
+/*!************************************************************************************************!*\
+  !*** D:/GradProject/errand/errand_app/uni_modules/uni-popup/components/uni-popup/i18n/en.json ***!
+  \************************************************************************************************/
+/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-popup.cancel\":\"cancel\",\"uni-popup.ok\":\"ok\",\"uni-popup.placeholder\":\"pleace enter\",\"uni-popup.title\":\"Hint\",\"uni-popup.shareTitle\":\"Share to\"}");
+
+/***/ }),
+
+/***/ 269:
+/*!*****************************************************************************************************!*\
+  !*** D:/GradProject/errand/errand_app/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hans.json ***!
+  \*****************************************************************************************************/
+/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"确定\",\"uni-popup.placeholder\":\"请输入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
 
 /***/ }),
 
@@ -19914,7 +19903,49 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 279:
+/***/ 270:
+/*!*****************************************************************************************************!*\
+  !*** D:/GradProject/errand/errand_app/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hant.json ***!
+  \*****************************************************************************************************/
+/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"確定\",\"uni-popup.placeholder\":\"請輸入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
+
+/***/ }),
+
+/***/ 3:
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ 320:
 /*!****************************************************************************************************************!*\
   !*** D:/GradProject/errand/errand_app/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
   \****************************************************************************************************************/
@@ -20049,7 +20080,7 @@ function createAnimation(option, _this) {
 
 /***/ }),
 
-/***/ 285:
+/***/ 326:
 /*!*********************************************************************************************************!*\
   !*** D:/GradProject/errand/errand_app/uni_modules/uni-load-more/components/uni-load-more/i18n/index.js ***!
   \*********************************************************************************************************/
@@ -20064,9 +20095,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 286));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 287));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 288));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 327));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 328));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 329));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -20076,7 +20107,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 286:
+/***/ 327:
 /*!********************************************************************************************************!*\
   !*** D:/GradProject/errand/errand_app/uni_modules/uni-load-more/components/uni-load-more/i18n/en.json ***!
   \********************************************************************************************************/
@@ -20087,7 +20118,7 @@ module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"Pull up to show mo
 
 /***/ }),
 
-/***/ 287:
+/***/ 328:
 /*!*************************************************************************************************************!*\
   !*** D:/GradProject/errand/errand_app/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hans.json ***!
   \*************************************************************************************************************/
@@ -20098,7 +20129,7 @@ module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉显示更多
 
 /***/ }),
 
-/***/ 288:
+/***/ 329:
 /*!*************************************************************************************************************!*\
   !*** D:/GradProject/errand/errand_app/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hant.json ***!
   \*************************************************************************************************************/
@@ -20106,37 +20137,6 @@ module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉显示更多
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉顯示更多\",\"uni-load-more.contentrefresh\":\"正在加載...\",\"uni-load-more.contentnomore\":\"沒有更多數據了\"}");
-
-/***/ }),
-
-/***/ 3:
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
 
 /***/ }),
 

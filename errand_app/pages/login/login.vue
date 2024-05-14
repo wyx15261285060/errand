@@ -17,20 +17,24 @@
 							style="width: 100% ;height:70rpx;line-height:70rpx; background-color:#006eff; border-color:#006eff; ">登
 							录</button>
 					</uni-forms-item>
-				</uni-forms></view>
+				</uni-forms>
+			</view>
 			<view style="text-align: right;">
-				没有账号？请<navigator url="/pages/register/register" style="display: inline; margin-left: 5rpx; color: #006eff;">注册</navigator>
+				没有账号？请<navigator url="/pages/register/register"
+					style="display: inline; margin-left: 5rpx; color: #006eff;">注册</navigator>
 			</view>
 		</view>
 	</view>
-	
+
 </template>
 
 <script>
 	export default {
 		data() {
 			return {
-				loginFormData: {role:'USER'},
+				loginFormData: {
+					role: 'USER'
+				},
 				rules: {
 					// 对username字段进行必填验证
 					username: {
@@ -59,6 +63,7 @@
 		},
 
 		methods: {
+
 			login() {
 				this.$refs.loginFormRef.validate().then(res => {
 					this.$request.post("/login", this.loginFormData).then(res => {
@@ -69,11 +74,11 @@
 								title: "登录成功"
 							});
 
-							setTimeout(() =>{
+							setTimeout(() => {
 								uni.switchTab({
-									url:"/pages/index/index"
+									url: "/pages/index/index"
 								})
-							},500)
+							}, 500)
 						} else {
 							uni.showToast({
 								icon: 'none',

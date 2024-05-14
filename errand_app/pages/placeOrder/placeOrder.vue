@@ -47,7 +47,7 @@
 						style="position: relative; top: 10rpx;"></uni-number-box>
 				</uni-forms-item>
 				<uni-forms-item label="订单类型" name="type" required>
-					<uni-data-select v-model="form.type" :localdata="orderTypes"></uni-data-select>
+					<uni-data-select v-model="form.type" :localdata="orderTypes" disabled="true"></uni-data-select>
 				</uni-forms-item>
 				<!-- 小程序直接使用该组件便可实现文件上传 -->
 				<uni-forms-item label="物品图片" name="img">

@@ -16,7 +16,10 @@ public enum ResultCodeEnum {
     DIFFERENT_PASSWORD("5007","两次密码不一致"),
     PERSONAL_ACCOUNT_LIMIT_ERROR("5008","账户余额不足，请充值"),
 
-    CERTIFICATION_ERROR("5009","您已提交过申请")
+    CERTIFICATION_ERROR("5009","您已提交过申请"),
+    PHONE_IS_EXIST("5010","手机号已存在，请更换手机号"),
+    CODE_ERROR("5011","验证码错误"),
+    CODE_NOT_EXIST("5012","验证码不可为空")
     ;
 
     public String code;

@@ -114,8 +114,6 @@ public class UserService {
         if (!account.getPassword().equals(dbUser.getPassword())) {
             throw new CustomException(ResultCodeEnum.USER_ACCOUNT_ERROR);
         }
-
-
         // 生成token
         String tokenData = dbUser.getId() + "-" + RoleEnum.USER.name();
         String token = TokenUtils.createToken(tokenData, dbUser.getPassword());
@@ -156,5 +154,14 @@ public class UserService {
         this.updateById((User) currentUser);
         // 充值明细记录
         RecordService.addRecord("充值" ,BigDecimal.valueOf(money), RecordEnum.CHARGE.getValue());
+    }
+
+    public Boolean selectByPhone(String phone) {
+        boolean flag = false;
+        List<User> userList = userMapper.selectByPhone(phone);
+        if (userList.size() == 0){
+            flag = true;
+        }
+        return flag;
     }
 }
