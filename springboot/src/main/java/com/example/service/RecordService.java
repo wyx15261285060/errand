@@ -6,6 +6,7 @@ package com.example.service;/*
  */
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.ObjectUtil;
 import com.example.entity.Account;
 import com.example.entity.Record;
 import com.example.mapper.RecordMapper;
@@ -43,11 +44,15 @@ public class RecordService implements InitializingBean {
     /**
      * 收支明细
      */
-    public static void addRecord(String content, BigDecimal money, String type) {
+    public static void addRecord(String content, BigDecimal money, String type,Integer userId) {
         // 将支出充值收入的金额更新后放到数据库中
         Record record = new Record();
         Account currentUser = TokenUtils.getCurrentUser();
-        record.setUserId(currentUser.getId());
+        if (ObjectUtil.isEmpty(currentUser.getId())){
+            record.setUserId(userId);
+        }else{
+            record.setUserId(currentUser.getId());
+        }
         record.setTime(DateUtil.now());
         record.setContent(content);
         record.setMoney(money);

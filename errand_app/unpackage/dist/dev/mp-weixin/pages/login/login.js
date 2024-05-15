@@ -233,6 +233,7 @@ var _default = {
       this.$refs.loginFormRef.validate().then(function (res) {
         _this.$request.post("/login", _this.loginFormData).then(function (res) {
           if (res.code === '200') {
+            // 登录成功后将用户的信息放到缓存中
             uni.setStorageSync("xm-user", res.data);
             uni.showToast({
               icon: 'success',

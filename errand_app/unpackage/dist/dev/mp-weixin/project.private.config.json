@@ -8,6 +8,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "地址表单",
+          "pathName": "pages/address/address",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "充值",
           "pathName": "pages/charge/charge",
           "query": "",
@@ -53,13 +60,6 @@
           "name": "订单详情",
           "pathName": "pages/orderDetail/orderDetail",
           "query": "orderId=10",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "地址表单",
-          "pathName": "pages/address/address",
-          "query": "",
           "launchMode": "default",
           "scene": null
         },

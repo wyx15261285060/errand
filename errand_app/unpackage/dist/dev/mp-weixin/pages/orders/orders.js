@@ -239,6 +239,7 @@ exports.default = void 0;
 //
 //
 //
+//
 var _default = {
   data: function data() {
     return {
@@ -259,6 +260,7 @@ var _default = {
         url: '/pages/comment/comment?orderId=' + orderId
       });
     },
+    // 查看订单详情
     goOrderDetail: function goOrderDetail(orderId) {
       uni.navigateTo({
         url: '/pages/orderDetail/orderDetail?orderId=' + orderId

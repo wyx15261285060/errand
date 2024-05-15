@@ -251,6 +251,19 @@ var _default = {
       uni.reLaunch({
         url: '/pages/login/login'
       });
+    },
+    goAcceptOrder: function goAcceptOrder() {
+      if (this.user.rider) {
+        uni.navigateTo({
+          url: '/pages/acceptOrder/acceptOrder'
+        });
+      } else {
+        uni.showToast({
+          icon: 'none',
+          title: '请先认证骑手身份'
+        });
+        return;
+      }
     }
   }
 };

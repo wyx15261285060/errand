@@ -7,7 +7,7 @@
 						fileMediatype="image" v-model="imgs" @select="handleImgUploadSuccess"></uni-file-picker>
 				</uni-forms-item>
 				<uni-forms-item label="账号" name="username">
-					<uni-easyinput type="text" v-model="form.username" placeholder="" disabled />
+					<uni-easyinput type="text" v-model="form.username" disabled />
 				</uni-forms-item>
 				<uni-forms-item label="密码" name="password" required>
 					<uni-easyinput type="password" v-model="form.password" placeholder="请输入密码" />
@@ -21,6 +21,9 @@
 				</uni-forms-item>
 				<uni-forms-item label="电话" name="phone">
 					<uni-easyinput type="text" v-model="form.phone" placeholder="请输入电话" />
+				</uni-forms-item>
+				<uni-forms-item label="邮箱" name="email">
+					<uni-easyinput type="text" v-model="form.email" placeholder="请输入邮箱" />
 				</uni-forms-item>
 				<view style="margin-bottom: 40rpx;">
 					<button type="primary" @click="save" class="button">保 存</button>
@@ -75,15 +78,24 @@
 		},
 		onShow() {
 			this.form = uni.getStorageSync('xm-user')
-			if(this.form.avatar){
-				this.imgs[0] = { url: this.form.avatar}
+			if (this.form.avatar) {
+				this.imgs[0] = {
+					url: this.form.avatar
+				}
 			}
-			// this.imgs.push({
-			// 	url: this.form.avatar
-			// })
+
 		},
 		methods: {
 			save() {
+				// 邮箱校验正则表达式
+				let email_reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+				if (!email_reg.test(this.form.email)) {
+					uni.showToast({
+						icon: 'none',
+						title: '请输入正确的邮箱'
+					})
+					return
+				}
 				this.$request.put('/user/update', this.form).then(res => {
 					if (res.code === '200') {
 						uni.showToast({
@@ -91,6 +103,12 @@
 							title: '操作成功'
 						})
 						uni.setStorageSync('xm-user', this.form)
+						setTimeout(() => {
+							uni.switchTab({
+								url: '/pages/personal/personal'
+							})
+						}, 1000)
+						// uni.navigateBack()
 					} else {
 						uni.showToast({
 							icon: 'none',

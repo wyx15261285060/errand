@@ -10,6 +10,8 @@ public enum RecordEnum {
     CHARGE("充值"),
     INCOME("收入"),
     CANCEL("取消"),
+
+    TIMEOUT("超时"),
     ;
 
     private String value;

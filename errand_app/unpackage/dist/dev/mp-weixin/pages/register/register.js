@@ -261,6 +261,7 @@ var _default = {
           title: '请输入正确的手机号',
           icon: 'none'
         });
+        return;
       } else {
         // 判断手机号是否唯一
         this.$refs.formRef.validate().then(function (res) {

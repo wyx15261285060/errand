@@ -42,7 +42,6 @@ public class CertificationService {
      */
 
     public Certification selectUserCert(){
-//        Certification dbCert = certificationMapper.selectByUserId(user.getId());
         Account currentUser = TokenUtils.getCurrentUser();
         Certification dbCert = certificationMapper.selectByUserId(currentUser.getId());
         return dbCert;

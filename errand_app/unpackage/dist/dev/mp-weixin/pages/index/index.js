@@ -251,17 +251,14 @@ var _default = {
   },
   onShow: function onShow() {
     this.load();
+    this.loadNotice();
   },
-  // onLoad() {// 只加载一次
-  // 	this.load();
-  // },
   onHide: function onHide() {
     // 清理定时器
     clearInterval(this.interval);
     this.interval = null;
   },
   methods: {
-    // 公告页面加载 
     load: function load() {
       var _this = this;
       this.$request.get("/order/selectAll", {
@@ -296,6 +293,13 @@ var _default = {
         });
         return;
       }
+      if (order.userId === this.user.id) {
+        uni.showToast({
+          icon: 'none',
+          title: '无法接自己的订单'
+        });
+        return;
+      }
       this.$request.put('/order/accept', order).then(function (res) {
         if (res.code === '200') {
           uni.showToast({
@@ -311,6 +315,7 @@ var _default = {
         }
       });
     },
+    // 公告页面加载 
     loadNotice: function loadNotice() {
       var _this3 = this;
       this.$request.get("/notice/selectAll").then(function (res) {

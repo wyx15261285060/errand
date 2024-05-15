@@ -19,7 +19,8 @@ public enum ResultCodeEnum {
     CERTIFICATION_ERROR("5009","您已提交过申请"),
     PHONE_IS_EXIST("5010","手机号已存在，请更换手机号"),
     CODE_ERROR("5011","验证码错误"),
-    CODE_NOT_EXIST("5012","验证码不可为空")
+    CODE_NOT_EXIST("5012","验证码不可为空"),
+    NOT_ACCEPT_YOUR_ORDER("5013","骑手不能接自己订单")
     ;
 
     public String code;

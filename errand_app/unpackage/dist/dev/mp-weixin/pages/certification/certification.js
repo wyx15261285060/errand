@@ -268,7 +268,6 @@ var _default = {
           "width": "1px",
           // 边框宽度
           "style": "solid"
-          // "radius": "50%"
         }
       }
     };
@@ -292,6 +291,15 @@ var _default = {
           _this2.cardImgs2.url = _this2.form.card2;
         }
       });
+      // if (this.form.status === '通过') {
+      // 	// 重新设置缓存的值
+      // 	this.$request.post("/login", this.form).then(res => {
+      // 		if (res.code === '200') {
+      // 			// 登录成功后将用户的信息放到缓存中
+      // 			uni.setStorageSync("xm-user", res.data);
+      // 		}
+      // 	});
+      // }
     },
     // 提交申请方法
     submitRequest: function submitRequest() {
@@ -304,6 +312,10 @@ var _default = {
               icon: 'success',
               title: '提交成功'
             });
+            if (_this3.form.status === '通过') {
+              _this3.user.rider = true;
+              uni.setStorageSync("xm-user", _this3.user);
+            }
             _this3.load();
           } else {
             uni.showToast({

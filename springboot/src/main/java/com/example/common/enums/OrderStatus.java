@@ -7,6 +7,7 @@ package com.example.common.enums;/*
 public enum OrderStatus {
 
     CANCEL("已取消"),
+    TIMEOUT("已超时"),
     NO_ACCEPT("待接单"),
     NO_ARRIVE("待送达"),
     NO_RECEIVE("待收货"),

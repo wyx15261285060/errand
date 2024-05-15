@@ -9,9 +9,10 @@
       <el-button type="warning" plain style="margin-left: 10px" @click="reset">重置</el-button>
     </div>
 
-    <div class="operation">
-      <el-button type="danger" plain @click="delBatch">批量删除</el-button>
-    </div>
+<!--    <div class="operation">-->
+<!--      <el-button type="danger" plain @click="delBatch">批量删除</el-button>-->
+<!--    </div>-->
+    <div style="margin-bottom: 20px"></div>
 
     <el-table :data="tableData" strip @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"></el-table-column>
@@ -26,11 +27,11 @@
       <el-table-column prop="acceptName" label="骑手"></el-table-column>
       <el-table-column prop="orderNo" label="订单编号"></el-table-column>
       <el-table-column prop="time" label="时间"></el-table-column>
-      <el-table-column label="操作" align="center" width="180">
-        <template v-slot="scope">
-          <el-button size="mini" type="danger" plain @click="del(scope.row.id)">删除</el-button>
-        </template>
-      </el-table-column>
+<!--      <el-table-column label="操作" align="center" width="180">-->
+<!--        <template v-slot="scope">-->
+<!--          <el-button size="mini" type="danger" plain @click="del(scope.row.id)">删除</el-button>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
     </el-table>
 
       <div class="pagination">

@@ -38,7 +38,7 @@
 					<image src="../../static/imgs/认证.png" style="width: 30%;" mode="widthFix"></image>
 					<view style="flex: 1; font-weight: bold;">骑手认证</view>
 				</view>
-				<view class="category-item" @click="goPage('/pages/acceptOrder/acceptOrder')">
+				<view  class="category-item" @click="goAcceptOrder">
 					<image src="../../static/imgs/跑腿.png" style="width: 30%;" mode="widthFix"></image>
 					<view style="flex: 1; font-weight: bold;">骑手订单</view>
 				</view>
@@ -70,7 +70,8 @@
 	export default {
 		data() {
 			return {
-				user: uni.getStorageSync('xm-user')
+				user: uni.getStorageSync('xm-user'),
+				
 
 			}
 		},
@@ -87,6 +88,19 @@
 				uni.reLaunch({
 					url: '/pages/login/login'
 				})
+			},
+			goAcceptOrder(){
+				if(this.user.rider){
+					uni.navigateTo({
+						url:'/pages/acceptOrder/acceptOrder'
+					})
+				}else{
+					uni.showToast({
+						icon:'none',
+						title: '请先认证骑手身份',
+					});
+					return
+				}
 			},
 
 		}

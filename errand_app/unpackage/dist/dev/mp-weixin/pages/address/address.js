@@ -308,6 +308,15 @@ var _default = {
     },
     save: function save(type) {
       var _this2 = this;
+      var reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
+      if (!reg.test(this.form.phone)) {
+        //判断手机号格式是否正确
+        uni.showToast({
+          title: '请输入正确的手机号',
+          icon: 'none'
+        });
+        return;
+      }
       if (type === '新增') {
         this.$refs.formRef.validate().then(function (res) {
           _this2.form.userId = _this2.user.id;
@@ -324,11 +333,6 @@ var _default = {
               }
               _this2.form = {};
               _this2.load();
-              // setTimeout(()=>{
-              // 	uni.switchTab({
-              // 	url:'/pages/index/index'
-              // })
-              // },500)
             } else {
               uni.showToast({
                 icon: 'none',
@@ -349,11 +353,6 @@ var _default = {
             });
             _this2.form = {};
             _this2.load();
-            // setTimeout(()=>{
-            // 	uni.switchTab({
-            // 	url:'/pages/index/index'
-            // })
-            // },500)
           } else {
             uni.showToast({
               icon: 'none',

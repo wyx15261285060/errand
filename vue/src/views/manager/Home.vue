@@ -7,21 +7,30 @@
     <div style="display: flex; margin: 10px 0">
       <div style="width: 50%;" class="card">
         <div style="margin-bottom: 30px; font-size: 20px; font-weight: bold">公告列表</div>
-        <div >
-          <el-timeline  reverse slot="reference">
-            <el-timeline-item v-for="item in notices" :key="item.id" :timestamp="item.time">
-              <el-popover
-                  placement="right"
-                  width="200"
-                  trigger="hover"
-                  :content="item.content">
-                <span slot="reference">{{ item.title }}</span>
-              </el-popover>
-            </el-timeline-item>
-          </el-timeline>
-        </div>
+        <el-timeline>
+          <el-timeline-item v-for="item in notices" :timestamp="item.time" placement="top">
+            <el-card>
+              <h4>{{ item.title }}</h4>
+              <p>{{ item.content }}</p>
+            </el-card>
+          </el-timeline-item>
+        </el-timeline>
+
+      </div>
+      <div style="width: 50%;" class="card">
+        <div style="margin-bottom: 30px; font-size: 20px; font-weight: bold">评价列表</div>
+        <el-timeline>
+          <el-timeline-item v-for="item in commentList" :timestamp="item.time" placement="top">
+            <el-card>
+              <el-rate  v-model="item.star" disabled show-score text-color="#ff9900"></el-rate>
+              <p>{{ item.content }}</p>
+            </el-card>
+          </el-timeline-item>
+        </el-timeline>
       </div>
     </div>
+
+
   </div>
 </template>
 
@@ -32,13 +41,22 @@ export default {
   data() {
     return {
       user: JSON.parse(localStorage.getItem('xm-user') || '{}'),
-      notices: []
+      notices: [],
+      commentList: [],
     }
   },
+
   created() {
     this.$request.get('/notice/selectAll').then(res => {
       this.notices = res.data || []
     })
-  }
+    this.$request.get('/comment/selectAll').then(res => {
+      this.commentList = res.data || []
+    })
+  },
+
+
+
+
 }
 </script>

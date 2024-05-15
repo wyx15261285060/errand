@@ -88,7 +88,7 @@ public class CommentController {
     @GetMapping("/selectPage")
     public Result selectPage(Comment comment,
                              @RequestParam(defaultValue = "1") Integer pageNum,
-                             @RequestParam(defaultValue = "10") Integer pageSize) {
+                             @RequestParam(defaultValue = "3") Integer pageSize) {
         PageInfo<Comment> page = commentService.selectPage(comment, pageNum, pageSize);
         return Result.success(page);
     }

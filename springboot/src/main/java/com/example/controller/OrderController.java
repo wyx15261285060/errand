@@ -79,8 +79,8 @@ public class OrderController {
      */
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id) {
-        Order Order = orderService.selectById(id);
-        return Result.success(Order);
+        Order order = orderService.selectById(id);
+        return Result.success(order);
     }
 
     /**

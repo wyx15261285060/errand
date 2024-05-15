@@ -7,9 +7,10 @@
       <el-button type="info" plain style="margin-left: 10px" @click="load(1)">查询</el-button>
       <el-button type="warning" plain style="margin-left: 10px" @click="reset">重置</el-button>
     </div>
-    <div class="operation">
-      <el-button type="danger" plain @click="delBatch">批量删除</el-button>
-    </div>
+<!--    <div class="operation">-->
+<!--      <el-button type="danger" plain @click="delBatch">批量删除</el-button>-->
+<!--    </div>-->
+    <div style="margin-bottom: 20px"></div>
     <!-- 表格栏 -->
     <div class="table">
       <el-table :data="tableData" strip @selection-change="handleSelectionChange">
@@ -55,7 +56,7 @@
         <el-table-column label="操作" align="center" width="150" fixed="right">
           <template v-slot="scope">
             <el-button size="mini" type="primary" plain @click="handleEdit(scope.row)">编辑</el-button>
-            <el-button size="mini" type="danger" plain @click="del(scope.row.id)">删除</el-button>
+<!--            <el-button size="mini" type="danger" plain @click="del(scope.row.id)">删除</el-button>-->
           </template>
         </el-table-column>
       </el-table>

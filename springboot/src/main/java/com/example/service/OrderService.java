@@ -8,6 +8,7 @@ package com.example.service;/*
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
+import com.example.common.Result;
 import com.example.common.enums.OrderStatus;
 import com.example.common.enums.RecordEnum;
 import com.example.common.enums.ResultCodeEnum;
@@ -78,9 +79,9 @@ public class OrderService {
             user.setAccount(user.getAccount().add(BigDecimal.valueOf(order.getPrice())));
             userService.updateById(user);
             // 接单收支明细
-            RecordService.addRecord("接单" + order.getName(),BigDecimal.valueOf(order.getPrice()), RecordEnum.INCOME.getValue());
+            RecordService.addRecord("接单" + order.getName(),BigDecimal.valueOf(order.getPrice()), RecordEnum.INCOME.getValue(),order.getUserId());
         } else if (OrderStatus.CANCEL.getValue().equals(order.getStatus())) {
-            RecordService.addRecord("取消" + order.getName(),BigDecimal.valueOf(order.getPrice()), RecordEnum.CANCEL.getValue());
+            RecordService.addRecord("用户主动取消" + order.getName(),BigDecimal.valueOf(order.getPrice()), RecordEnum.CANCEL.getValue(),order.getUserId());
         }
         orderMapper.updateById(order);
     }
@@ -144,18 +145,18 @@ public class OrderService {
         orderMapper.insert(order);
 
         // 下单明细记录
-        RecordService.addRecord("下单" + order.getName(),BigDecimal.valueOf(order.getPrice()), RecordEnum.OUT.getValue());
+        RecordService.addRecord("下单" + order.getName(),BigDecimal.valueOf(order.getPrice()), RecordEnum.OUT.getValue(),order.getUserId());
     }
 
     public void acceptOrder(Order order) {
         Account currentUser = TokenUtils.getCurrentUser();
+        // 骑手不能接自己下的订单
         order.setAcceptId(currentUser.getId());
 //        order.setAcceptName(currentUser.getName());
         order.setAcceptTime(DateUtil.now());
         order.setStatus(OrderStatus.NO_ARRIVE.getValue());
         // 更新订单
         this.updateById(order);
-        // 接单明细记录
 
     }
 }

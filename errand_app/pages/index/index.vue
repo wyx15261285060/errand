@@ -88,16 +88,14 @@ import placeOrderVue from '../placeOrder/placeOrder.vue';
 		},
 		onShow() {
 			this.load();
+			this.loadNotice();
 		},
-		// onLoad() {// 只加载一次
-		// 	this.load();
-		// },
 		onHide() { // 清理定时器
 			clearInterval(this.interval);
 			this.interval = null;
 		},
 		methods: {
-			// 公告页面加载 
+			
 			load() {
 				this.$request.get("/order/selectAll", {
 					status: '待接单'
@@ -122,6 +120,7 @@ import placeOrderVue from '../placeOrder/placeOrder.vue';
 					url:'/pages/orderDetail/orderDetail?orderId='+orderId
 				})
 			},
+			
 			// 骑手接单
 			accept(order){
 				if(!this.user.rider){// 必须是骑手方可接单
@@ -131,6 +130,13 @@ import placeOrderVue from '../placeOrder/placeOrder.vue';
 					})
 					return
 				}
+				if(order.userId === this.user.id){
+					uni.showToast({
+						icon:'none',
+						title:'无法接自己的订单'
+					})
+					return
+				} 
 				this.$request.put('/order/accept',order).then(res=>{
 					if (res.code === '200') {
 						uni.showToast({
@@ -146,6 +152,7 @@ import placeOrderVue from '../placeOrder/placeOrder.vue';
 					}
 				})
 			},
+			// 公告页面加载 
 			loadNotice(){
 				this.$request.get("/notice/selectAll").then(res => {
 					this.noticeList = res.data || [];

@@ -206,6 +206,9 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -259,14 +262,19 @@ var _default = {
         url: this.form.avatar
       };
     }
-    // this.imgs.push({
-    // 	url: this.form.avatar
-    // })
   },
-
   methods: {
     save: function save() {
       var _this2 = this;
+      // 邮箱校验正则表达式
+      var email_reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+      if (!email_reg.test(this.form.email)) {
+        uni.showToast({
+          icon: 'none',
+          title: '请输入正确的邮箱'
+        });
+        return;
+      }
       this.$request.put('/user/update', this.form).then(function (res) {
         if (res.code === '200') {
           uni.showToast({
@@ -274,6 +282,12 @@ var _default = {
             title: '操作成功'
           });
           uni.setStorageSync('xm-user', _this2.form);
+          setTimeout(function () {
+            uni.switchTab({
+              url: '/pages/personal/personal'
+            });
+          }, 1000);
+          // uni.navigateBack()
         } else {
           uni.showToast({
             icon: 'none',

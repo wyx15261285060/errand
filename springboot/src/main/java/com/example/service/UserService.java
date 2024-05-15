@@ -153,7 +153,7 @@ public class UserService {
         currentUser.setAccount(currentUser.getAccount().add(BigDecimal.valueOf(money)));
         this.updateById((User) currentUser);
         // 充值明细记录
-        RecordService.addRecord("充值" ,BigDecimal.valueOf(money), RecordEnum.CHARGE.getValue());
+        RecordService.addRecord("充值" ,BigDecimal.valueOf(money), RecordEnum.CHARGE.getValue(),currentUser.getId());
     }
 
     public Boolean selectByPhone(String phone) {

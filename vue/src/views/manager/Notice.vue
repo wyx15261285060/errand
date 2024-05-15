@@ -50,6 +50,7 @@
         <el-form-item prop="content" label="内容">
           <el-input type="textarea" :rows="5" v-model="form.content" autocomplete="off"></el-input>
         </el-form-item>
+
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="fromVisible = false">取 消</el-button>
@@ -66,6 +67,19 @@ export default {
   name: "Notice",
   data() {
     return {
+      colorList: [{
+        value: 'hsl',
+        label: 'hsl'
+      }, {
+        value: 'hsv',
+        label: 'hsv'
+      }, {
+        value: 'hex',
+        label: 'hex'
+      }, {
+        value: 'rgb',
+        label: 'rgb'
+      }],
       tableData: [],  // 所有的数据
       pageNum: 1,   // 当前的页码
       pageSize: 10,  // 每页显示的个数

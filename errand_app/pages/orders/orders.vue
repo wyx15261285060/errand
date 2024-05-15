@@ -33,10 +33,11 @@
 						<text style="color: mediumpurple;" v-if="item.status === '待收货'">{{ item.status }}</text>
 						<text style="color: indianred;" v-if="item.status === '待评价'">{{ item.status }}</text>
 						<text style="color: #18bc37;" v-if="item.status === '已完成'">{{ item.status }}</text>
+						<text style="color: #ff007f;" v-if="item.status === '已超时'">{{ item.status }}</text>
 					</view>
 					<view style="flex: 1; text-align: right;">
 						<!-- <uni-tag text="接单" type="primary" size="mini" v-if="item.status==='待接单'"></uni-tag> -->
-						<view style="display: inline-block;" v-if="item.status==='已取消'||item.status==='已完成'">
+						<view style="display: inline-block;" v-if="item.status==='已取消'||item.status==='已完成'||item.status==='已超时'">
 							<uni-icons type="trash" size="16" color="#888"
 								style="position: relative;top: 4rpx;"></uni-icons>
 							<text style="color: #888;" @click.native.stop="handleDel(item.id)">删除</text>
@@ -85,6 +86,7 @@
 					url:'/pages/comment/comment?orderId='+orderId
 				})
 			},
+			// 查看订单详情
 			goOrderDetail(orderId) {
 				uni.navigateTo({
 					url: '/pages/orderDetail/orderDetail?orderId=' + orderId

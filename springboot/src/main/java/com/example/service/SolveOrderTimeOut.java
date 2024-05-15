@@ -33,6 +33,7 @@ public class SolveOrderTimeOut {
     private UserService userService;
     // 一分钟扫描一次
     @Scheduled(fixedRate = 60000)
+    // 定时取消订单任务
     public void task() {
         log.info("========================订单扫描任务开始========================");
         Order params = new Order();
@@ -45,17 +46,15 @@ public class SolveOrderTimeOut {
             long betweenTime = DateUtil.between(dateTime, new Date(), DateUnit.SECOND);
             if (betweenTime >= 3000){
                 // 超时之后即取消订单
-                order.setStatus(OrderStatus.CANCEL.getValue());
+                order.setStatus(OrderStatus.TIMEOUT.getValue());
                 orderService.updateById(order);
                 // 取消订单之后需要归还金额
                 User user = userService.selectById(order.getUserId());
                 user.setAccount(user.getAccount().add(BigDecimal.valueOf(order.getPrice())));
                 userService.updateById(user);
-                RecordService.addRecord("取消订单" + order.getName(),BigDecimal.valueOf(order.getPrice()), RecordEnum.CANCEL.getValue());
+                RecordService.addRecord("下单超时，自动取消订单" + order.getName(),BigDecimal.valueOf(order.getPrice()), RecordEnum.TIMEOUT.getValue(),order.getUserId());
             }
         }
-
         log.info("========================订单扫描任务结束========================");
-
     }
 }

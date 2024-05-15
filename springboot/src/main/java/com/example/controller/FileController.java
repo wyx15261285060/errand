@@ -55,7 +55,6 @@ public class FileController {
             // 拼接文件存储路径：时间戳-文件名
             FileUtil.writeBytes(file.getBytes(), filePath + flag + "-" + fileName);
             System.out.println(fileName + "--上传成功");
-
         } catch (Exception e) {
             System.err.println(fileName + "--文件上传失败");
         }

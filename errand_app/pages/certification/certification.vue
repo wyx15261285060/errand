@@ -11,7 +11,7 @@
 						fileMediatype="image" v-model="imgs" @select="handleAvatarUploadSuccess"></uni-file-picker>
 				</uni-forms-item>
 				<uni-forms-item label="联系方式" name="phone" required>
-					<uni-easyinput type="text" v-model="phone" placeholder="请输入联系方式" />
+					<uni-easyinput type="text" v-model="form.phone" placeholder="请输入联系方式" />
 				</uni-forms-item>
 				<uni-forms-item label="身份证号码" name="cardNo" required>
 					<uni-easyinput type="text" v-model="form.cardNo" placeholder="请输入身份证号码" />
@@ -57,7 +57,7 @@
 		data() {
 			return {
 				user: uni.getStorageSync('xm-user'),
-				
+
 				form: {},
 				rules: {
 					name: {
@@ -91,7 +91,6 @@
 						"color": "#ffffff", // 边框颜色
 						"width": "1px", // 边框宽度
 						"style": "solid",
-						// "radius": "50%"
 					}
 				},
 
@@ -99,6 +98,7 @@
 		},
 		onLoad() {
 			this.load()
+
 		},
 		methods: {
 			// 查询出当前用户的认证信息
@@ -114,11 +114,21 @@
 					if (this.form.card2) {
 						this.cardImgs2.url = this.form.card2
 					}
+					
 				})
-				
+				// if (this.form.status === '通过') {
+				// 	// 重新设置缓存的值
+				// 	this.$request.post("/login", this.form).then(res => {
+				// 		if (res.code === '200') {
+				// 			// 登录成功后将用户的信息放到缓存中
+				// 			uni.setStorageSync("xm-user", res.data);
+				// 		}
+				// 	});
+				// }
 
 			},
-			
+
+
 			// 提交申请方法
 			submitRequest() {
 				this.$refs.formRef.validate().then(res => {
@@ -129,6 +139,10 @@
 								icon: 'success',
 								title: '提交成功'
 							})
+							if (this.form.status === '通过') {
+								this.user.rider = true
+								uni.setStorageSync("xm-user", this.user)
+							}
 							this.load()
 						} else {
 							uni.showToast({
