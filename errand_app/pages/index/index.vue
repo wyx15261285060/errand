@@ -2,16 +2,16 @@
 	<view style="padding: 20rpx;">
 		<!-- 首页轮播图 -->
 		<view style="margin-bottom: 20rpx;">
-			<swiper circular autoplay :interval="1000" :duration="500" indicator-dots style="height: 320rpx;"
+			<swiper circular autoplay :interval="1000" :duration="500" indicator-dots style="height: 320rpx;" 
 				indicator-color="rgba(255, 255, 255, 0.6)" indicator-active-color="#ff5500">
 				<swiper-item v-for="item in imgs" :key="item">
 					<image :src="item" alt="" style="width: 100%; height: 350rpx;" />
 				</swiper-item>
 			</swiper>
 		</view>
-		<!-- 公告栏 -->
+		<!-- 公告栏showGetMore="true" @getmore="selectContent" -->
 		<view style="margin-bottom: 20rpx;">
-			<uni-notice-bar v-if="content" show-icon single="true" :text="content" />
+			<uni-notice-bar v-if="content"  show-icon single="true" :text="content" scrollable="true"  />
 		</view>
 		<!-- 跑腿分类 -->
 		<view style="display: flex; margin-bottom: 10rpx;" class="box">
@@ -165,7 +165,7 @@ import placeOrderVue from '../placeOrder/placeOrder.vue';
 								i = 0;
 							}
 							this.content = this.noticeList[i].content;
-						}, 2000)
+						}, 8000)
 					}
 				})
 			}			

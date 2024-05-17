@@ -52,7 +52,7 @@ public class SolveOrderTimeOut {
                 User user = userService.selectById(order.getUserId());
                 user.setAccount(user.getAccount().add(BigDecimal.valueOf(order.getPrice())));
                 userService.updateById(user);
-                RecordService.addRecord("下单超时，自动取消订单" + order.getName(),BigDecimal.valueOf(order.getPrice()), RecordEnum.TIMEOUT.getValue(),order.getUserId());
+                RecordService.addRecord("下单超时，自动取消订单" + order.getName(),BigDecimal.valueOf(order.getPrice() + order.getTip()), RecordEnum.TIMEOUT.getValue(),order.getUserId());
             }
         }
         log.info("========================订单扫描任务结束========================");

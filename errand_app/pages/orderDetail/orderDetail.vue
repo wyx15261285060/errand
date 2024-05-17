@@ -55,7 +55,11 @@
 			</view>
 			<view class="line">
 				<view class="line-title">费用：</view>
-				<view class="line-content" style="color: red;">￥{{ order.weight }}</view>
+				<view class="line-content" style="color: red;">￥{{ order.price }}</view>
+			</view>
+			<view class="line"> 
+				<view class="line-title">小费：</view>
+				<view class="line-content" style="color: red;">￥{{ order.tip }}</view>
 			</view>
 			<view class="line">
 				<view class="line-title">下单时间：</view>
@@ -105,6 +109,7 @@
 			load(orderId) {
 				this.$request.get('/order/selectById/' + orderId).then(res => {
 					this.order = res.data || {}
+					this.order.tip = this.order.tip === null ? 0 : this.order.tip
 				})
 			}
 

@@ -42,6 +42,7 @@ public class AuthController {
         BufferedImage image = captchaProducer.createImage(key);
         // 将验证码转换为Base64编码
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        //将image对象以PNG格式写入到stream中。
         ImageIO.write(image, "png", stream);
         //读出转换为Base64编码的值
         String base64Code = Base64.getEncoder().encodeToString(stream.toByteArray());

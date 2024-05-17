@@ -60,6 +60,11 @@
 				})
 			},
 
+			goOrderDetail(orderId){
+				uni.navigateTo({
+					url:'/pages/orderDetail/orderDetail?orderId='+orderId
+				})
+			},
 			arrive(order) {
 				order.status = "待收货"
 				this.$request.put('/order/update', order).then(res => {

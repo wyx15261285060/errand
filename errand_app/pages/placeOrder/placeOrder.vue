@@ -43,7 +43,11 @@
 				</uni-forms-item>
 				<!-- 计数器组件 -->
 				<uni-forms-item label="费用(元)" name="price" required>
-					<uni-number-box v-model="form.price" :min="1"
+					<uni-number-box v-model="form.price"  disabled
+						style="position: relative; top: 10rpx;"></uni-number-box>
+				</uni-forms-item>
+				<uni-forms-item label="小费(元)" name="price">
+					<uni-number-box v-model="form.tip" :min="0"
 						style="position: relative; top: 10rpx;"></uni-number-box>
 				</uni-forms-item>
 				<uni-forms-item label="订单类型" name="type" required>
@@ -128,6 +132,20 @@
 
 
 		},
+		watch: {
+		    'form.weight': function(newWeight) {
+		      const weight = parseFloat(newWeight);
+		      if (!isNaN(weight)) {
+		        if (weight <= 5) {
+		          this.form.price = weight * 2;
+		        } else {
+		          this.form.price = 5 * 2 + (weight - 5) * 3;
+		        }
+		      } else {
+		        this.form.price = 0;
+		      }
+		    }
+		  },
 		onShow() {
 			let orderStore = uni.getStorageSync('orderStore')
 			this.form.type = orderStore?.type
@@ -137,36 +155,43 @@
 		methods: {
 			// 将地址类型参数获取 并拼接到url上
 			selectAddress(addressType) {
-				uni.navigateTo({
-					url: '/pages/address/address?addressType=' + addressType
-				})
+				if (addressType === '取货') {
+					uni.navigateTo({
+						url: '/pages/address/address?addressType=' + addressType
+					})
+				}else{
+					uni.navigateTo({
+						url: '/pages/getAddress/getAddress?addressType=' + addressType
+					})
+				}
+
 			},
 
 			addOrder() {
-				if(!this.pickAddress.id){
+				if (!this.pickAddress.id) {
 					uni.showToast({
 						icon: 'none',
 						title: '请设置取货地址'
 					})
 					return
 				}
-				if(!this.recieveAddress.id){
+				if (!this.recieveAddress.id) {
 					uni.showToast({
 						icon: 'none',
 						title: '请设置收货地址'
 					})
 					return
 				}
-				if(this.pickAddress.id === this.recieveAddress.id){
+				if (this.pickAddress.id === this.recieveAddress.id) {
 					uni.showToast({
 						icon: 'none',
 						title: '取货地址和收货地址不可一致'
 					})
 					return
 				}
-				
+
 				// 设置订单中的取货收获地址id
-				this.form.addressId  = this.pickAddress.id
+				this.form.addressId = this.pickAddress.id
 				this.form.targetId = this.recieveAddress.id
 				this.$refs.formRef.validate().then(res => {
 					this.$request.post('/order/addOrder', this.form).then(res => {
@@ -208,13 +233,10 @@
 					name: "file",
 					success(res) {
 						let url = JSON.parse(res.data || '{}').data // 获取返回的图像链接
-						_this.form.img = url // 给表单图像属性赋值
+						_this.form.img = url // 给表单图像属性赋值 
 					}
 				})
 			}
-
-
-
 		}
 	}
 </script>

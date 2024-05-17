@@ -72,16 +72,19 @@ public class OrderService {
      */
     @Transactional
     public void updateById(Order order) {
-        if (OrderStatus.NO_RECEIVE.getValue().equals(order.getStatus())){
+        Double orderTip = order.getTip();
+        Double orderPrice = order.getPrice();
+        Double sumPrice = orderPrice + orderTip;
+        if (OrderStatus.NO_RECEIVE.getValue().equals(order.getStatus())) {
             // 骑手送达订单情况
             Integer acceptId = order.getAcceptId();
             User user = userService.selectById(acceptId);
             user.setAccount(user.getAccount().add(BigDecimal.valueOf(order.getPrice())));
             userService.updateById(user);
             // 接单收支明细
-            RecordService.addRecord("接单" + order.getName(),BigDecimal.valueOf(order.getPrice()), RecordEnum.INCOME.getValue(),order.getUserId());
+            RecordService.addRecord("接单" + order.getName(), BigDecimal.valueOf(sumPrice), RecordEnum.INCOME.getValue(), order.getUserId());
         } else if (OrderStatus.CANCEL.getValue().equals(order.getStatus())) {
-            RecordService.addRecord("用户主动取消" + order.getName(),BigDecimal.valueOf(order.getPrice()), RecordEnum.CANCEL.getValue(),order.getUserId());
+            RecordService.addRecord("用户主动取消" + order.getName(), BigDecimal.valueOf(sumPrice), RecordEnum.CANCEL.getValue(), order.getUserId());
         }
         orderMapper.updateById(order);
     }
@@ -105,10 +108,10 @@ public class OrderService {
      */
     public List<Order> selectAll(Order order) {
         List<Order> list = orderMapper.selectAll(order);
-        for (Order o : list){
+        for (Order o : list) {
             String time = o.getTime();
             Date date = new Date();
-            int i = (int) DateUtil.between(DateUtil.parseDateTime(time),date, DateUnit.MINUTE);
+            int i = (int) DateUtil.between(DateUtil.parseDateTime(time), date, DateUnit.MINUTE);
             o.setMinutes(i);
         }
         return list;
@@ -124,18 +127,22 @@ public class OrderService {
     }
 
     /**
-     *小程序下单
+     * 小程序下单
      */
     public void addOrder(Order order) {
         Account account = TokenUtils.getCurrentUser();
         BigDecimal personalAccount = account.getAccount();
         Double orderPrice = order.getPrice();
+        Double orderTip = order.getTip();
+        // 下单时 如果为null 则默认为0.0
+        orderTip = (orderTip == null) ? 0.0 : orderTip;
+        Double sumPrice = orderPrice + orderTip;
         // 余额不足
-        if (orderPrice > personalAccount.doubleValue()){
+        if (sumPrice > personalAccount.doubleValue()) {
             throw new CustomException(ResultCodeEnum.PERSONAL_ACCOUNT_LIMIT_ERROR);
         }
         // 将账户余额更新
-        account.setAccount(personalAccount.subtract(BigDecimal.valueOf(orderPrice)));
+        account.setAccount(personalAccount.subtract(BigDecimal.valueOf(sumPrice)));
         userService.updateById((User) account);
         // 设置该条订单的用户id和订单编号
         order.setUserId(account.getId());
@@ -143,20 +150,28 @@ public class OrderService {
         order.setStatus(OrderStatus.NO_ACCEPT.getValue());
         order.setTime(DateUtil.now());
         orderMapper.insert(order);
-
         // 下单明细记录
-        RecordService.addRecord("下单" + order.getName(),BigDecimal.valueOf(order.getPrice()), RecordEnum.OUT.getValue(),order.getUserId());
+        RecordService.addRecord("下单" + order.getName(), BigDecimal.valueOf(sumPrice), RecordEnum.OUT.getValue(), order.getUserId());
     }
 
+    /**
+     * 乐观锁+事务解决高并发问题
+     *
+     * @param order
+     */
+    @Transactional
     public void acceptOrder(Order order) {
         Account currentUser = TokenUtils.getCurrentUser();
         // 骑手不能接自己下的订单
         order.setAcceptId(currentUser.getId());
-//        order.setAcceptName(currentUser.getName());
         order.setAcceptTime(DateUtil.now());
         order.setStatus(OrderStatus.NO_ARRIVE.getValue());
-        // 更新订单
-        this.updateById(order);
-
+        // 获取当前版本号
+        Integer currentVersion = order.getVersion();
+        // 尝试更新订单，使用版本号进行条件更新
+        boolean update = orderMapper.updateByIdAndVersion(order.getId(), currentVersion, order.getAcceptId(), order.getStatus(), order.getAcceptTime());
+        if (!update) {
+            throw new RuntimeException("订单已被其他骑手接单");
+        }
     }
 }

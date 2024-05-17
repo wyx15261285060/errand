@@ -5,6 +5,10 @@ package com.example.mapper;/*
  *@email：3060491854@qq.com
  */
 import com.example.entity.Order;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
+import org.omg.PortableInterceptor.INACTIVE;
+
 import java.util.List;
 
 /**
@@ -36,5 +40,11 @@ public interface OrderMapper {
      * 查询所有
      */
     List<Order> selectAll(Order order);
+    @Update("UPDATE wyx_order SET " +
+            "accept_id = #{acceptId}, " +
+            "accept_time = #{acceptTime}, " +
+            "status = #{status}, " +
+            "version = version + 1 WHERE id = #{id} AND version = #{version}")
+    boolean updateByIdAndVersion(Integer id, Integer version, Integer acceptId,String status,String acceptTime);
 
 }

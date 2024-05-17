@@ -19,8 +19,10 @@ public class Order {
     private String type;
     /** 物品重量 */
     private Double weight;
-    /** 小费 */
+    /** 费用 */
     private Double price;
+    /** 小费 */
+    private Double tip;
     /** 发起人ID */
     private Integer userId;
     /** 接单人ID */
@@ -49,6 +51,24 @@ public class Order {
     private Address targetAddress;
     /**骑手认证*/
     private Certification certification;
+    /**版本号*/
+    private Integer version;
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+    public Double getTip() {
+        return tip;
+    }
+
+    public void setTip(Double tip) {
+        this.tip = tip;
+    }
 
     public Certification getCertification() {
         return certification;

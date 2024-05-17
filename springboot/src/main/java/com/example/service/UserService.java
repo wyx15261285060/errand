@@ -129,6 +129,7 @@ public class UserService {
      */
     public void register(Account account) {
         User user = new User();
+        // Bean工具类的拷贝对象属性值，浅拷贝
         BeanUtils.copyProperties(account, user);
         this.add(user);
     }

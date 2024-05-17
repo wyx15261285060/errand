@@ -6,7 +6,7 @@
 
     <sql id="Base_Column_List">
         id
-        ,order_no,name,descr,img,type,weight,price,user_id,accept_id,time,accept_time,status,address_id,target_id,comment
+        ,order_no,name,descr,img,type,weight,price,tip,version,user_id,accept_id,time,accept_time,status,address_id,target_id,comment
     </sql>
 
     <select id="selectAll" resultType="com.example.entity.Order">
@@ -19,6 +19,7 @@
         LEFT JOIN wyx_user u1 ON o.user_id = u1.id
         LEFT JOIN wyx_user u2 ON o.accept_id = u2.id
         <where>
+
             <if test="orderNo != null">AND o.order_no LIKE CONCAT('%', #{orderNo}, '%')</if>
             <if test="name != null">AND o.name LIKE CONCAT('%', #{name}, '%')</if>
             <!-- 根据订单状态去筛选 -->
@@ -54,6 +55,8 @@
             <if test="type != null">type,</if>
             <if test="weight != null">weight,</if>
             <if test="price != null">price,</if>
+            <if test="tip != null">tip,</if>
+            <if test="version != null">version,</if>
             <if test="userId != null">user_id,</if>
             <if test="acceptId != null">accept_id,</if>
             <if test="time != null">time,</if>
@@ -72,6 +75,8 @@
             <if test="type != null">#{type},</if>
             <if test="weight != null">#{weight},</if>
             <if test="price != null">#{price},</if>
+            <if test="tip != null">#{tip},</if>
+            <if test="version != null">#{version},</if>
             <if test="userId != null">#{userId},</if>
             <if test="acceptId != null">#{acceptId},</if>
             <if test="time != null">#{time},</if>
@@ -107,6 +112,12 @@
             <if test="price != null">
                 price = #{price},
             </if>
+            <if test="tip != null">
+                tip = #{tip},
+            </if>
+            <if test="tip != null">
+                version = #{version},
+            </if>
             <if test="userId != null">
                 user_id = #{userId},
             </if>
@@ -134,5 +145,63 @@
         </set>
         where id = #{id}
     </update>
+
+<!--    <update id="updateByIdAndVersion" parameterType="com.example.entity.Order">-->
+<!--        update wyx_order-->
+<!--        <set>-->
+<!--            <if test="orderNo != null">-->
+<!--                order_no = #{orderNo},-->
+<!--            </if>-->
+<!--            <if test="name != null">-->
+<!--                name = #{name},-->
+<!--            </if>-->
+<!--            <if test="descr != null">-->
+<!--                descr = #{descr},-->
+<!--            </if>-->
+<!--            <if test="img != null">-->
+<!--                img = #{img},-->
+<!--            </if>-->
+<!--            <if test="type != null">-->
+<!--                type = #{type},-->
+<!--            </if>-->
+<!--            <if test="weight != null">-->
+<!--                weight = #{weight},-->
+<!--            </if>-->
+<!--            <if test="price != null">-->
+<!--                price = #{price},-->
+<!--            </if>-->
+<!--            <if test="tip != null">-->
+<!--                tip = #{tip},-->
+<!--            </if>-->
+<!--            <if test="version != null">-->
+<!--                version = version + 1,-->
+<!--            </if>-->
+<!--            <if test="userId != null">-->
+<!--                user_id = #{userId},-->
+<!--            </if>-->
+<!--            <if test="acceptId != null">-->
+<!--                accept_id = #{acceptId},-->
+<!--            </if>-->
+<!--            <if test="time != null">-->
+<!--                time = #{time},-->
+<!--            </if>-->
+<!--            <if test="acceptTime != null">-->
+<!--                accept_time = #{acceptTime},-->
+<!--            </if>-->
+<!--            <if test="status != null">-->
+<!--                status = #{status},-->
+<!--            </if>-->
+<!--            <if test="addressId != null">-->
+<!--                address_id = #{addressId},-->
+<!--            </if>-->
+<!--            <if test="targetId != null">-->
+<!--                target_id = #{targetId},-->
+<!--            </if>-->
+<!--            <if test="comment != null">-->
+<!--                comment = #{comment},-->
+<!--            </if>-->
+<!--        </set>-->
+<!--        where id = #{id} AND version = #{version}-->
+<!--    </update>-->
 
 </mapper>

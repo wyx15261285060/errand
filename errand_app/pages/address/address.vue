@@ -163,7 +163,6 @@
 					}).catch(error => {
 						console.error(error)
 					})
-
 				} else if (type === '修改') {
 					// 拷贝当前选中的地址信息 到表单中
 					this.$request.put('/address/update', this.form).then(res => {
