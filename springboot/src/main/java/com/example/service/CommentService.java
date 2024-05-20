@@ -38,7 +38,9 @@ public class CommentService {
      */
     @Transactional
     public void add(Comment comment) {
+        // 设置评论时间
         comment.setTime(DateUtil.now());
+        // 将评价信息添加到数据库中
         commentMapper.insert(comment);
         Integer orderId = comment.getOrderId();
         Order order = orderService.selectById(orderId);
@@ -109,7 +111,6 @@ public class CommentService {
 
 
     public List<Comment> selectComment(Integer userId) {
-//        Account currentUser = TokenUtils.getCurrentUser();
         // 先查询缓存
         List<Comment> cacheObject = RedisUtils.getCacheObject(Constants.REDIS_CONSTANT_KEY + userId);
         // 从缓存中查找的数据库为空时

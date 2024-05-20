@@ -39,6 +39,14 @@ public class OrderController {
         return Result.success();
     }
     /**
+     * 骑手接单对应的接口
+     */
+    /*@GetMapping("/recommendOrder")
+    public Result recommendOrder(@RequestBody Order order){
+        List<Order> list = orderService.recommendOrder(order);
+        return Result.success(list);
+    }*/
+    /**
      * 新增
      */
     @PostMapping("/add")
@@ -69,8 +77,8 @@ public class OrderController {
      * 修改
      */
     @PutMapping("/update")
-    public Result updateById(@RequestBody Order Order) {
-        orderService.updateById(Order);
+    public Result updateById(@RequestBody Order order) {
+        orderService.updateById(order);
         return Result.success();
     }
 
@@ -87,8 +95,8 @@ public class OrderController {
      * 查询所有
      */
     @GetMapping("/selectAll")
-    public Result selectAll(Order Order) {
-        List<Order> list = orderService.selectAll(Order);
+    public Result selectAll(Order order) {
+        List<Order> list = orderService.selectAll(order);
         return Result.success(list);
     }
 

@@ -4,12 +4,11 @@
     <!-- 搜索框 -->
     <div class="search">
       <el-input placeholder="请输入订单编号查询" style="width: 200px" v-model="OrderNo"></el-input>
+      <el-input placeholder="请输入订单状态" style="width: 200px;margin-left:10px" v-model="status"></el-input>
       <el-button type="info" plain style="margin-left: 10px" @click="load(1)">查询</el-button>
       <el-button type="warning" plain style="margin-left: 10px" @click="reset">重置</el-button>
     </div>
-<!--    <div class="operation">-->
-<!--      <el-button type="danger" plain @click="delBatch">批量删除</el-button>-->
-<!--    </div>-->
+
     <div style="margin-bottom: 20px"></div>
     <!-- 表格栏 -->
     <div class="table">
@@ -27,7 +26,8 @@
       </el-table-column>
         <el-table-column prop="type" label="物品类型"></el-table-column>
         <el-table-column prop="weight" label="物品重量"></el-table-column>
-        <el-table-column prop="price" label="小费"></el-table-column>
+        <el-table-column prop="price" label="费用"></el-table-column>
+        <el-table-column prop="tip"  label="小费"></el-table-column>
         <el-table-column prop="userName" label="发起人"></el-table-column>
         <el-table-column prop="acceptName" label="接单人"></el-table-column>
         <el-table-column prop="time" label="创建时间"></el-table-column>
@@ -40,6 +40,7 @@
             <el-tag type="primary" v-if="scope.row.status === '待收货'">待收货</el-tag>
             <el-tag type="warning" v-if="scope.row.status === '待评价'">待评价</el-tag>
             <el-tag type="success" v-if="scope.row.status === '已完成'">已完成</el-tag>
+            <el-tag type="warning" v-if="scope.row.status === '已超时'">已超时</el-tag>
           </template>
         </el-table-column>
         <el-table-column prop="addressId" label="取货信息">
@@ -56,7 +57,6 @@
         <el-table-column label="操作" align="center" width="150" fixed="right">
           <template v-slot="scope">
             <el-button size="mini" type="primary" plain @click="handleEdit(scope.row)">编辑</el-button>
-<!--            <el-button size="mini" type="danger" plain @click="del(scope.row.id)">删除</el-button>-->
           </template>
         </el-table-column>
       </el-table>
@@ -77,6 +77,7 @@
             <el-option value="待收货"></el-option>
             <el-option value="待评价"></el-option>
             <el-option value="已完成"></el-option>
+            <el-option value="已超时"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
@@ -121,12 +122,14 @@ export default {
       pageSize: 10,  // 每页显示的个数
       total: 0,
       OrderNo: null,
+      status:null,
       form: {},
       fromVisible: false,
       fromVisible1:false,
       order: JSON.parse(localStorage.getItem('xm-order') || '{}'),
       ids: [],
       address:{},
+
     }
   },
   created() {
@@ -145,11 +148,7 @@ export default {
       this.fromVisible = true   // 打开弹窗
     },
     save() {   // 保存按钮触发的逻辑  它会触发新增或者更新
-      this.$request({
-        url: this.form.id ? '/order/update' : '/order/add',
-        method: this.form.id ? 'PUT' : 'POST',
-        data: this.form
-      }).then(res => {
+      this.$request.put('/order/update',this.form).then(res => {
         if (res.code === '200') {  // 表示成功保存
           this.$message.success('保存成功')
           this.load(1)
@@ -159,19 +158,7 @@ export default {
         }
       })
     },
-    del(id) {   // 单个删除
-      this.$confirm('您确定删除吗？', '确认删除', { type: "warning" }).then(response => {
-        this.$request.delete('/order/delete/' + id).then(res => {
-          if (res.code === '200') {   // 表示操作成功
-            this.$message.success('操作成功')
-            this.load(1)
-          } else {
-            this.$message.error(res.msg)  // 弹出错误的信息
-          }
-        })
-      }).catch(() => {
-      })
-    },
+
     // 当前选中的所有的行数据
     handleSelectionChange(rows) {
       // map函数将选中的行的id值转换为一个数组，并将该数组赋值给this.ids变量
@@ -196,20 +183,28 @@ export default {
     },
     load(pageNum) {  // 分页查询
       if (pageNum) this.pageNum = pageNum
+      let i;
       this.$request.get('/order/selectPage', {
         params: {
           pageNum: this.pageNum,
           pageSize: this.pageSize,
           OrderNo: this.OrderNo,
+          status:this.status,
         }
       }).then(res => {
         // ?. 是可选链操作符
         this.tableData = res.data?.list
+        for (i=0;i<this.tableData.length;i++){
+          if (this.tableData[i].tip == null || this.tableData[i].tip==''){
+            this.tableData[i].tip = 0
+          }
+        }
         this.total = res.data?.total
       })
     },
     reset() {
       this.OrderNo = null
+      this.status = null
       this.load(1);
     },
     handleCurrentChange(pageNum) {

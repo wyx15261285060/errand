@@ -238,6 +238,15 @@ var _placeOrder = _interopRequireDefault(__webpack_require__(/*! ../placeOrder/p
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -246,12 +255,15 @@ var _default = {
       noticeList: [],
       interval: null,
       orderList: [],
+      // 推荐骑手列表
+      recommendList: [],
       user: uni.getStorageSync('xm-user')
     };
   },
   onShow: function onShow() {
     this.load();
     this.loadNotice();
+    this.loadRecommendRider();
   },
   onHide: function onHide() {
     // 清理定时器
@@ -265,6 +277,12 @@ var _default = {
         status: '待接单'
       }).then(function (res) {
         _this.orderList = res.data || [];
+      });
+    },
+    loadRecommendRider: function loadRecommendRider() {
+      var _this2 = this;
+      this.$request.get("/rider/recommend").then(function (res) {
+        _this2.recommendList = res.data || [];
       });
     },
     goPlaceOrder: function goPlaceOrder(type) {
@@ -284,7 +302,7 @@ var _default = {
     },
     // 骑手接单
     accept: function accept(order) {
-      var _this2 = this;
+      var _this3 = this;
       if (!this.user.rider) {
         // 必须是骑手方可接单
         uni.showToast({
@@ -306,7 +324,7 @@ var _default = {
             icon: 'success',
             title: '操作成功'
           });
-          _this2.load();
+          _this3.load();
         } else {
           uni.showToast({
             icon: 'none',
@@ -317,18 +335,18 @@ var _default = {
     },
     // 公告页面加载 
     loadNotice: function loadNotice() {
-      var _this3 = this;
+      var _this4 = this;
       this.$request.get("/notice/selectAll").then(function (res) {
-        _this3.noticeList = res.data || [];
+        _this4.noticeList = res.data || [];
         var i = 0;
-        _this3.content = _this3.noticeList.length ? _this3.noticeList[i].content : "";
-        if (_this3.noticeList.length > 0) {
-          _this3.interval = setInterval(function () {
+        _this4.content = _this4.noticeList.length ? _this4.noticeList[i].content : "";
+        if (_this4.noticeList.length > 0) {
+          _this4.interval = setInterval(function () {
             i++;
-            if (i === _this3.noticeList.length) {
+            if (i === _this4.noticeList.length) {
               i = 0;
             }
-            _this3.content = _this3.noticeList[i].content;
+            _this4.content = _this4.noticeList[i].content;
           }, 8000);
         }
       });

@@ -7,9 +7,12 @@ package com.example.service;/*
 import com.example.common.enums.ResultCodeEnum;
 import com.example.entity.Account;
 import com.example.entity.Certification;
+import com.example.entity.Rider;
 import com.example.entity.User;
 import com.example.exception.CustomException;
 import com.example.mapper.CertificationMapper;
+import com.example.mapper.RiderMapper;
+import com.example.mapper.UserMapper;
 import com.example.utils.TokenUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -26,6 +29,12 @@ public class CertificationService {
 
     @Resource
     private CertificationMapper certificationMapper;
+
+    @Resource
+    private RiderMapper riderMapper;
+
+    @Resource
+    private UserMapper userMapper;
 
     /**
      * 新增
@@ -70,7 +79,23 @@ public class CertificationService {
      * 修改
      */
     public void updateById(Certification certification) {
+        // 更新认证状态
         certificationMapper.updateById(certification);
+        User certUser = userMapper.selectById(certification.getUserId());
+        Rider rider = new Rider();
+        // 当认证状态为通过时，将该骑手信息添加到Rider表中
+        if (certification.getStatus().equals("通过")){
+            rider.setId(certification.getUserId());
+            rider.setUsername(certification.getName());
+            rider.setPassword(certUser.getPassword());
+            rider.setSex(certUser.getSex());
+            rider.setAvatar(certification.getAvatar());
+            rider.setEmail(certUser.getEmail());
+            rider.setPhone(certification.getPhone());
+            rider.setRole("RIDER");
+            rider.setAccount(certUser.getAccount());
+        }
+        riderMapper.insert(rider);
     }
 
     /**

@@ -8,6 +8,7 @@
         id,content,money,user_id,time,type
     </sql>
 
+    <!--查询当前用户所有收支记录-->
     <select id="selectAll" resultType="com.example.entity.Record">
         select
         R.*, U.name as userName

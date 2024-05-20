@@ -42,6 +42,8 @@ public class OrderService {
     private CertificationService certificationService;
     @Resource
     private RecordService recordService;
+    @Resource
+    private RiderService riderService;
 
 
     /**
@@ -78,14 +80,17 @@ public class OrderService {
         if (OrderStatus.NO_RECEIVE.getValue().equals(order.getStatus())) {
             // 骑手送达订单情况
             Integer acceptId = order.getAcceptId();
+            // 查找到接单的骑手
             User user = userService.selectById(acceptId);
-            user.setAccount(user.getAccount().add(BigDecimal.valueOf(order.getPrice())));
+            // 将骑手的余额账户加上费用并更新
+            user.setAccount(user.getAccount().add(BigDecimal.valueOf(sumPrice)));
             userService.updateById(user);
             // 接单收支明细
             RecordService.addRecord("接单" + order.getName(), BigDecimal.valueOf(sumPrice), RecordEnum.INCOME.getValue(), order.getUserId());
         } else if (OrderStatus.CANCEL.getValue().equals(order.getStatus())) {
             RecordService.addRecord("用户主动取消" + order.getName(), BigDecimal.valueOf(sumPrice), RecordEnum.CANCEL.getValue(), order.getUserId());
         }
+        // 更新订单状态
         orderMapper.updateById(order);
     }
 
@@ -108,6 +113,7 @@ public class OrderService {
      */
     public List<Order> selectAll(Order order) {
         List<Order> list = orderMapper.selectAll(order);
+        // 计算下单时长
         for (Order o : list) {
             String time = o.getTime();
             Date date = new Date();
@@ -174,4 +180,29 @@ public class OrderService {
             throw new RuntimeException("订单已被其他骑手接单");
         }
     }
+
+   /* public List<Order> recommendOrder(Order order) {
+        // 获取推荐骑手列表
+        List<Rider> recommendRiderList = riderService.recommend();
+        Account currentUser = TokenUtils.getCurrentUser();
+        Integer id = currentUser.getId();
+        for (Rider rider : recommendRiderList){
+            //当前用户的id和推荐骑手id一致
+            if (rider.getId() == id){
+                //
+                orderMapper.selectByUserId()
+
+            }
+        }
+
+        List<Order> list = orderMapper.selectRecommend(order);
+        // 计算下单时长
+        for (Order o : list) {
+            String time = o.getTime();
+            Date date = new Date();
+            int i = (int) DateUtil.between(DateUtil.parseDateTime(time), date, DateUnit.MINUTE);
+            o.setMinutes(i);
+        }
+        return list;
+    }*/
 }

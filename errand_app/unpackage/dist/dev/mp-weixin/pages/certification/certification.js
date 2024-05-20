@@ -291,15 +291,6 @@ var _default = {
           _this2.cardImgs2.url = _this2.form.card2;
         }
       });
-      // if (this.form.status === '通过') {
-      // 	// 重新设置缓存的值
-      // 	this.$request.post("/login", this.form).then(res => {
-      // 		if (res.code === '200') {
-      // 			// 登录成功后将用户的信息放到缓存中
-      // 			uni.setStorageSync("xm-user", res.data);
-      // 		}
-      // 	});
-      // }
     },
     // 提交申请方法
     submitRequest: function submitRequest() {

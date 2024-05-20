@@ -1,8 +1,10 @@
 <template>
 	<view style="padding: 20rpx;">
+		<!-- 循环遍历收支明细记录列表 -->
 		<view class="box" v-for="item in recordList" :key="item.id" style="margin-bottom: 10rpx;">
 			<view style="display: flex; margin-bottom: 10rpx;">
 				<view>
+					<!-- 根据不同类型的收支明细，展示不同的样式与信息 -->
 					<uni-tag type="success" style="margin-right: 20rpx;" text="充值" size="mini" v-if="item.type==='充值'"></uni-tag>
 					<uni-tag type="primary" style="margin-right: 20rpx;" text="收入" size="mini" v-if="item.type==='收入'"></uni-tag>
 					<uni-tag type="error"  style="margin-right: 20rpx;" text="支出" size="mini" v-if="item.type==='支出'"></uni-tag>
@@ -46,7 +48,6 @@
 				}).then(res => {
 					this.recordList = res.data || []
 				})
-
 			},
 
 		}

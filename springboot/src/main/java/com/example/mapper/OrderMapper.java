@@ -6,6 +6,7 @@ package com.example.mapper;/*
  */
 import com.example.entity.Order;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.omg.PortableInterceptor.INACTIVE;
 
@@ -47,4 +48,7 @@ public interface OrderMapper {
             "version = version + 1 WHERE id = #{id} AND version = #{version}")
     boolean updateByIdAndVersion(Integer id, Integer version, Integer acceptId,String status,String acceptTime);
 
+    // 查询所有已完成的订单信息
+    @Select("select * from wyx_order where status='已完成' or status='待评价'")
+    List<Order> selectFinishedAll();
 }

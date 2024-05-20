@@ -64,6 +64,15 @@
 				</view>
 			</view>
 		</view>
+		<!-- 推荐列表 -->
+		<view class="box" style="color: #5500ff; font-weight: bold; margin-bottom: 10rpx;">
+			推荐骑手
+		</view>
+		<view>
+			<view v-for="item in recommendList" :key="item.id" class="box" style="margin-bottom: 10rpx;">
+				<view style="color:#5500ff">{{ item.username }} </view>
+				</view>
+		</view>
 	</view>
 </template>
 
@@ -83,12 +92,15 @@ import placeOrderVue from '../placeOrder/placeOrder.vue';
 				noticeList: [],
 				interval: null,
 				orderList: [],
+				// 推荐骑手列表
+				recommendList:[],
 				user:uni.getStorageSync('xm-user'),
 			}
 		},
 		onShow() {
 			this.load();
 			this.loadNotice();
+			this.loadRecommendRider();
 		},
 		onHide() { // 清理定时器
 			clearInterval(this.interval);
@@ -104,7 +116,11 @@ import placeOrderVue from '../placeOrder/placeOrder.vue';
 				})
 				
 			},
-			
+			loadRecommendRider(){
+				this.$request.get("/rider/recommend").then(res=>{
+					this.recommendList = res.data || []
+				})
+			},
 			goPlaceOrder(type){
 				// 先获取缓存内容，再设置值
 				let orderStore = uni.getStorageSync('orderStore') || {}

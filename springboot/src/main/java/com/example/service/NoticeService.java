@@ -24,7 +24,7 @@ public class NoticeService {
      * 新增
      */
     public void add(Notice notice) {
-        notice.setTime(DateUtil.today());
+        notice.setTime(DateUtil.now());
         Account currentUser = TokenUtils.getCurrentUser();
         notice.setUser(currentUser.getUsername());
         noticeMapper.insert(notice);

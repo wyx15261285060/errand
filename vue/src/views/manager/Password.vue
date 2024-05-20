@@ -24,9 +24,12 @@
 export default {
   name: "Password",
   data() {
+
     const validatePassword = (rule, value, callback) => {
+        /*确认新密码为null时*/
       if (value === '') {
         callback(new Error('请确认密码'))
+        /*确认新密码和新密码不一致时*/
       } else if (value !== this.user.newPassword) {
         callback(new Error('确认密码错误'))
       } else {

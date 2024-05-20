@@ -19,9 +19,11 @@
       <el-table-column prop="time" label="时间"></el-table-column>
       <el-table-column prop="type" label="类型">
         <template v-slot="scope">
-          <el-tag type="primary" v-if="scope.row.type === '完成订单'">完成订单</el-tag>
-          <el-tag type="danger" v-if="scope.row.type === '支出'">支出</el-tag>
+          <el-tag type="primary" v-if="scope.row.type === '收入'">收入</el-tag>
+          <el-tag type="warning" v-if="scope.row.type === '支出'">支出</el-tag>
           <el-tag type="success" v-if="scope.row.type === '充值'">充值</el-tag>
+          <el-tag type="danger" v-if="scope.row.type === '取消'">取消</el-tag>
+          <el-tag type="danger" v-if="scope.row.type === '超时'">超时</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" width="180">

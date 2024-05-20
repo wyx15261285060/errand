@@ -116,15 +116,6 @@
 					}
 					
 				})
-				// if (this.form.status === '通过') {
-				// 	// 重新设置缓存的值
-				// 	this.$request.post("/login", this.form).then(res => {
-				// 		if (res.code === '200') {
-				// 			// 登录成功后将用户的信息放到缓存中
-				// 			uni.setStorageSync("xm-user", res.data);
-				// 		}
-				// 	});
-				// }
 
 			},
 
