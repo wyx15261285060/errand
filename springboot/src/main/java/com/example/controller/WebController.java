@@ -68,7 +68,7 @@ public class WebController {
             } else {
                 account = adminService.login(account);
             }
-        } else if (RoleEnum.USER.name().equals(account.getRole())) {
+        } else if ((RoleEnum.USER.name().equals(account.getRole())) || (RoleEnum.RIDER.name().equals(account.getRole()))) {
             account = userService.login(account);
         } else {
             return Result.error(ResultCodeEnum.USER_NOT_EXIST_ERROR);
@@ -113,7 +113,8 @@ public class WebController {
         // 身份判断
         if (RoleEnum.ADMIN.name().equals(account.getRole())) {
             adminService.updatePassword(account);
-        } else if (RoleEnum.USER.name().equals(account.getRole())) {
+            // 用户和骑手修改密码
+        } else if ((RoleEnum.USER.name().equals(account.getRole())) || (RoleEnum.RIDER.name().equals(account.getRole()))) {
             userService.updatePassword(account);
         }
         return Result.success();

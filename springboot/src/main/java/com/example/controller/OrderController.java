@@ -38,14 +38,7 @@ public class OrderController {
         orderService.acceptOrder(order);
         return Result.success();
     }
-    /**
-     * 骑手接单对应的接口
-     */
-    /*@GetMapping("/recommendOrder")
-    public Result recommendOrder(@RequestBody Order order){
-        List<Order> list = orderService.recommendOrder(order);
-        return Result.success(list);
-    }*/
+
     /**
      * 新增
      */
@@ -92,7 +85,15 @@ public class OrderController {
     }
 
     /**
-     * 查询所有
+     * 小程序中查询所有订单
+     */
+    @GetMapping("/selectAllByRole")
+    public Result selectAllByRole(Order order) {
+        List<Order> list = orderService.selectAllByRole(order);
+        return Result.success(list);
+    }
+    /**
+     * 后台管理系统中查询所有订单
      */
     @GetMapping("/selectAll")
     public Result selectAll(Order order) {

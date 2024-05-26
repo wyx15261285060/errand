@@ -51,4 +51,10 @@ public interface OrderMapper {
     // 查询所有已完成的订单信息
     @Select("select * from wyx_order where status='已完成' or status='待评价'")
     List<Order> selectFinishedAll();
+
+
+    /**
+     * 只有骑手和本人用户方可查看全部订单
+     */
+    List<Order> selectByUserId(Order order);
 }

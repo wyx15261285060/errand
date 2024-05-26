@@ -32,7 +32,16 @@ public class User extends Account implements Serializable {
     private String sex;
     /** 余额 */
     private BigDecimal account;
+    /** 盐值 */
+    private String salt;
 
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
 
     @Override
     public Integer getId() {
@@ -125,4 +134,6 @@ public class User extends Account implements Serializable {
     public void setAccount(BigDecimal account) {
         this.account = account;
     }
+
+
 }

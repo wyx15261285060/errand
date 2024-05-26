@@ -300,7 +300,7 @@ var _default = {
       if (this.current !== '全部订单') {
         params.status = this.current;
       }
-      this.$request.get('/order/selectAll', params).then(function (res) {
+      this.$request.get('/order/selectAllByRole', params).then(function (res) {
         _this2.orderList = res.data || [];
       });
     },

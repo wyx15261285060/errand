@@ -31,6 +31,8 @@ public class Account {
     private String code;
     /** uuid*/
     private String uuid;
+    /** 盐值*/
+    private String salt;
 
     public String getUuid() {
         return uuid;
@@ -148,5 +150,13 @@ public class Account {
                 ", avatar='" + avatar + '\'' +
                 ", token='" + token + '\'' +
                 '}';
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }

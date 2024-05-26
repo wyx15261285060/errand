@@ -7,7 +7,9 @@ package com.example.controller;/*
 
 import com.example.common.Result;
 import com.example.entity.Notice;
+import com.example.entity.Order;
 import com.example.entity.Rider;
+import com.example.entity.User;
 import com.example.service.NoticeService;
 import com.example.service.RiderService;
 import com.github.pagehelper.PageInfo;
@@ -58,7 +60,7 @@ public class RiderController {
     }
     @GetMapping("/recommend")
     public Result recommend(){
-       List<Rider> list =  riderService.recommend();
+       List<User> list =  riderService.recommendUser();
        return Result.success(list);
     }
 

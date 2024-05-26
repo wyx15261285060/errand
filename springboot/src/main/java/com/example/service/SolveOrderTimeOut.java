@@ -37,6 +37,7 @@ public class SolveOrderTimeOut {
     public void task() {
         log.info("========================订单扫描任务开始========================");
         Order params = new Order();
+        // 获取所有待接单状态的订单
         params.setStatus(OrderStatus.NO_ACCEPT.getValue());
         List<Order> orderList = orderService.selectAll(params);
         for (Order order:orderList){
@@ -52,7 +53,14 @@ public class SolveOrderTimeOut {
                 User user = userService.selectById(order.getUserId());
                 user.setAccount(user.getAccount().add(BigDecimal.valueOf(order.getPrice())));
                 userService.updateById(user);
-                RecordService.addRecord("下单超时，自动取消订单" + order.getName(),BigDecimal.valueOf(order.getPrice() + order.getTip()), RecordEnum.TIMEOUT.getValue(),order.getUserId());
+                Double orderTip = order.getTip();
+                Double orderPrice = order.getPrice();
+                // 处理费用和小费为空的情况
+                if (orderTip==null || orderPrice==null){
+                    orderTip = 0.0;
+                    orderPrice =0.0;
+                }
+                RecordService.addRecord("下单超时，自动取消订单" + order.getName(),BigDecimal.valueOf(orderPrice + orderTip), RecordEnum.TIMEOUT.getValue(),order.getUserId());
             }
         }
         log.info("========================订单扫描任务结束========================");

@@ -44,4 +44,7 @@ public interface UserMapper {
 
     @Select("select * from wyx_user where phone = #{phone}")
     List<User> selectByPhone(String phone);
+
+    @Select("select * from wyx_user u where u.role =#{Role} ")
+    List<User> selectAllUSER(String Role);
 }

@@ -24,7 +24,7 @@
     <select id="selectAll" resultType="com.example.entity.Rider">
         select
         <include refid="Base_Column_List" />
-        from wyx_Rider
+        from wyx_rider
         <where>
             <if test="id != null"> and id= #{id}</if>
             <if test="username != null"> and username like concat('%', #{username}, '%')</if>
@@ -42,17 +42,17 @@
     <select id="selectById" resultType="com.example.entity.Rider">
         select
         <include refid="Base_Column_List" />
-        from wyx_Rider
+        from wyx_rider
         where id = #{id}
     </select>
 
     <delete id="deleteById">
-        delete from wyx_Rider
+        delete from wyx_rider
         where  id = #{id}
     </delete>
 
     <insert id="insert" parameterType="com.example.entity.Rider" useGeneratedKeys="true">
-        insert into wyx_Rider
+        insert into wyx_rider
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">id,</if>
             <if test="username != null">username,</if>
@@ -80,7 +80,7 @@
     </insert>
 
     <update id="updateById" parameterType="com.example.entity.Rider">
-        update wyx_Rider
+        update wyx_rider
         <set>
             <if test="username != null">
                 username = #{username},
@@ -116,8 +116,9 @@
     <select id="selectByusername" parameterType="String" resultType="com.example.entity.Rider">
         select
         <include refid="Base_Column_List" />
-        from wyx_Rider
+        from wyx_rider
         where username = #{username}
     </select>
+
 
 </mapper>

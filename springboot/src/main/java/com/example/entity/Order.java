@@ -54,6 +54,7 @@ public class Order {
     /**版本号*/
     private Integer version;
 
+
     public Integer getVersion() {
         return version;
     }

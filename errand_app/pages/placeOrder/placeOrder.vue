@@ -164,7 +164,6 @@
 						url: '/pages/getAddress/getAddress?addressType=' + addressType
 					})
 				}
-
 			},
 
 			addOrder() {

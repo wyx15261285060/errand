@@ -36,6 +36,24 @@
         from wyx_order
         where id = #{id}
     </select>
+    <!--小程序部分查询订单信息-->
+    <select id="selectByUserId" resultType="com.example.entity.Order">
+        SELECT * FROM (
+        select
+        o.*,
+        u1.username AS userName,
+        u2.username AS acceptName
+        FROM wyx_order o
+        LEFT JOIN wyx_user u1 ON o.user_id = u1.id
+        LEFT JOIN wyx_user u2 ON o.accept_id = u2.id
+        <where>
+            <!-- 用户 -->
+            <if test="userId != null">AND o.user_id = #{userId}</if>
+            <if test="status != null">AND o.status = #{status}</if>
+        </where>
+        ) AS join_table
+        ORDER BY id ASC
+    </select>
 
     <delete id="deleteById">
         delete

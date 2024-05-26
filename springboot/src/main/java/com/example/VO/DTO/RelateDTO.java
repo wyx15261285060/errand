@@ -6,10 +6,10 @@ package com.example.VO.DTO;/*
  */
 // 协同过滤算法模型
 public class RelateDTO {
-    /** 用户id */
-    private Integer userId;
     /** 骑手id */
     private Integer riderId;
+    /** 用户 */
+    private Integer userId;
     /** 相关性指数 */
     private Integer index;
 
@@ -18,6 +18,7 @@ public class RelateDTO {
         this.riderId = riderId;
         this.index = index;
     }
+
 
     public Integer getUserId() {
         return userId;

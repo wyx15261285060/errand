@@ -114,7 +114,7 @@
 					if (this.form.card2) {
 						this.cardImgs2.url = this.form.card2
 					}
-					
+
 				})
 
 			},
@@ -122,6 +122,19 @@
 
 			// 提交申请方法
 			submitRequest() {
+
+				// if (this.form.length == 18) {
+				// 	let reg1 =
+				// 	/^[1-9]\d{5}(18|19|20|(3\d))\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/; //正则表达式定义身份证号正确格式
+				// 	if (!reg1.test(this.form)) { //判断身份证号格式时候正确
+				// 		uni.showToast({
+				// 			title: '请输入正确的身份证号',
+				// 			icon: 'none',
+				// 			duration: 2000
+				// 		})
+				// 		return
+				// 	}
+				// }
 				this.$refs.formRef.validate().then(res => {
 					this.form.userId = this.user.id
 					this.$request.post('/certification/add', this.form).then(res => {

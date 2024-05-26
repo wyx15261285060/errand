@@ -22,10 +22,12 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * 用户业务服务
@@ -129,10 +131,32 @@ public class UserService {
      */
     public void register(Account account) {
         User user = new User();
+
+        //密码MD5加密处理
+        //盐值+password+盐值 盐值(一个随机的字符串)
+        //String oldPassword=account.getPassword();
+        //获取盐值,随机生成一个盐值
+        //String salt= UUID.randomUUID().toString().toUpperCase();
+        //account.setSalt(salt);
+        //        将密码和盐值作为一个整体进行加密,提高了数据的安全
+        //String md5Password=getMD5Password(oldPassword,salt);
+        //account.setPassword(md5Password);
         // Bean工具类的拷贝对象属性值，浅拷贝
         BeanUtils.copyProperties(account, user);
         this.add(user);
     }
+
+    //定义一个md5算法的加密处理
+    private String getMD5Password(String password,String salt) {
+        // md5加密算法调用 转换成字节
+        //进行加密三次
+        for (int i = 0; i < 3; i++) {
+            password = DigestUtils.md5DigestAsHex((salt + password + salt).getBytes()).toUpperCase();
+        }
+        //返回加密后的密码
+        return password;
+    }
+
 
     /**
      * 修改密码
@@ -148,6 +172,7 @@ public class UserService {
         dbUser.setPassword(account.getNewPassword());
         userMapper.updateById(dbUser);
     }
+
 
     public void charge(Double money) {
         Account currentUser = TokenUtils.getCurrentUser();

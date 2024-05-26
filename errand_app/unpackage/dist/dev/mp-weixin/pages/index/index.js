@@ -247,6 +247,14 @@ var _placeOrder = _interopRequireDefault(__webpack_require__(/*! ../placeOrder/p
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -255,7 +263,7 @@ var _default = {
       noticeList: [],
       interval: null,
       orderList: [],
-      // 推荐骑手列表
+      // 推荐用户列表
       recommendList: [],
       user: uni.getStorageSync('xm-user')
     };
@@ -263,7 +271,9 @@ var _default = {
   onShow: function onShow() {
     this.load();
     this.loadNotice();
-    this.loadRecommendRider();
+    if (this.user.role == 'RIDER') {
+      this.loadRecommendRider();
+    }
   },
   onHide: function onHide() {
     // 清理定时器
@@ -273,7 +283,7 @@ var _default = {
   methods: {
     load: function load() {
       var _this = this;
-      this.$request.get("/order/selectAll", {
+      this.$request.get("/order/selectAllByRole", {
         status: '待接单'
       }).then(function (res) {
         _this.orderList = res.data || [];

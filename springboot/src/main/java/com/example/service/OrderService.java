@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -76,6 +77,11 @@ public class OrderService {
     public void updateById(Order order) {
         Double orderTip = order.getTip();
         Double orderPrice = order.getPrice();
+        // 处理费用和小费为空的情况
+        if (orderTip==null || orderPrice==null){
+            orderTip = 0.0;
+            orderPrice =0.0;
+        }
         Double sumPrice = orderPrice + orderTip;
         if (OrderStatus.NO_RECEIVE.getValue().equals(order.getStatus())) {
             // 骑手送达订单情况
@@ -109,10 +115,25 @@ public class OrderService {
     }
 
     /**
-     * 查询所有
+     * 小程序查询所有订单信息
+     * 根据用户角色(只有骑手方可查询全部订单)
+     * 当前用户角色为普通用户 只可以查看自己的订单
      */
-    public List<Order> selectAll(Order order) {
-        List<Order> list = orderMapper.selectAll(order);
+    public List<Order> selectAllByRole(Order order) {
+        List<Order> list = new ArrayList<>();
+        // 查询到订单对应的用户
+        User user = userService.selectById(order.getUserId());
+        Account currentUser = TokenUtils.getCurrentUser();
+        // 当前用户身份为骑手可以查看所有人订单
+        if (currentUser.getRole().equals("RIDER")) {
+            list = orderMapper.selectAll(order);
+        }
+        // 当前用户身份为普通用户
+        if (currentUser.getRole().equals("USER")){
+            // 将当前用户放进order中
+            order.setUserId(currentUser.getId());
+            list = orderMapper.selectByUserId(order);
+        }
         // 计算下单时长
         for (Order o : list) {
             String time = o.getTime();
@@ -120,6 +141,20 @@ public class OrderService {
             int i = (int) DateUtil.between(DateUtil.parseDateTime(time), date, DateUnit.MINUTE);
             o.setMinutes(i);
         }
+        return list;
+    }
+    /**
+     * 后台管理系统查看全部订单
+     */
+    public List<Order> selectAll(Order order) {
+        List<Order> list = orderMapper.selectAll(order);
+        // 计算下单时长
+        list.forEach(o -> {
+            String time = o.getTime();
+            Date date = new Date();
+            int i = (int) DateUtil.between(DateUtil.parseDateTime(time), date, DateUnit.MINUTE);
+            o.setMinutes(i);
+        });
         return list;
     }
 
@@ -181,28 +216,4 @@ public class OrderService {
         }
     }
 
-   /* public List<Order> recommendOrder(Order order) {
-        // 获取推荐骑手列表
-        List<Rider> recommendRiderList = riderService.recommend();
-        Account currentUser = TokenUtils.getCurrentUser();
-        Integer id = currentUser.getId();
-        for (Rider rider : recommendRiderList){
-            //当前用户的id和推荐骑手id一致
-            if (rider.getId() == id){
-                //
-                orderMapper.selectByUserId()
-
-            }
-        }
-
-        List<Order> list = orderMapper.selectRecommend(order);
-        // 计算下单时长
-        for (Order o : list) {
-            String time = o.getTime();
-            Date date = new Date();
-            int i = (int) DateUtil.between(DateUtil.parseDateTime(time), date, DateUnit.MINUTE);
-            o.setMinutes(i);
-        }
-        return list;
-    }*/
 }
