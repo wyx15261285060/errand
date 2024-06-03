@@ -82,7 +82,15 @@
           </el-upload>
         </el-form-item>
         <el-form-item label="角色" prop="role">
-          <el-input v-model="form.role" placeholder="角色"></el-input>
+          <el-select v-model="form.role" placeholder="请选择身份">
+            <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+            </el-option>
+          </el-select>
+<!--          <el-input v-model="form.role" placeholder="角色"></el-input>-->
         </el-form-item>
         <el-form-item label="性别" prop="role">
           <el-select v-model="form.sex" placeholder="请选择">
@@ -110,6 +118,13 @@ export default {
   name: "User",
   data() {
     return {
+      options: [{
+        value: 'USER',
+        label: '普通用户'
+      }, {
+        value: 'RIDER',
+        label: '骑手'
+      }],
       tableData: [],  // 所有的数据
       pageNum: 1,   // 当前的页码
       pageSize: 10,  // 每页显示的个数

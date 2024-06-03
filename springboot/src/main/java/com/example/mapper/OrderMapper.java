@@ -57,4 +57,7 @@ public interface OrderMapper {
      * 只有骑手和本人用户方可查看全部订单
      */
     List<Order> selectByUserId(Order order);
+
+    @Select("select user_id from wyx_order where status = '待接单';")
+    List<Integer> selectUnacceptOrder();
 }

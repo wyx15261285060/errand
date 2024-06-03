@@ -97,9 +97,9 @@ public class CertificationService {
             // 骑手表存在该骑手,则需要将该骑手删除 并将其身份设置为USER
             if (ObjectUtil.isNotEmpty(deleteRider)){
                riderMapper.deleteById(certification.getUserId());
-               user.setRole("USER");
-               userMapper.updateById(user);
             }
+            user.setRole("USER");
+            userMapper.updateById(user);
         }
         // 前端传入参数中认证状态为通过并且数据库里面的状态为待审核时，将该骑手信息添加到Rider表中
         // 只有在数据库为 拒绝或者待审核时 并且前端传入的是通过，才可以添加骑手信息

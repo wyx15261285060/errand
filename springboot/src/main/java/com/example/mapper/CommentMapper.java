@@ -45,4 +45,8 @@ public interface CommentMapper {
 
     @Select("select * from wyx_comment where accept_id = #{acceptId}")
     List<Comment> selectByAcceptId(Integer acceptId);
+
+    // 分数为4/5的评论
+    @Select("select * from wyx_comment where star = 4 or star = 5")
+    List<Comment> selectGoodComment();
 }

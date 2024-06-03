@@ -95,8 +95,8 @@ public class RiderService {
         // 用户哪些行为可以和骑手产生关系  （'订单'，‘评论’）
         // 已完成订单订单
         List<Order> orderList = orderMapper.selectFinishedAll();
-        // 所有评论
-        List<Comment> commentList = commentMapper.selectAll(null);
+        // 所有好评评论
+        List<Comment> commentList = commentMapper.selectGoodComment();
         // 所有普通用户
         List<User> userList = userMapper.selectAllUSER("USER");
         // 所有的骑手信息
@@ -130,12 +130,15 @@ public class RiderService {
         }
         // 数据准备结束后，将这些数据传递给推荐算法
         Account currentUser = TokenUtils.getCurrentUser();
-        // 返回 推荐的用户id
+        // 返回 推荐的用户id 并且该用户已发布订单
         List<Integer> userIds = UserCF.recommend(currentUser.getId(), list);
+        List<Integer> unOrderUserIds = orderMapper.selectUnacceptOrder();
+        userIds.retainAll(unOrderUserIds);
         // 把骑手id转换成骑手
-        List<User> result = userIds.stream().map(userId -> userList.stream().filter(x -> x.getId().equals(userId)).findFirst().orElse(null))
+        List<User> recommendRider = userIds.stream().map(userId -> userList.stream().filter(x -> x.getId().equals(userId)).findFirst().orElse(null))
                 .limit(10).collect(Collectors.toList());
-        return result;
+
+        return recommendRider;
     }
 
 
