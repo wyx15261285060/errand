@@ -60,7 +60,7 @@ public class SolveOrderTimeOut {
                     orderTip = 0.0;
                     orderPrice =0.0;
                 }
-                RecordService.addRecord("下单超时，自动取消订单" + order.getName(),BigDecimal.valueOf(orderPrice + orderTip), RecordEnum.TIMEOUT.getValue(),order.getUserId());
+                RecordService.addRecord("下单超时，自动取消订------" + order.getName(),BigDecimal.valueOf(orderPrice + orderTip), RecordEnum.TIMEOUT.getValue(),order.getUserId());
             }
         }
         log.info("========================订单扫描任务结束========================");

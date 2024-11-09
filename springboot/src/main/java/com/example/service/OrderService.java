@@ -35,6 +35,7 @@ public class OrderService {
 
     @Resource
     private OrderMapper orderMapper;
+
     @Resource
     private UserService userService;
     @Resource
@@ -144,7 +145,7 @@ public class OrderService {
         return list;
     }
     /**
-     * 后台管理系统查看全部订单
+     * 查看全部订单
      */
     public List<Order> selectAll(Order order) {
         List<Order> list = orderMapper.selectAll(order);
@@ -192,7 +193,7 @@ public class OrderService {
         order.setTime(DateUtil.now());
         orderMapper.insert(order);
         // 下单明细记录
-        RecordService.addRecord("下单" + order.getName(), BigDecimal.valueOf(sumPrice), RecordEnum.OUT.getValue(), order.getUserId());
+        RecordService.addRecord("下单------" + order.getName(), BigDecimal.valueOf(sumPrice), RecordEnum.OUT.getValue(), order.getUserId());
     }
 
     /**
